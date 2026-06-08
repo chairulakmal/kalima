@@ -5467,18 +5467,18 @@
     "distractors": [
       {
         "text": "支持",
-        "whyWrong": "[wrong-nuance] 支持 means showing support for a candidate or cause, not the formal act of casting a ballot in an election."
+        "whyWrong": "[wrong-nuance] 支持 means showing support for a candidate or cause, not the formal act of voting or election event."
       },
       {
         "text": "決定",
-        "whyWrong": "[wrong-domain] 決定 means making a decision in general, and does not specifically refer to the civic act of voting."
+        "whyWrong": "[wrong-domain] 決定 means making a decision in general, and does not specifically refer to the civic act of voting or an election."
       },
       {
         "text": "調査",
-        "whyWrong": "[wrong-domain] 調査 means a survey or investigation, which can resemble a poll but does not involve casting votes in an election."
+        "whyWrong": "[wrong-domain] 調査 means a survey or investigation, which can resemble a vote tally but does not refer to the voting or election event itself."
       }
     ],
-    "explanation": "投票 means the act of voting or casting a ballot, and 選挙 (election/voting) is the closest common noun that captures the same civic activity described in the sentence."
+    "explanation": "投票 refers to the voting event or act of voting, and 選挙 ('election') is a natural synonym referring to the same civic voting event."
   },
   {
     "wordId": "cmpxh5lqr008ckof2nlkmojs4",
@@ -5714,8 +5714,8 @@
   {
     "wordId": "cmpxh5m0t00v1kof20pgbqldj",
     "type": "synonym",
-    "correctAnswer": "恵まれた",
-    "correctReading": "めぐまれた",
+    "correctAnswer": "豊富",
+    "correctReading": "ほうふ",
     "distractors": [
       {
         "text": "貧しい",
@@ -5730,7 +5730,7 @@
         "whyWrong": "[wrong-domain] 静か means 'quiet or peaceful,' describing atmosphere rather than the abundance of nature."
       }
     ],
-    "explanation": "豊か here means the region is abundantly blessed with nature; 恵まれた ('blessed with, richly endowed') naturally substitutes to convey the same meaning of having plentiful natural surroundings."
+    "explanation": "豊か means 'abundant/rich', and 豊富 ('plentiful/abundant') is a direct synonym that can substitute to describe the region's natural resources."
   },
   {
     "wordId": "cmpxh5ltx00glkof2im6tx3p1",
@@ -7982,8 +7982,8 @@
   {
     "wordId": "cmpxh5mbg01n2kof28x2qm0zq",
     "type": "contextual",
-    "correctAnswer": "めくる",
-    "correctReading": null,
+    "correctAnswer": "捲る",
+    "correctReading": "めくる",
     "distractors": [
       {
         "text": "開ける",
@@ -7998,7 +7998,7 @@
         "whyWrong": "[wrong-domain] 押さえる means to press down or hold something in place, which is the opposite motion of turning a page over."
       }
     ],
-    "explanation": "めくる specifically means to turn over or flip a page, making it the precise verb for the action of moving through a book's pages carefully."
+    "explanation": "捲る (めくる) specifically means to turn over or flip a page, making it the precise verb for the action of moving through a book's pages carefully."
   },
   {
     "wordId": "cmpxh5m4a014lkof295y8pm32",
