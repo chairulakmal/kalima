@@ -1,0 +1,76 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Session {
+  id          String            @id @default(cuid())
+  level       String
+  type        String            @default("synonym") // 'synonym' | 'reading' | 'orthography'
+  questions   SessionQuestion[]
+  analysis    String?
+  startedAt   DateTime          @default(now())
+  completedAt DateTime?
+}
+
+// One row per (word, question type). AI-generated distractors + explanation, reused across sessions.
+model ExamQuestion {
+  id             String               @id @default(cuid())
+  wordId         String
+  type           String               // 'synonym' | 'reading' | 'orthography'
+  correctAnswer  String               // synonym: a Japanese synonym; reading: the kana reading; orthography: the kanji form
+  correctReading String?
+  distractors    Json
+  explanation    String
+  version        Int                  @default(1)
+  model          String
+  createdAt      DateTime             @default(now())
+  updatedAt      DateTime             @updatedAt
+  reviews        ExamQuestionReview[]
+
+  @@unique([wordId, type])
+  @@index([wordId])
+}
+
+// One review per (question, reviewer). Rank S–F; majority-vote determines the effective rank.
+// Reviewers can only submit reviews; deletion requires admin access and a non-protected rank.
+model ExamQuestionReview {
+  id             String       @id @default(cuid())
+  examQuestionId String
+  examQuestion   ExamQuestion @relation(fields: [examQuestionId], references: [id], onDelete: Cascade)
+  reviewerEmail  String
+  rank           String       // 'S' | 'A' | 'B' | 'C' | 'D' | 'F'
+  note           String?
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+
+  @@unique([examQuestionId, reviewerEmail])
+  @@index([examQuestionId])
+}
+
+model SessionQuestion {
+  id              String   @id @default(cuid())
+  sessionId       String
+  session         Session  @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  wordId          String
+  type            String   @default("synonym") // 'reading' | 'orthography' | 'contextual' | 'synonym'
+  correctChoiceId String
+  userChoiceId    String?
+  correct         Boolean?
+  choicesJson     Json
+  explanation     String
+  order           Int
+
+  @@index([sessionId])
+}
+
+model RateLimit {
+  id           String   @id @default(cuid())
+  date         String   @unique
+  requestCount Int      @default(0)
+  updatedAt    DateTime @updatedAt
+}
