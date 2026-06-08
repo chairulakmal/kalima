@@ -1,6 +1,4 @@
 <script setup lang="ts">
-definePageMeta({ ssr: false })
-
 const RANK_OPTIONS = ['S', 'A', 'B', 'C', 'D', 'F', 'unranked'] as const
 type RankFilter = (typeof RANK_OPTIONS)[number] | null
 
@@ -48,9 +46,13 @@ interface AdminResponse {
 const page = ref(1)
 const rankFilter = ref<RankFilter>(null)
 
-const { data, refresh, pending } = useLazyAsyncData<AdminResponse>(
+// useRequestFetch forwards the httpOnly admin_session cookie during SSR so the
+// page renders fully populated on a hard refresh (no empty-state flash). On the
+// client it behaves like a plain $fetch.
+const requestFetch = useRequestFetch()
+const { data, refresh, pending } = await useAsyncData<AdminResponse>(
   () => `admin-questions-${page.value}-${rankFilter.value}`,
-  () => $fetch('/api/admin/questions', {
+  () => requestFetch('/api/admin/questions', {
     query: { page: page.value, ...(rankFilter.value ? { rank: rankFilter.value } : {}) },
   }),
   { watch: [page, rankFilter] },

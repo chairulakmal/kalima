@@ -504,48 +504,6 @@
     "explanation": "影 means 'shade or shadow,' and the correct kanji 影 denotes the dark area cast by an object blocking light."
   },
   {
-    "wordId": "cmpxh5lwa00kokof2p9p8wggc",
-    "type": "orthography",
-    "correctAnswer": "器用",
-    "correctReading": "きよう",
-    "distractors": [
-      {
-        "text": "奇用",
-        "whyWrong": "Wrong first kanji: 奇 (strange/odd) replaces 器, creating a non-standard combination meaning strange usage."
-      },
-      {
-        "text": "機用",
-        "whyWrong": "Wrong first kanji: 機 (machine/opportunity) replaces 器; 機用 is not a standard adjective meaning skillful."
-      },
-      {
-        "text": "気用",
-        "whyWrong": "Wrong first kanji: 気 (spirit/air) creates 気用, which is not a standard word for skillfulness."
-      }
-    ],
-    "explanation": "器用 (an i-adjective) means 'skillful or handy,' and the correct kanji 器 (vessel/instrument) + 用 (use) conveys the sense of being skilled with tools."
-  },
-  {
-    "wordId": "cmpxh5m6g018okof2ot24kwpd",
-    "type": "orthography",
-    "correctAnswer": "登山",
-    "correctReading": "とざん",
-    "distractors": [
-      {
-        "text": "搭山",
-        "whyWrong": "Wrong first kanji: 搭 (board/carry) replaces 登; 搭山 is not a standard word for mountain-climbing."
-      },
-      {
-        "text": "藤山",
-        "whyWrong": "Wrong first kanji: 藤 (wisteria) creates a surname or place name, not the verb 'to climb mountain.'"
-      },
-      {
-        "text": "到山",
-        "whyWrong": "Wrong first kanji: 到 (arrive) replaces 登; 到山 means arriving at a mountain, not actively climbing it."
-      }
-    ],
-    "explanation": "登山 means 'mountain-climbing,' and the correct kanji 登 (climb) + 山 (mountain) directly describes the activity."
-  },
-  {
     "wordId": "cmpxh5ltr00dwkof23h2tog6b",
     "type": "orthography",
     "correctAnswer": "奥",
@@ -565,27 +523,6 @@
       }
     ],
     "explanation": "奥 means 'interior or inner part,' and the correct kanji 奥 depicts the innermost recess or depth of a space."
-  },
-  {
-    "wordId": "cmpxh5m7c01cukof22jgplmub",
-    "type": "orthography",
-    "correctAnswer": "激しい",
-    "correctReading": "はげしい",
-    "distractors": [
-      {
-        "text": "撃しい",
-        "whyWrong": "Wrong first kanji: 撃 (strike/hit) replaces 激; this creates a non-standard adjective form."
-      },
-      {
-        "text": "脅しい",
-        "whyWrong": "Wrong first kanji: 脅 (threaten/intimidate) replaces 激; 脅しい is not a standard i-adjective."
-      },
-      {
-        "text": "雪しい",
-        "whyWrong": "Wrong first kanji: 雪 (snow) replaces 激, creating a non-existent word that confuses weather with intensity."
-      }
-    ],
-    "explanation": "激しい (i-adjective) means 'violent or intense,' and the correct kanji 激 denotes sudden force or vehemence."
   },
   {
     "wordId": "cmpxh5m34011vkof2tg25ec7a",
@@ -3715,27 +3652,6 @@
       }
     ],
     "explanation": "講演 means 'a formal lecture or talk'; 講 means 'to lecture/explain' and 演 means 'to perform/present', together correctly expressing a public speech or talk."
-  },
-  {
-    "wordId": "cmpxh5lyj00qakof2967g114v",
-    "type": "orthography",
-    "correctAnswer": "殺す",
-    "correctReading": "ころす",
-    "distractors": [
-      {
-        "text": "刺す",
-        "whyWrong": "Near-homophone trap: 刺す is read さす (not ころす) and means 'to stab/pierce', not 'to kill'."
-      },
-      {
-        "text": "壊す",
-        "whyWrong": "Near-homophone trap: 壊す is read こわす (not ころす) and means 'to break/destroy', not 'to kill'."
-      },
-      {
-        "text": "毅す",
-        "whyWrong": "Visual confusion: 毅 is visually similar to 殺 in overall stroke complexity but 毅 means 'resolute/strong-willed' and 毅す is not the word meaning 'to kill'."
-      }
-    ],
-    "explanation": "殺す means 'to kill'; 殺 is the kanji specifically carrying the meaning of killing or slaying, making it the unambiguous correct choice in this context."
   },
   {
     "wordId": "cmpxh5lv500i8kof22lpkbc6o",
@@ -7356,15 +7272,15 @@
     "correctReading": "おしゃべり",
     "distractors": [
       {
-        "text": "無口（むくち）",
+        "text": "無口",
         "whyWrong": "[opposite] 無口 means 'quiet/taciturn', the direct opposite of someone who keeps talking, contradicting the rest of the sentence."
       },
       {
-        "text": "独り言（ひとりごと）",
+        "text": "独り言",
         "whyWrong": "[wrong-nuance] 独り言 means 'talking to oneself', but the sentence says she talks with friends, implying two-way conversation, not monologue."
       },
       {
-        "text": "挨拶（あいさつ）",
+        "text": "挨拶",
         "whyWrong": "[wrong-domain] 挨拶 means 'greeting', which is a brief, formal exchange, not the continuous chatty talking described in the sentence."
       }
     ],
@@ -7377,15 +7293,15 @@
     "correctReading": "せいせき",
     "distractors": [
       {
-        "text": "点数（てんすう）",
+        "text": "点数",
         "whyWrong": "[wrong-nuance] 点数 refers to a specific numerical score rather than an overall academic record or grade, making it too narrow for the comparative improvement described."
       },
       {
-        "text": "結果（けっか）",
+        "text": "結果",
         "whyWrong": "[wrong-nuance] 結果 means 'result' in a general sense and is not specific to academic or test performance, so it lacks the scholastic nuance required here."
       },
       {
-        "text": "評判（ひょうばん）",
+        "text": "評判",
         "whyWrong": "[wrong-domain] 評判 means 'reputation or public opinion', which relates to social standing, not a test score or academic record."
       }
     ],
@@ -7398,15 +7314,15 @@
     "correctReading": "きにゅう",
     "distractors": [
       {
-        "text": "説明（せつめい）",
+        "text": "説明",
         "whyWrong": "[wrong-domain] 説明 means 'explanation', which involves describing something verbally or in writing, not filling in blanks on a form."
       },
       {
-        "text": "確認（かくにん）",
+        "text": "確認",
         "whyWrong": "[wrong-nuance] 確認 means 'to confirm or check', implying verification of existing information, not the act of writing information into a form."
       },
       {
-        "text": "提出（ていしゅつ）",
+        "text": "提出",
         "whyWrong": "[wrong-domain] 提出 means 'to submit', which is the step after filling in the form, not the act of writing name and address into it."
       }
     ],
@@ -7419,15 +7335,15 @@
     "correctReading": "かくだい",
     "distractors": [
       {
-        "text": "縮小（しゅくしょう）",
+        "text": "縮小",
         "whyWrong": "[opposite] 縮小 means 'reduction or downsizing', the direct opposite of expanding a project further."
       },
       {
-        "text": "変更（へんこう）",
+        "text": "変更",
         "whyWrong": "[wrong-nuance] 変更 means 'change or modification', implying an alteration in direction or content rather than growth in scale."
       },
       {
-        "text": "紹介（しょうかい）",
+        "text": "紹介",
         "whyWrong": "[wrong-domain] 紹介 means 'introduction or presentation', which has nothing to do with the scale or scope of a project being expanded."
       }
     ],
@@ -7440,15 +7356,15 @@
     "correctReading": "かくにん",
     "distractors": [
       {
-        "text": "記入（きにゅう）",
+        "text": "記入",
         "whyWrong": "[wrong-domain] 記入 means 'to fill in a form', which involves writing information, not checking or verifying that an application was completed."
       },
       {
-        "text": "連絡（れんらく）",
+        "text": "連絡",
         "whyWrong": "[wrong-nuance] 連絡 means 'to contact or notify', which implies reaching out to communicate, not verifying the status of one's own application."
       },
       {
-        "text": "取消（とりけし）",
+        "text": "取消",
         "whyWrong": "[opposite] 取消 means 'cancellation', the opposite intention of confirming a completed application."
       }
     ],
@@ -7461,15 +7377,15 @@
     "correctReading": "せんでん",
     "distractors": [
       {
-        "text": "説明（せつめい）",
+        "text": "説明",
         "whyWrong": "[wrong-nuance] 説明 means 'explanation', which conveys informational detail about something, not the promotional advertising of a product seen on TV."
       },
       {
-        "text": "報告（ほうこく）",
+        "text": "報告",
         "whyWrong": "[wrong-domain] 報告 means 'report', which is a formal presentation of findings or results, not a commercial advertisement for a product."
       },
       {
-        "text": "批判（ひはん）",
+        "text": "批判",
         "whyWrong": "[opposite] 批判 means 'criticism', the opposite intent of an advertisement which promotes rather than criticizes a product."
       }
     ],
@@ -7486,7 +7402,7 @@
         "whyWrong": "[wrong-domain] バス means 'bus', a land vehicle, which cannot be used to row (漕ぐ) on a lake."
       },
       {
-        "text": "橋（はし）",
+        "text": "橋",
         "whyWrong": "[wrong-domain] 橋 means 'bridge', a fixed structure, which cannot be rowed across a lake."
       },
       {
@@ -7503,15 +7419,15 @@
     "correctReading": "えがお",
     "distractors": [
       {
-        "text": "涙（なみだ）",
+        "text": "涙",
         "whyWrong": "[opposite] 涙 means 'tears', which typically evokes sadness rather than the involuntary joy of smiling described in the sentence."
       },
       {
-        "text": "声（こえ）",
+        "text": "声",
         "whyWrong": "[wrong-nuance] 声 means 'voice', which is auditory, not a visual expression on someone's face that would cause another person to smile involuntarily."
       },
       {
-        "text": "態度（たいど）",
+        "text": "態度",
         "whyWrong": "[wrong-domain] 態度 means 'attitude or manner', a broad behavioral concept that lacks the specific warm, visual quality of a smile that triggers a smile in return."
       }
     ],
@@ -7524,15 +7440,15 @@
     "correctReading": "ほんにん",
     "distractors": [
       {
-        "text": "他人（たにん）",
+        "text": "他人",
         "whyWrong": "[opposite] 他人 means 'another person/stranger', the opposite of the person directly involved, making the contract logic contradictory."
       },
       {
-        "text": "全員（ぜんいん）",
+        "text": "全員",
         "whyWrong": "[wrong-nuance] 全員 means 'all members/everyone', implying a group, whereas the sentence refers specifically to the individual person whose consent is required."
       },
       {
-        "text": "代表（だいひょう）",
+        "text": "代表",
         "whyWrong": "[wrong-nuance] 代表 means 'representative', implying someone acting on behalf of others, which contradicts the legal requirement for the person themselves to consent."
       }
     ],
@@ -7545,15 +7461,15 @@
     "correctReading": "ゆたか",
     "distractors": [
       {
-        "text": "静か（しずか）",
+        "text": "静か",
         "whyWrong": "[wrong-domain] 静か means 'quiet/peaceful', describing sound or atmosphere rather than the abundance of natural resources that draws tourists."
       },
       {
-        "text": "貧しい（まずしい）",
+        "text": "貧しい",
         "whyWrong": "[opposite] 貧しい means 'poor/scarce', the direct opposite of abundant nature, which would not attract many tourists."
       },
       {
-        "text": "複雑（ふくざつ）",
+        "text": "複雑",
         "whyWrong": "[wrong-domain] 複雑 means 'complicated/complex', describing intricacy or difficulty, not the richness or abundance of a region's natural environment."
       }
     ],
@@ -8196,15 +8112,15 @@
     "correctReading": "そんちょう",
     "distractors": [
       {
-        "text": "賞賛（しょうさん）",
+        "text": "賞賛",
         "whyWrong": "[wrong-nuance] 賞賛 means 'praise or admiration,' which goes further than simply respecting an opinion — it implies enthusiastic approval rather than regard for what is said."
       },
       {
-        "text": "服従（ふくじゅう）",
+        "text": "服従",
         "whyWrong": "[wrong-nuance] 服従 means 'obedience or submission,' implying blind compliance rather than the thoughtful regard that 尊重 conveys."
       },
       {
-        "text": "無視（むし）",
+        "text": "無視",
         "whyWrong": "[opposite] 無視 means 'to ignore or disregard,' which is the opposite of respecting the teacher's opinion."
       }
     ],
@@ -8217,15 +8133,15 @@
     "correctReading": "ふんいき",
     "distractors": [
       {
-        "text": "景色（けしき）",
+        "text": "景色",
         "whyWrong": "[wrong-domain] 景色 means 'scenery or view,' referring to visual surroundings outside, not the interior mood or feel of a café."
       },
       {
-        "text": "音楽（おんがく）",
+        "text": "音楽",
         "whyWrong": "[wrong-nuance] 音楽 means 'music,' which may contribute to a café's atmosphere but is only one element, not the overall ambient quality described as calm and ideal for studying."
       },
       {
-        "text": "騒音（そうおん）",
+        "text": "騒音",
         "whyWrong": "[opposite] 騒音 means 'noise or loud sound,' which contradicts the sentence's description of the café as calm and perfect for studying."
       }
     ],
@@ -8238,15 +8154,15 @@
     "correctReading": "よさん",
     "distractors": [
       {
-        "text": "計画（けいかく）",
+        "text": "計画",
         "whyWrong": "[wrong-nuance] 計画 means 'plan or project,' which is broader and does not specifically refer to a financial budget as 予算 does in this context of reviewing expenditures."
       },
       {
-        "text": "収入（しゅうにゅう）",
+        "text": "収入",
         "whyWrong": "[wrong-domain] 収入 means 'income or revenue,' referring to money coming in rather than the allocated spending plan that is being set for next year."
       },
       {
-        "text": "支出（ししゅつ）",
+        "text": "支出",
         "whyWrong": "[opposite] 支出 means 'expenditure or spending,' and since the sentence says expenditures were checked in order to set the blank, using 支出 again would be contradictory and redundant."
       }
     ],
@@ -8259,15 +8175,15 @@
     "correctReading": "こむぎ",
     "distractors": [
       {
-        "text": "大豆（だいず）",
+        "text": "大豆",
         "whyWrong": "[wrong-domain] 大豆 means 'soybean,' which is a completely different grain/legume and is not used to make flour for bread."
       },
       {
-        "text": "米（こめ）",
+        "text": "米",
         "whyWrong": "[wrong-nuance] 米 means 'rice,' and while rice flour exists, it is not the standard ingredient for making bread, unlike wheat flour."
       },
       {
-        "text": "砂糖（さとう）",
+        "text": "砂糖",
         "whyWrong": "[wrong-domain] 砂糖 means 'sugar,' which is a different type of ingredient entirely and cannot replace 小麦 as the grain base for making bread."
       }
     ],
@@ -8280,11 +8196,11 @@
     "correctReading": "がまん",
     "distractors": [
       {
-        "text": "努力（どりょく）",
+        "text": "努力",
         "whyWrong": "[wrong-nuance] 努力 means 'effort or hard work,' which implies actively striving toward a goal, whereas 我慢 specifically refers to enduring or holding back, which is what the sentence emphasizes as a virtue learned in childhood."
       },
       {
-        "text": "遠慮（えんりょ）",
+        "text": "遠慮",
         "whyWrong": "[wrong-nuance] 遠慮 means 'restraint or holding back out of consideration for others,' a social courtesy concept that is too narrow and situational compared to the broader personal endurance that 我慢 describes."
       },
       {
@@ -8301,15 +8217,15 @@
     "correctReading": "できごと",
     "distractors": [
       {
-        "text": "事故（じこ）",
+        "text": "事故",
         "whyWrong": "[wrong-nuance] 事故 means 'accident,' which implies something specifically harmful or dangerous, whereas 出来事 is neutral and covers any kind of happening or event at school."
       },
       {
-        "text": "授業（じゅぎょう）",
+        "text": "授業",
         "whyWrong": "[wrong-domain] 授業 means 'lesson or class,' which refers to a scheduled activity rather than a memorable incident or occurrence that one cannot forget."
       },
       {
-        "text": "予定（よてい）",
+        "text": "予定",
         "whyWrong": "[opposite] 予定 means 'plan or schedule,' which refers to something anticipated in the future, not a past happening that left a strong impression."
       }
     ],
@@ -8322,15 +8238,15 @@
     "correctReading": "しまい",
     "distractors": [
       {
-        "text": "兄弟（きょうだい）",
+        "text": "兄弟",
         "whyWrong": "[wrong-nuance] 兄弟 typically refers to brothers or siblings in general, but since the sentence uses 二人とも with the context of going to university, 姉妹 specifically denotes sisters, making 兄弟 inaccurate in specifying the relationship."
       },
       {
-        "text": "親戚（しんせき）",
+        "text": "親戚",
         "whyWrong": "[wrong-domain] 親戚 means 'relatives,' which is far too broad a category and does not convey the close sibling relationship described by 姉妹."
       },
       {
-        "text": "友達（ともだち）",
+        "text": "友達",
         "whyWrong": "[wrong-domain] 友達 means 'friends,' referring to non-family relationships and completely contradicting the family-member context implied by 私の（　　）."
       }
     ],
@@ -8343,15 +8259,15 @@
     "correctReading": "けいこく",
     "distractors": [
       {
-        "text": "注意（ちゅうい）",
+        "text": "注意",
         "whyWrong": "[wrong-nuance] 注意 means 'caution or a mild reminder,' which lacks the severity implied by 厳しく; 警告 conveys a stronger, more formal warning appropriate to the stern context."
       },
       {
-        "text": "紹介（しょうかい）",
+        "text": "紹介",
         "whyWrong": "[wrong-domain] 紹介 means 'introduction,' which is completely unrelated to admonishing students about not completing homework."
       },
       {
-        "text": "称賛（しょうさん）",
+        "text": "称賛",
         "whyWrong": "[opposite] 称賛 means 'praise or commendation,' which is the opposite of issuing a stern warning about a student's failure to do homework."
       }
     ],
@@ -8364,15 +8280,15 @@
     "correctReading": "あぶら",
     "distractors": [
       {
-        "text": "水（みず）",
+        "text": "水",
         "whyWrong": "[wrong-domain] 水 means 'water,' which is a completely different liquid and is not used as オリーブ（　　） in a salad dressing context."
       },
       {
-        "text": "酢（す）",
+        "text": "酢",
         "whyWrong": "[wrong-nuance] 酢 means 'vinegar,' which can also be used in salads but does not collocate with オリーブ to form a common compound word the way 油 does to make オリーブ油."
       },
       {
-        "text": "塩（しお）",
+        "text": "塩",
         "whyWrong": "[wrong-domain] 塩 means 'salt,' which is a solid seasoning, not a liquid that would follow オリーブ to name the ingredient added to a salad."
       }
     ],
@@ -8385,15 +8301,15 @@
     "correctReading": "きおく",
     "distractors": [
       {
-        "text": "印象（いんしょう）",
+        "text": "印象",
         "whyWrong": "[wrong-nuance] 印象 means 'impression,' which refers to the overall feeling something left on you rather than the stored mental recollections of past events that 記憶 describes."
       },
       {
-        "text": "経験（けいけん）",
+        "text": "経験",
         "whyWrong": "[wrong-nuance] 経験 means 'experience,' which refers to things one has done or gone through, not the mental act of remembering or recollecting those events as 記憶 does."
       },
       {
-        "text": "未来（みらい）",
+        "text": "未来",
         "whyWrong": "[opposite] 未来 means 'the future,' which is the opposite of the childhood past that the sentence is referring to."
       }
     ],

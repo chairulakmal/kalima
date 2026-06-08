@@ -22,11 +22,25 @@ function promptAndContext(word: Word, type: QuestionType): { prompt: string; con
     if (sentence && word.expression && sentence.includes(word.expression)) {
       return { prompt: word.reading, context: sentence.split(word.expression).join(word.reading) }
     }
-    // Case 2: word already appears in kana in the Japanese sentence → use as-is (answer not revealed).
+    // Case 2: word already appears in kana in the Japanese sentence → use as-is.
     if (sentence && word.reading && sentence.includes(word.reading)) {
       return { prompt: word.reading, context: sentence }
     }
-    // Case 3: conjugated/inflected form — show no context rather than an all-kana sentence.
+    // Case 3: word appears in conjugated form — replace the kanji root with its kana equivalent,
+    // leaving the surrounding conjugation kana intact. QuizCard's prefix-matching then underlines
+    // the stem, giving the student authentic 問題2 sentence context.
+    if (sentence) {
+      const kanjiRoot = word.expression.replace(/[ぁ-ん]/g, '')
+      if (kanjiRoot && sentence.includes(kanjiRoot)) {
+        const okurigana = word.expression.match(/[ぁ-ん]+$/)?.[0] ?? ''
+        const kanaBase = okurigana
+          ? word.reading.slice(0, word.reading.length - okurigana.length)
+          : word.reading
+        const context = sentence.replace(kanjiRoot, kanaBase || word.reading)
+        if (context !== sentence) return { prompt: word.reading, context }
+      }
+    }
+    // Case 4: no usable sentence — show the word alone.
     return { prompt: word.reading }
   }
 

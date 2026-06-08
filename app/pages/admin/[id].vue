@@ -1,6 +1,4 @@
 <script setup lang="ts">
-definePageMeta({ ssr: false })
-
 import type { Word, ExamDistractor } from '~/types/index'
 
 const RANKS = ['S', 'A', 'B', 'C', 'D', 'F'] as const
@@ -53,9 +51,12 @@ const route = useRoute()
 const router = useRouter()
 const id = route.params.id as string
 
-const { data, error, refresh } = useLazyAsyncData<DetailResponse>(
+// useRequestFetch forwards the httpOnly admin_session cookie during SSR so the
+// detail renders server-side on a hard refresh instead of fetching client-only.
+const requestFetch = useRequestFetch()
+const { data, error, refresh } = await useAsyncData<DetailResponse>(
   `admin-question-${id}`,
-  () => $fetch(`/api/admin/questions/${id}`),
+  () => requestFetch(`/api/admin/questions/${id}`),
 )
 
 // ── Review form ────────────────────────────────────────────────────────────────
