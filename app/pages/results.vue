@@ -143,8 +143,13 @@ const scorePhrase = computed(() => {
 
                 <!-- Reading (if different from prompt; not shown for contextual since prompt is the sentence) -->
                 <p v-if="r.reading && r.reading !== r.prompt && r.type !== 'contextual'"
-                   class="font-jp text-sm text-ink-faint mb-1">
+                   class="font-jp text-sm text-ink-faint mb-0.5">
                   {{ r.reading }}
+                </p>
+
+                <!-- English meaning -->
+                <p v-if="r.meaning" class="font-body text-xs text-ink-faint italic mb-1">
+                  {{ r.meaning }}
                 </p>
 
                 <!-- Wrong answer crossed out + why -->

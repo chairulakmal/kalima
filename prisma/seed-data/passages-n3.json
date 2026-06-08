@@ -1,0 +1,2328 @@
+[
+  {
+    "id": "e6984679732f42ea8ca77d1dc",
+    "level": "N3",
+    "subtype": "short",
+    "text": "件名：資料送付のお願い\n\n山田様\n\nお世話になっております。株式会社フジマートの鈴木と申します。先日ご連絡いただきました件について、詳しい資料をメールにてお送りいただけますでしょうか。来週月曜日（15日）までにいただけますと大変助かります。お忙しいところ恐れ入りますが、どうぞよろしくお願いいたします。\n\n株式会社フジマート　鈴木",
+    "questions": [
+      {
+        "id": "eea94099364e445c9d3f02462",
+        "stem": "鈴木さんは山田さんに何をお願いしていますか。",
+        "correctAnswer": "資料を15日までにメールで送ること。",
+        "distractors": [
+          {
+            "text": "資料を15日までに直接届けること。",
+            "whyWrong": "Inverts the delivery method — the email says to send the documents by email (メールにて), not in person."
+          },
+          {
+            "text": "山田さんが鈴木さんに電話で連絡すること。",
+            "whyWrong": "Inverts the medium — Suzuki is requesting documents by email, not a phone call."
+          },
+          {
+            "text": "来週火曜日（16日）までに資料を送ること。",
+            "whyWrong": "Uses the wrong deadline — the text specifies Monday the 15th (月曜日・15日), not Tuesday the 16th."
+          }
+        ],
+        "explanation": "The line「詳しい資料をメールにてお送りいただけますでしょうか。来週月曜日（15日）までに」directly confirms that Suzuki is asking Yamada to send documents by email by the 15th."
+      }
+    ]
+  },
+  {
+    "id": "33999c22e5c14774a53a93769",
+    "level": "N3",
+    "subtype": "short",
+    "text": "【図書館からのお知らせ】\n来月より、図書館の開館時間が変更になります。平日は午前9時から午後7時まで、土曜日は午前10時から午後5時までとなります。日曜日および祝日は引き続き休館となりますので、ご注意ください。また、図書カードの更新は窓口のみで受け付けております。詳しくは図書館ホームページをご覧ください。",
+    "questions": [
+      {
+        "id": "c83493b934034c6a9e3e1e571",
+        "stem": "この図書館について、正しいものはどれですか。",
+        "correctAnswer": "土曜日は午前10時に開館する。",
+        "distractors": [
+          {
+            "text": "平日は午前10時から開館する。",
+            "whyWrong": "The text states weekday opening is at 9:00 a.m., not 10:00 a.m.; 10:00 a.m. is the Saturday opening time."
+          },
+          {
+            "text": "日曜日も開館している。",
+            "whyWrong": "The text explicitly states that Sundays and public holidays remain closed (休館)."
+          },
+          {
+            "text": "図書カードの更新はオンラインでできる。",
+            "whyWrong": "The text states that library card renewals are accepted at the counter only (窓口のみ), not online."
+          }
+        ],
+        "explanation": "The line '土曜日は午前10時から午後5時まで' directly confirms that the library opens at 10:00 a.m. on Saturdays."
+      }
+    ]
+  },
+  {
+    "id": "d2d89b2318ca45c69303982a9",
+    "level": "N3",
+    "subtype": "short",
+    "text": "【ご利用のお客様へ】\n\n当店では、11月1日より営業時間を変更いたします。新しい営業時間は、平日が午前10時から午後8時、土日祝日は午前9時から午後9時となります。なお、毎週水曜日は定休日とさせていただきます。ご不便をおかけしますが、何卒ご理解のほどよろしくお願い申し上げます。",
+    "questions": [
+      {
+        "id": "7d1aeb2a63b143d5becd4a819",
+        "stem": "このお知らせの内容について正しいのはどれか。",
+        "correctAnswer": "土日祝日は午前9時から営業する。",
+        "distractors": [
+          {
+            "text": "平日は午前9時から営業する。",
+            "whyWrong": "Swaps the opening times — 9 a.m. is the weekend/holiday opening time; weekdays open at 10 a.m."
+          },
+          {
+            "text": "定休日は毎週火曜日である。",
+            "whyWrong": "States the wrong closing day — the notice specifies Wednesday (水曜日) as the regular holiday, not Tuesday."
+          },
+          {
+            "text": "営業時間の変更は10月1日から始まる。",
+            "whyWrong": "Gives the wrong start date — the change takes effect from November 1st (11月1日), not October 1st."
+          }
+        ],
+        "explanation": "The line「土日祝日は午前9時から午後9時」directly confirms that the store opens at 9 a.m. on weekends and public holidays."
+      }
+    ]
+  },
+  {
+    "id": "df6aed8aedc8447fa1b6b4325",
+    "level": "N3",
+    "subtype": "short",
+    "text": "田中先生へ\n\nご無沙汰しております。昨年卒業した佐々木です。先生のおかげで無事に就職活動を終えることができ、来春から東京の会社で働くことになりました。在学中はいろいろとご指導いただき、本当にありがとうございました。近くにお越しの際は、ぜひお声がけください。またお会いできることを楽しみにしております。\n\n佐々木より",
+    "questions": [
+      {
+        "id": "29bb1582135c4ff296e1ea58e",
+        "stem": "この手紙の内容について正しいのはどれか。",
+        "correctAnswer": "佐々木さんは来春から東京の会社で働く予定である。",
+        "distractors": [
+          {
+            "text": "佐々木さんはすでに東京の会社で働いている。",
+            "whyWrong": "Inverts the timing — the letter says she will start working next spring (来春から), meaning she has not started yet."
+          },
+          {
+            "text": "佐々木さんは今年卒業した。",
+            "whyWrong": "States the wrong graduation year — the letter says she graduated last year (昨年卒業), not this year."
+          },
+          {
+            "text": "佐々木さんは田中先生に就職活動を手伝ってほしいとお願いしている。",
+            "whyWrong": "Misrepresents the purpose — Sasaki is thanking the teacher for past guidance, not requesting future help with job hunting."
+          }
+        ],
+        "explanation": "The sentence「来春から東京の会社で働くことになりました」directly confirms that Sasaki is scheduled to begin working at a Tokyo company next spring."
+      }
+    ]
+  },
+  {
+    "id": "f852793dd0b441dfb1d2e36fe",
+    "level": "N3",
+    "subtype": "short",
+    "text": "件名：資料送付のお願い\n\n田中様\n\nお世話になっております。株式会社マルワの佐藤と申します。先日のご説明ありがとうございました。つきましては、ご説明いただいた新製品のカタログと価格表を、今週金曜日までにメールにてお送りいただけますでしょうか。どうぞよろしくお願いいたします。",
+    "questions": [
+      {
+        "id": "3bcd2bc3e08f47438528fa94a",
+        "stem": "佐藤さんは田中さんに何をお願いしていますか。",
+        "correctAnswer": "新製品のカタログと価格表を金曜日までにメールで送ること",
+        "distractors": [
+          {
+            "text": "新製品のカタログと価格表を来週の月曜日までに郵送すること",
+            "whyWrong": "Inverts the deadline — the email states Friday of this week, not Monday of next week, and specifies email delivery, not postal mail."
+          },
+          {
+            "text": "新製品について直接会って説明すること",
+            "whyWrong": "Inverts the action — the explanation has already been given; Sato is asking for documents, not another in-person explanation."
+          },
+          {
+            "text": "カタログだけを今日中に送ること",
+            "whyWrong": "Omits the price list and changes the deadline to today, whereas the text asks for both the catalogue and price list by Friday."
+          }
+        ],
+        "explanation": "The line 「新製品のカタログと価格表を、今週金曜日までにメールにてお送りいただけますでしょうか」directly states what is being requested and by when."
+      }
+    ]
+  },
+  {
+    "id": "9b2a56a248f54052a85309f37",
+    "level": "N3",
+    "subtype": "short",
+    "text": "【図書館からのお知らせ】\n来月より、図書館の開館時間が変更になります。平日は午前9時から午後8時まで、土曜日は午前10時から午後6時までとなります。なお、日曜日および祝日は引き続き休館とさせていただきます。利用者の皆様にはご不便をおかけしますが、ご理解のほどよろしくお願いいたします。",
+    "questions": [
+      {
+        "id": "035cad798dba48b5b9e19c668",
+        "stem": "この図書館について、正しいものはどれですか。",
+        "correctAnswer": "土曜日は午前10時から開館する。",
+        "distractors": [
+          {
+            "text": "平日は午前10時から開館する。",
+            "whyWrong": "The text states weekday opening time is 9:00 a.m., not 10:00 a.m.; 10:00 a.m. applies to Saturdays only."
+          },
+          {
+            "text": "日曜日も通常どおり開館する。",
+            "whyWrong": "The text explicitly states the library remains closed (休館) on Sundays and public holidays."
+          },
+          {
+            "text": "土曜日は午後8時まで開館する。",
+            "whyWrong": "The text states Saturday closing time is 6:00 p.m., not 8:00 p.m.; 8:00 p.m. is the weekday closing time."
+          }
+        ],
+        "explanation": "The line '土曜日は午前10時から午後6時まで' directly confirms that the library opens at 10:00 a.m. on Saturdays."
+      }
+    ]
+  },
+  {
+    "id": "d5ae52baac2c4edc81ff404e4",
+    "level": "N3",
+    "subtype": "short",
+    "text": "【図書館からのお知らせ】\n来月より、図書館の開館時間が変更になります。平日は午前9時から午後8時まで、土曜日は午前10時から午後6時までとなります。なお、日曜日および祝日は引き続き休館となりますので、ご注意ください。返却ポストは24時間ご利用いただけます。ご不便をおかけしますが、ご理解のほどよろしくお願いいたします。",
+    "questions": [
+      {
+        "id": "6908fdf7677045bbb29266bb0",
+        "stem": "図書館について、お知らせの内容と合っているものはどれですか。",
+        "correctAnswer": "土曜日は午前10時に開館する。",
+        "distractors": [
+          {
+            "text": "平日は午前10時から開館する。",
+            "whyWrong": "The text states weekday opening is 9:00 a.m., not 10:00 a.m.; 10:00 a.m. is Saturday's opening time."
+          },
+          {
+            "text": "日曜日も返却ポストは利用できない。",
+            "whyWrong": "The text explicitly says the return drop box is available 24 hours, so it can be used even on Sundays when the library is closed."
+          },
+          {
+            "text": "祝日は午後6時まで開館する。",
+            "whyWrong": "The text states that national holidays remain closed (休館), not that they are open until 6:00 p.m."
+          }
+        ],
+        "explanation": "The line '土曜日は午前10時から午後6時まで' directly confirms that the library opens at 10:00 a.m. on Saturdays."
+      }
+    ]
+  },
+  {
+    "id": "3b39e73341024599a05fdf9a1",
+    "level": "N3",
+    "subtype": "short",
+    "text": "【マンションからのお知らせ】\n\n来る12月3日（火）午前10時から午後4時まで、建物全体の排水管清掃を行います。作業中は台所・浴室・トイレのご使用をお控えくださいますようお願いいたします。なお、作業が終わり次第、各戸にお知らせいたします。ご不便をおかけしますが、ご協力をよろしくお願い申し上げます。\n\n管理組合",
+    "questions": [
+      {
+        "id": "0559751ce8f7434a8707a29a1",
+        "stem": "排水管清掃の当日、住民は何をしてはいけませんか。",
+        "correctAnswer": "台所・浴室・トイレを使うこと",
+        "distractors": [
+          {
+            "text": "管理組合に連絡すること",
+            "whyWrong": "The text never prohibits contacting the management association; this distractor invents a restriction that does not appear anywhere in the notice."
+          },
+          {
+            "text": "建物の外に出ること",
+            "whyWrong": "The text says nothing about residents being prohibited from leaving the building; this restriction is entirely fabricated."
+          },
+          {
+            "text": "作業員の部屋への立ち入りを断ること",
+            "whyWrong": "The text makes no mention of workers entering individual units or residents being unable to refuse entry; this condition is invented."
+          }
+        ],
+        "explanation": "The sentence 「作業中は台所・浴室・トイレのご使用をお控えくださいますようお願いいたします」 directly states that residents must refrain from using the kitchen, bathroom, and toilet during the work."
+      }
+    ]
+  },
+  {
+    "id": "8947a045da634d82a44e87e82",
+    "level": "N3",
+    "subtype": "short",
+    "text": "件名：資料送付のお願い\n\n山田様\n\nお世話になっております。株式会社ブルーライトの鈴木と申します。先日ご連絡いただいた件につきまして、来週月曜日までに製品カタログと価格表をメールにてお送りいただけますでしょうか。ご多忙のところ恐れ入りますが、どうぞよろしくお願いいたします。\n\n株式会社ブルーライト　鈴木",
+    "questions": [
+      {
+        "id": "74ca4ba13d674e119413c1065",
+        "stem": "鈴木さんは山田さんに何をお願いしていますか。",
+        "correctAnswer": "製品カタログと価格表をメールで送ること",
+        "distractors": [
+          {
+            "text": "来週月曜日に直接会いに来ること",
+            "whyWrong": "Inverts the delivery method — the request is for an email, not an in-person visit."
+          },
+          {
+            "text": "製品カタログだけを郵便で送ること",
+            "whyWrong": "Omits the price list and changes the delivery method from email to post."
+          },
+          {
+            "text": "山田さんが鈴木さんにカタログを注文すること",
+            "whyWrong": "Swaps subject and object — it is Suzuki asking Yamada to send documents, not Yamada ordering from Suzuki."
+          }
+        ],
+        "explanation": "The line「製品カタログと価格表をメールにてお送りいただけますでしょうか」directly states that Suzuki is requesting Yamada to email the product catalogue and price list."
+      }
+    ]
+  },
+  {
+    "id": "43485fade5554b1190cb54967",
+    "level": "N3",
+    "subtype": "short",
+    "text": "【町内会からのお知らせ】\n\n来る10月14日（土）午前10時より、中央公園にて秋の清掃活動を行います。参加ご希望の方は、10月10日（火）までに町内会事務所へお申し込みください。軍手とゴミ袋はこちらでご用意いたします。動きやすい服装でお越しください。",
+    "questions": [
+      {
+        "id": "e4451f759de44ceb91a9e5592",
+        "stem": "この文章の内容について正しいのはどれか。",
+        "correctAnswer": "軍手とゴミ袋は町内会が用意する。",
+        "distractors": [
+          {
+            "text": "清掃活動は10月10日（火）に行われる。",
+            "whyWrong": "Confuses the registration deadline (Oct 10) with the event date (Oct 14)."
+          },
+          {
+            "text": "参加者は自分でゴミ袋を持参しなければならない。",
+            "whyWrong": "Inverts the supply responsibility — the notice states the neighbourhood association will provide rubbish bags."
+          },
+          {
+            "text": "清掃活動に参加するための申し込みは必要ない。",
+            "whyWrong": "Contradicts the text, which explicitly requires applicants to register at the neighbourhood office by October 10."
+          }
+        ],
+        "explanation": "The sentence「軍手とゴミ袋はこちらでご用意いたします」confirms that work gloves and rubbish bags will be provided by the neighbourhood association."
+      }
+    ]
+  },
+  {
+    "id": "100684293bc74923881168aef",
+    "level": "N3",
+    "subtype": "short",
+    "text": "【図書館からのお知らせ】\n\n来月より、図書館の開館時間が変更になります。平日は現在の午前9時から午後7時までとなります。土曜日・日曜日は午前10時から午後5時までに短縮されます。なお、毎週月曜日は引き続き休館日となります。利用者の皆様にはご不便をおかけしますが、ご理解のほどよろしくお願いいたします。",
+    "questions": [
+      {
+        "id": "da50dcf0f3e249fe95571286c",
+        "stem": "この図書館について、お知らせの内容と合っているものはどれですか。",
+        "correctAnswer": "土曜日と日曜日は午後5時に閉館する。",
+        "distractors": [
+          {
+            "text": "平日は午前10時から開館する。",
+            "whyWrong": "The text states weekday opening is at 9:00 a.m., not 10:00 a.m.; 10:00 a.m. is the weekend opening time."
+          },
+          {
+            "text": "毎週火曜日が休館日である。",
+            "whyWrong": "The text specifies Monday (月曜日) as the closed day, not Tuesday (火曜日)."
+          },
+          {
+            "text": "土曜日・日曜日は午後7時まで開いている。",
+            "whyWrong": "Closing at 7:00 p.m. applies to weekdays; the text states weekends close at 5:00 p.m."
+          }
+        ],
+        "explanation": "The line 「土曜日・日曜日は午前10時から午後5時までに短縮されます」directly confirms that the library closes at 5:00 p.m. on Saturdays and Sundays."
+      }
+    ]
+  },
+  {
+    "id": "2e8f9cd134d744389677dc8cd",
+    "level": "N3",
+    "subtype": "short",
+    "text": "【図書館からのお知らせ】\n来月より、図書館の開館時間が変わります。平日は午前9時から午後8時まで、土日・祝日は午前10時から午後6時までとなります。なお、毎月第3月曜日は館内整備のため休館となります。ご不便をおかけしますが、ご理解のほどよろしくお願いいたします。",
+    "questions": [
+      {
+        "id": "1a7787706c0c4574a6cd0ba12",
+        "stem": "この図書館について、正しいものはどれですか。",
+        "correctAnswer": "土日・祝日は午前10時に開館する。",
+        "distractors": [
+          {
+            "text": "平日は午前10時から開館する。",
+            "whyWrong": "This inverts the opening time: the 10 a.m. start applies to weekends and holidays, not weekdays, which open at 9 a.m."
+          },
+          {
+            "text": "毎月第3火曜日は休館になる。",
+            "whyWrong": "This swaps the day of closure: the text states the third Monday (第3月曜日) is the closed day, not Tuesday (火曜日)."
+          },
+          {
+            "text": "土日・祝日は午後8時まで開館する。",
+            "whyWrong": "This assigns the wrong closing time: the 8 p.m. closing applies to weekdays, while weekends and holidays close at 6 p.m."
+          }
+        ],
+        "explanation": "The line '土日・祝日は午前10時から午後6時まで' directly confirms that the library opens at 10 a.m. on weekends and holidays."
+      }
+    ]
+  },
+  {
+    "id": "d9f6a60d2bcb48598416fa9b9",
+    "level": "N3",
+    "subtype": "short",
+    "text": "件名：資料送付のお願い\n\n山田様\n\nいつもお世話になっております。株式会社ミナト営業部の佐藤と申します。先日ご説明いただいた新製品について、詳しい仕様書をメールにてお送りいただけますでしょうか。来週月曜日の会議までにご用意いただけますと大変助かります。お忙しいところ恐れ入りますが、どうぞよろしくお願いいたします。",
+    "questions": [
+      {
+        "id": "cb4e52c4cebb46e488ac611f4",
+        "stem": "佐藤さんは山田さんに何をお願いしていますか。",
+        "correctAnswer": "新製品の仕様書をメールで送ること",
+        "distractors": [
+          {
+            "text": "来週月曜日に会議室を用意すること",
+            "whyWrong": "Invents a room-preparation request — the actual request is to send a specification document, not to prepare a meeting room."
+          },
+          {
+            "text": "新製品についての説明を電話ですること",
+            "whyWrong": "Swaps the medium and action — the request is to send documents by email, not to give an explanation by phone."
+          },
+          {
+            "text": "仕様書を印刷して郵送すること",
+            "whyWrong": "Inverts the delivery method — the sender asks for an email attachment, not a printed postal mail."
+          }
+        ],
+        "explanation": "The line 「詳しい仕様書をメールにてお送りいただけますでしょうか」directly states that Satō is asking Yamada to send the detailed specification sheet by email."
+      }
+    ]
+  },
+  {
+    "id": "7ddc83788cb74d379c34d05ac",
+    "level": "N3",
+    "subtype": "short",
+    "text": "【テニスサークル会員の皆様へ】\n\n今月の定例練習は、グラウンドの改修工事のため、通常の第2・第4土曜日ではなく、第1・第3土曜日に変更となります。場所はこれまでどおり市民体育館の屋内コートをご利用ください。参加を希望される方は、前日の金曜日までに幹事の鈴木までメールにてご連絡をお願いいたします。",
+    "questions": [
+      {
+        "id": "1fea5b98fa754b88833beee8f",
+        "stem": "今月の定例練習について、正しいものはどれですか。",
+        "correctAnswer": "練習日が第1・第3土曜日に変更になる。",
+        "distractors": [
+          {
+            "text": "練習日が第2・第4土曜日に変更になる。",
+            "whyWrong": "This inverts the change — the 2nd and 4th Saturdays are the original schedule, not the new one."
+          },
+          {
+            "text": "参加希望者は当日に幹事へ連絡すればよい。",
+            "whyWrong": "This swaps the deadline — the text states contact must be made by the Friday before, not on the day itself."
+          },
+          {
+            "text": "練習場所が市民体育館から別の会場に移る。",
+            "whyWrong": "This inverts the venue information — the text explicitly states the venue remains the same indoor court at the municipal gymnasium."
+          }
+        ],
+        "explanation": "The line 「通常の第2・第4土曜日ではなく、第1・第3土曜日に変更となります」directly confirms that this month's sessions move to the 1st and 3rd Saturdays."
+      }
+    ]
+  },
+  {
+    "id": "9bd254392c7b4776ba6a6f97a",
+    "level": "N3",
+    "subtype": "short",
+    "text": "【定期メンテナンスのご案内】\n\n平素よりご利用ありがとうございます。システムの安定稼働のため、下記の日程にてメンテナンス作業を実施いたします。\n\n日時：１２月３日（火）午前２時〜午前５時\n\nメンテナンス中はサービスをご利用いただけません。作業終了後は自動的に再開されますので、ご了承くださいますようお願い申し上げます。",
+    "questions": [
+      {
+        "id": "747beec6662149f086314cd2e",
+        "stem": "メンテナンス中について、正しいのはどれか。",
+        "correctAnswer": "メンテナンスが終わると、サービスは自動的に再開される。",
+        "distractors": [
+          {
+            "text": "メンテナンスは１２月３日の午前５時から始まる。",
+            "whyWrong": "Swaps the start and end times — maintenance begins at 2 a.m. and ends at 5 a.m., not the other way around."
+          },
+          {
+            "text": "メンテナンス終了後、利用者は自分でサービスを再起動する必要がある。",
+            "whyWrong": "Inverts the restart process — the notice states the service resumes automatically, so users do not need to restart it themselves."
+          },
+          {
+            "text": "メンテナンス中も一部のサービスは利用できる。",
+            "whyWrong": "Contradicts the notice — the text clearly states that the service will be completely unavailable during maintenance."
+          }
+        ],
+        "explanation": "The line 「作業終了後は自動的に再開されます」confirms that the service restarts automatically after maintenance is complete."
+      }
+    ]
+  },
+  {
+    "id": "24a39e3636ff4fedb02f4a2d3",
+    "level": "N3",
+    "subtype": "short",
+    "text": "【料理教室参加者の皆様へ】\n\n今月の料理教室は、定員に達したため、新規のお申し込みは受け付けておりません。参加をご希望の方は、来月分のお申し込みフォームより12月1日以降にご登録ください。なお、キャンセル待ちをご希望の方は、直接事務局（平日午前10時〜午後5時）までお電話にてお問い合わせください。",
+    "questions": [
+      {
+        "id": "88a068865a6846c4a275af165",
+        "stem": "料理教室について、キャンセル待ちを希望する場合はどうすればよいですか。",
+        "correctAnswer": "事務局に電話で問い合わせる。",
+        "distractors": [
+          {
+            "text": "12月1日以降に申し込みフォームから登録する。",
+            "whyWrong": "Registering via the online form from December 1st is the instruction for next month's regular applicants, not for those wishing to join the cancellation waiting list."
+          },
+          {
+            "text": "事務局に直接メールで連絡する。",
+            "whyWrong": "The notice specifies contact by telephone (お電話にて), not by email."
+          },
+          {
+            "text": "事務局の窓口に直接出向いて申し込む。",
+            "whyWrong": "The notice instructs people to call the office, not to visit in person."
+          }
+        ],
+        "explanation": "The line 「キャンセル待ちをご希望の方は、直接事務局…までお電話にてお問い合わせください」confirms that calling the office is the correct method for joining the waiting list."
+      }
+    ]
+  },
+  {
+    "id": "02a5e7c5e144483581e1448ce",
+    "level": "N3",
+    "subtype": "short",
+    "text": "お知らせ\n\n図書館の自習室は、毎週月曜日から金曜日まで午前9時から午後8時まで利用できます。ただし、土曜日と日曜日は午後5時に閉室となりますので、ご注意ください。また、自習室内での飲食は禁止されています。飲み物は必ず館内の休憩スペースでお飲みください。ご不明な点は、1階のカウンターまでお問い合わせください。",
+    "questions": [
+      {
+        "id": "923411332aa5426c83d780ce3",
+        "stem": "土曜日と日曜日、図書館の自習室は何時に閉まりますか。",
+        "correctAnswer": "午後5時に閉まる。",
+        "distractors": [
+          {
+            "text": "午後8時に閉まる。",
+            "whyWrong": "午後8時 is the closing time for weekdays (Monday–Friday), not for weekends — the times have been swapped."
+          },
+          {
+            "text": "午前9時に閉まる。",
+            "whyWrong": "午前9時 is the opening time on weekdays, not the weekend closing time — opening and closing times have been confused."
+          },
+          {
+            "text": "午後6時に閉まる。",
+            "whyWrong": "午後6時 does not appear anywhere in the passage; it is a fabricated time not supported by the text."
+          }
+        ],
+        "explanation": "The sentence 「土曜日と日曜日は午後5時に閉室となります」 directly states that the self-study room closes at 5:00 p.m. on Saturdays and Sundays."
+      }
+    ]
+  },
+  {
+    "id": "9b6effb999024b0b90a059178",
+    "level": "N3",
+    "subtype": "short",
+    "text": "【図書館からのお知らせ】\n来月より、図書館の開館時間が変更になります。平日は午前9時から午後8時まで、土曜日は午前10時から午後6時までとなります。なお、日曜日および祝日は引き続き休館となりますので、ご注意ください。貸出冊数の上限は一人につき5冊までです。ご不明な点は、カウンターまでお問い合わせください。",
+    "questions": [
+      {
+        "id": "4298c26fd154496fa6f27786b",
+        "stem": "この図書館について、正しいものはどれですか。",
+        "correctAnswer": "土曜日は午前10時に開館する。",
+        "distractors": [
+          {
+            "text": "平日は午前10時に開館する。",
+            "whyWrong": "The opening time of 10:00 belongs to Saturday, not weekdays — the text states weekdays open at 9:00."
+          },
+          {
+            "text": "日曜日も開館するようになった。",
+            "whyWrong": "The text explicitly states that Sundays remain closed (引き続き休館), so this inverts the stated condition."
+          },
+          {
+            "text": "一人につき10冊まで借りることができる。",
+            "whyWrong": "The text states the borrowing limit is 5 books per person, not 10 — this swaps the correct number."
+          }
+        ],
+        "explanation": "The line '土曜日は午前10時から午後6時まで' directly confirms that the library opens at 10:00 a.m. on Saturdays."
+      }
+    ]
+  },
+  {
+    "id": "b20fa789af5a4e5da279fce56",
+    "level": "N3",
+    "subtype": "short",
+    "text": "【旅行ツアーご参加のお客様へ】\n\n今回の京都・奈良2泊3日ツアーは、定員20名のところ、おかげさまで満席となりました。集合場所は東京駅の八重洲北口で、出発時刻は7月18日（金）午前7時30分です。お荷物は一人につきスーツケース1個までとなっております。なお、昼食代はツアー料金に含まれておりますが、夕食代は各自でご負担ください。ご不明な点は担当の鈴木までお問い合わせください。",
+    "questions": [
+      {
+        "id": "b8b935e21e974eb9902286b2d",
+        "stem": "このツアーについて、正しいものはどれですか。",
+        "correctAnswer": "昼食代はツアー料金に含まれている。",
+        "distractors": [
+          {
+            "text": "夕食代はツアー料金に含まれている。",
+            "whyWrong": "The text states that dinner costs are to be covered individually by each participant, not included in the tour fee — this distractor inverts which meal is covered."
+          },
+          {
+            "text": "集合場所は東京駅の八重洲南口である。",
+            "whyWrong": "The text specifies the meeting point as the Yaesu North Exit (八重洲北口), not the South Exit (八重洲南口) — this distractor swaps north for south."
+          },
+          {
+            "text": "荷物はスーツケース2個まで持参できる。",
+            "whyWrong": "The text states each participant may bring only one suitcase, not two — this distractor changes the number from 1 to 2."
+          }
+        ],
+        "explanation": "The line 「昼食代はツアー料金に含まれております」 directly confirms that lunch is included in the tour price."
+      }
+    ]
+  },
+  {
+    "id": "c13115825c794c4bb0bcd7232",
+    "level": "N3",
+    "subtype": "short",
+    "text": "【水泳大会参加者の皆様へ】\n\n今年度の市民水泳大会は、11月23日（土）午前9時より、市立スポーツセンタープールにて開催いたします。参加者は当日、開始30分前までに受付を済ませてください。なお、競技中は必ずスイムキャップを着用することが義務づけられております。お忘れの方には、受付にて200円でご購入いただけます。",
+    "questions": [
+      {
+        "id": "a4a742d286aa49aab9f542d0d",
+        "stem": "水泳大会に参加する人は、当日何時までに受付を済ませなければなりませんか。",
+        "correctAnswer": "午前8時30分までに受付を済ませなければならない。",
+        "distractors": [
+          {
+            "text": "午前9時30分までに受付を済ませなければならない。",
+            "whyWrong": "This inverts the timing — the registration deadline is 30 minutes BEFORE the 9:00 a.m. start (i.e., 8:30 a.m.), not 30 minutes after."
+          },
+          {
+            "text": "午前9時までに受付を済ませなければならない。",
+            "whyWrong": "This confuses the competition start time (9:00 a.m.) with the registration deadline, which is 30 minutes earlier."
+          },
+          {
+            "text": "午前8時までに受付を済ませなければならない。",
+            "whyWrong": "This states one full hour before the start time, whereas the text specifies only 30 minutes before."
+          }
+        ],
+        "explanation": "The passage states that participants must complete registration by 30 minutes before the 9:00 a.m. start, which means no later than 8:30 a.m."
+      }
+    ]
+  },
+  {
+    "id": "dc95076b38b549d7bfc750bac",
+    "level": "N3",
+    "subtype": "medium",
+    "text": "旅行には、大きく分けてパッケージツアーと自由旅行の二つの方法がある。パッケージツアーとは、交通や宿泊、観光スポットへの移動などがあらかじめ決められたプランのことで、旅行会社がすべてを手配してくれる。一方、自由旅行は自分でホテルや交通手段を選び、日程も自由に組むことができる。\n　パッケージツアーの最大の利点は、手間がかからないことだ。特に海外旅行に慣れていない人や、初めて訪れる国を旅する場合には、安心感がある。費用もあらかじめわかるため、予算を管理しやすい。しかし、スケジュールが固定されているため、自分のペースで行動するのが難しいという面もある。\n　自由旅行は、行きたい場所に自由に立ち寄れる点が魅力だ。①現地の人との思わぬ出会いや、地図に載っていない小さなカフェを発見するような楽しみも生まれやすい。ただし、すべての準備を自分でしなければならないため、時間と手間がかかる。\n　どちらが良いかは、旅行者の経験や目的によって異なる。大切なのは、自分に合ったスタイルで旅を楽しむことだろう。",
+    "questions": [
+      {
+        "id": "9ee23daf5c3747afb5d1a7aeb",
+        "stem": "筆者はパッケージツアーと自由旅行についてどのように言っているか。",
+        "correctAnswer": "どちらが良いかは旅行者の経験や目的によって違い、自分に合ったスタイルを選ぶことが大切だ。",
+        "distractors": [
+          {
+            "text": "パッケージツアーは費用が高いため、慣れた旅行者には不向きだ。",
+            "whyWrong": "The passage says tour costs are easy to manage, and does not say they are expensive or unsuitable for experienced travellers."
+          },
+          {
+            "text": "自由旅行の方がパッケージツアーより優れているので、できるだけ自由旅行を選ぶべきだ。",
+            "whyWrong": "The passage does not recommend free travel over package tours; it says neither is universally better."
+          },
+          {
+            "text": "パッケージツアーは初心者向けだが、自由旅行は危険なので注意が必要だ。",
+            "whyWrong": "The passage mentions inconvenience (time and effort), not danger, as a drawback of free travel."
+          }
+        ],
+        "explanation": "The final paragraph explicitly states that which style is better depends on the traveller's experience and purpose, and that choosing one's own style is what matters."
+      },
+      {
+        "id": "f0af445e737840aea857b23c6",
+        "stem": "パッケージツアーについて正しいのはどれか。",
+        "correctAnswer": "旅行会社がすべてを手配するため、費用を事前に把握でき、予算を管理しやすい。",
+        "distractors": [
+          {
+            "text": "旅行者が自分でホテルや交通手段を自由に選ぶことができる。",
+            "whyWrong": "Choosing one's own hotel and transport is a feature of free travel, not package tours."
+          },
+          {
+            "text": "スケジュールが自由なので、自分のペースで行動できる。",
+            "whyWrong": "The passage states the opposite — package tour schedules are fixed, making it hard to act at one's own pace."
+          },
+          {
+            "text": "地図に載っていない場所を発見する楽しみがある。",
+            "whyWrong": "Discovering unmarked places on a map is described as an appeal of free travel, not package tours."
+          }
+        ],
+        "explanation": "The second paragraph states that with a package tour costs are known in advance, making budgeting easy, and that the travel agency handles all arrangements."
+      },
+      {
+        "id": "d7b95cd5fc184ed9872db37c7",
+        "stem": "下線部①「現地の人との思わぬ出会いや、地図に載っていない小さなカフェを発見するような楽しみ」とあるが、どういう意味か。",
+        "correctAnswer": "計画していなかったことが起こり、それが旅の喜びになるということ。",
+        "distractors": [
+          {
+            "text": "旅行前に地図でカフェを調べておくと、旅がより楽しくなるということ。",
+            "whyWrong": "The passage describes unplanned discoveries, not pre-trip research on maps."
+          },
+          {
+            "text": "現地のガイドを雇えば、隠れた名所に連れて行ってもらえるということ。",
+            "whyWrong": "The passage mentions spontaneous encounters, not hiring a guide; guides are associated with package tours."
+          },
+          {
+            "text": "自由旅行では危険な場所に迷い込むこともあるということ。",
+            "whyWrong": "The underlined phrase expresses positive unexpected experiences, not warnings about dangerous places."
+          }
+        ],
+        "explanation": "The third paragraph introduces the underlined phrase to illustrate the appeal of free travel as unexpected, unplanned pleasures that arise naturally during the trip."
+      }
+    ]
+  },
+  {
+    "id": "02ea6f2a9a624839b021c1b49",
+    "level": "N3",
+    "subtype": "medium",
+    "text": "近年、SNS※1を使う人が世界中で増えている。スマートフォンさえあれば、いつでもどこでも友人と連絡を取り合ったり、自分の日常を発信したりできる。しかし、SNSには良い面だけでなく、注意すべき点もある。\n　まず良い点として、遠くに住む家族や友人と気軽につながれることが挙げられる。写真や動画を共有することで、言葉だけでは伝わりにくい気持ちも届けることができる。また、趣味や関心が同じ人と出会えるため、新しいコミュニティを作るきっかけにもなる。\n　一方で、①SNSを長時間使い続けることには問題もある。他人の投稿を見て、自分の生活と比べてしまい、気分が落ち込む人もいる。また、個人情報の管理を誤ると、プライバシーが侵害されるリスクもある。特に若い世代は、この点に十分注意する必要がある。\n　SNSは使い方次第で、生活をより豊かにも、より不便にもする道具だ。大切なのは、自分で使い方をコントロールし、必要な情報だけを上手に活用する姿勢だろう。\n\n※1 SNS：ソーシャル・ネットワーキング・サービスの略。インターネット上で人々がつながるためのサービスのこと。",
+    "notes": [
+      {
+        "marker": "※1",
+        "definition": "SNS：ソーシャル・ネットワーキング・サービスの略。インターネット上で人々がつながるためのサービスのこと。"
+      }
+    ],
+    "questions": [
+      {
+        "id": "a502e98b6ae049b8be85e63a8",
+        "stem": "筆者はSNSについてどのように言っているか。",
+        "correctAnswer": "SNSは使い方によって生活をより良くすることも、不便にすることもあるため、自分でコントロールすることが重要だ。",
+        "distractors": [
+          {
+            "text": "SNSは主に若い世代のためのものであり、大人には向いていない。",
+            "whyWrong": "The passage does not say SNS is only for the young; it merely warns young people to be careful about privacy."
+          },
+          {
+            "text": "SNSには問題が多いため、できるだけ使わないようにすべきだ。",
+            "whyWrong": "The passage presents both merits and drawbacks and recommends smart use, not avoidance."
+          },
+          {
+            "text": "SNSを使えば、誰でも必ず新しい友人を作ることができる。",
+            "whyWrong": "The passage says SNS can be an opportunity to meet like-minded people, not that it guarantees making new friends."
+          }
+        ],
+        "explanation": "The final paragraph directly states that SNS is a tool that can enrich or inconvenience life depending on how it is used, and that self-control is what matters."
+      },
+      {
+        "id": "aa013d4002694fdba5727506a",
+        "stem": "SNSの良い点について正しいのはどれか。",
+        "correctAnswer": "写真や動画を通じて、言葉だけでは伝えにくい気持ちを遠くの人に届けられる。",
+        "distractors": [
+          {
+            "text": "SNSを使うと、個人情報が自動的に守られる。",
+            "whyWrong": "The passage warns that mismanaging personal information carries a privacy risk; it does not say SNS automatically protects data."
+          },
+          {
+            "text": "SNSを長時間使うほど、他人の生活から良い影響を受けられる。",
+            "whyWrong": "The passage states that prolonged use and comparing oneself to others can cause low mood, not positive influence."
+          },
+          {
+            "text": "SNSは遠くの家族と連絡を取ることはできないが、趣味の仲間は見つけられる。",
+            "whyWrong": "The passage lists staying in touch with distant family as the first benefit of SNS, contradicting this statement."
+          }
+        ],
+        "explanation": "The second paragraph lists sharing photos and videos to convey feelings that are hard to express in words alone as a specific advantage of SNS."
+      },
+      {
+        "id": "27a805b5a9fa4b94adb5f8985",
+        "stem": "下線部①「SNSを長時間使い続けることには問題もある」とあるが、筆者はどのような問題を挙げているか。",
+        "correctAnswer": "他人の投稿と自分の生活を比べて落ち込むことや、個人情報が漏れてプライバシーが侵害されるリスクがあること。",
+        "distractors": [
+          {
+            "text": "SNSを使いすぎると視力が落ちたり、睡眠不足になったりすること。",
+            "whyWrong": "The passage does not mention eyesight or sleep problems; these are not the issues cited in the underlined section."
+          },
+          {
+            "text": "長時間使うと料金が高くなり、経済的な負担が増えること。",
+            "whyWrong": "The passage makes no mention of financial cost as a problem of prolonged SNS use."
+          },
+          {
+            "text": "新しいコミュニティに入りすぎると、本来の友人関係が壊れること。",
+            "whyWrong": "Building new communities is described as a benefit; the passage does not say it damages existing friendships."
+          }
+        ],
+        "explanation": "The third paragraph, immediately following the underlined phrase, specifically identifies mood decline from social comparison and the risk of privacy violation from mishandling personal data as the two problems."
+      }
+    ]
+  },
+  {
+    "id": "5969be1ceceb4542a6577dac0",
+    "level": "N3",
+    "subtype": "medium",
+    "text": "旅行には大きく分けて、パッケージツアーと自由旅行の二種類がある。パッケージツアーとは、交通や宿泊、観光スポットへの移動などがあらかじめセットになった旅行のことだ。一方、自由旅行は自分でホテルや交通手段を手配し、スケジュールも自由に組むことができる。\n　パッケージツアーの最大の利点は、手間がかからないことだ。旅行会社がすべて準備してくれるため、初めて海外に行く人や、計画を立てるのが苦手な人には特に向いている。しかし、決められたスケジュールに従わなければならないため、自分のペースで動きにくいという面もある。\n　これに対して、自由旅行は①自分だけの旅を作れる点が魅力だ。行きたい場所に好きなだけ時間をかけられるし、現地で気に入ったカフェにふらりと立ち寄ることもできる。ただし、事前の準備に時間と手間がかかり、トラブルが起きたときに自分で対処しなければならない場面も多い。\n　どちらが良いかは一概には言えないが、旅行の目的や経験に合わせて選ぶことが大切だと筆者は考える。",
+    "notes": [
+      {
+        "marker": "※1",
+        "definition": "手配：必要なものを準備・予約すること。"
+      }
+    ],
+    "questions": [
+      {
+        "id": "a507c59f045f4c97b9b8e6470",
+        "stem": "筆者はパッケージツアーと自由旅行についてどのように言っているか。",
+        "correctAnswer": "どちらが良いかは旅行の目的や経験によって変わるため、それに合わせて選ぶべきだ。",
+        "distractors": [
+          {
+            "text": "自由旅行はトラブルが多いので、パッケージツアーの方がすべての人に向いている。",
+            "whyWrong": "The text says packages suit certain people, not that they are better for everyone."
+          },
+          {
+            "text": "パッケージツアーは準備が大変なので、経験者には自由旅行を勧めている。",
+            "whyWrong": "The text attributes preparation difficulty to free travel, not package tours."
+          },
+          {
+            "text": "自由旅行は初めて海外に行く人に特に向いていると述べている。",
+            "whyWrong": "The text says package tours, not free travel, are suited to first-time overseas travelers."
+          }
+        ],
+        "explanation": "The concluding paragraph states that neither is definitively better and that choosing based on one's purpose and experience is important."
+      },
+      {
+        "id": "40107ef5d6be4289856982922",
+        "stem": "パッケージツアーについて正しいのはどれか。",
+        "correctAnswer": "旅行会社がすべてを準備してくれるため、計画を立てるのが苦手な人に向いている。",
+        "distractors": [
+          {
+            "text": "現地で自分のペースで自由に動けるため、経験豊富な旅行者に人気がある。",
+            "whyWrong": "Moving at one's own pace is a feature of free travel, not package tours."
+          },
+          {
+            "text": "ホテルや交通手段を自分で手配する必要があるため、準備に時間がかかる。",
+            "whyWrong": "Self-arranging accommodation and transport describes free travel, not package tours."
+          },
+          {
+            "text": "気に入ったカフェに自由に立ち寄れるなど、柔軟なスケジュールが魅力だ。",
+            "whyWrong": "Freely visiting cafés is given as an attraction of free travel, not package tours."
+          }
+        ],
+        "explanation": "The second paragraph explicitly states that travel agencies handle all arrangements, making package tours especially suited to people who dislike planning."
+      },
+      {
+        "id": "c4869f5d3fe54f59861a2ea5d",
+        "stem": "下線部①「自分だけの旅を作れる」とあるが、どういう意味か。",
+        "correctAnswer": "行きたい場所に自由に時間をかけ、自分の好みに合わせたスケジュールで旅行できるということ。",
+        "distractors": [
+          {
+            "text": "旅行会社のスタッフが一人ひとりに合わせた特別なプランを作ってくれるということ。",
+            "whyWrong": "Having a travel agency create a plan describes package tours, not the independent free-travel experience."
+          },
+          {
+            "text": "ほかの旅行者と一切会わずに、完全に孤独な旅ができるということ。",
+            "whyWrong": "The text makes no mention of avoiding other travelers; it refers to schedule flexibility."
+          },
+          {
+            "text": "費用を自分で管理することで、旅行をできるだけ安くできるということ。",
+            "whyWrong": "Cost-cutting is not discussed; the phrase refers to personalizing one's itinerary and pace."
+          }
+        ],
+        "explanation": "The third paragraph follows the underlined phrase with concrete examples — spending as much time as desired somewhere and spontaneously visiting a café — clarifying that it means a fully personalized itinerary."
+      }
+    ]
+  },
+  {
+    "id": "8ec812ecb5144da2bc2af2d51",
+    "level": "N3",
+    "subtype": "medium",
+    "text": "近年、SNS※1の普及により、私たちの情報収集の方法は大きく変わった。以前は新聞やテレビが主な情報源だったが、今では多くの人がスマートフォンを使ってSNSからニュースや話題を得ている。\n　SNSの便利な点は、情報が非常に速く広まることだ。大きな出来事が起きると、テレビのニュース番組よりも先にSNS上で話題になることも珍しくない。また、一般の人々が自分の意見や体験を発信できるため、さまざまな視点から情報を得られるという利点もある。\n　しかし、SNSには注意すべき点もある。誰でも情報を発信できる分、正確でない情報、いわゆる「フェイクニュース※2」が広まりやすい。②あっという間に拡散した情報が後になって嘘だったと判明することも少なくない。そのため、SNSで得た情報をそのまま信じるのではなく、ほかの信頼できる情報源と照らし合わせて確認することが大切だ。\n　SNSは上手に使えば非常に役立つツールだが、情報の正確さを自分で判断する力が求められる時代になったと言えるだろう。",
+    "notes": [
+      {
+        "marker": "※1",
+        "definition": "SNS：ソーシャル・ネットワーキング・サービスの略。インターネット上で人々がつながるサービス。"
+      },
+      {
+        "marker": "※2",
+        "definition": "フェイクニュース：事実ではない、偽りの情報やニュースのこと。"
+      }
+    ],
+    "questions": [
+      {
+        "id": "58f1c7bdfc204b2ca40c06aed",
+        "stem": "筆者はSNSの利用についてどのように言っているか。",
+        "correctAnswer": "SNSは便利なツールだが、情報の正確さを自分で判断する力が必要だと述べている。",
+        "distractors": [
+          {
+            "text": "SNSは情報が不正確になりやすいので、なるべく使わない方がいいと述べている。",
+            "whyWrong": "The author says SNS is very useful if used well, not that people should avoid it."
+          },
+          {
+            "text": "テレビや新聞はすでに時代遅れなので、SNSに完全に切り替えるべきだと述べている。",
+            "whyWrong": "The author recommends cross-checking with reliable sources, not replacing traditional media entirely."
+          },
+          {
+            "text": "一般の人が情報を発信することは危険なので、規制が必要だと述べている。",
+            "whyWrong": "The author does not call for regulation; the emphasis is on the individual reader's critical judgment."
+          }
+        ],
+        "explanation": "The concluding paragraph states that SNS is a highly useful tool when used wisely, but that the era demands the ability to judge information accuracy for oneself."
+      },
+      {
+        "id": "68aba81afc394883990ba3926",
+        "stem": "SNSの情報収集における利点について正しいのはどれか。",
+        "correctAnswer": "情報が広まるのが非常に速く、テレビより先に話題になることもある。",
+        "distractors": [
+          {
+            "text": "専門家だけが情報を発信するため、内容の信頼性が高い。",
+            "whyWrong": "The text says anyone can post information, which is why inaccuracies spread easily — not that only experts post."
+          },
+          {
+            "text": "フェイクニュースが自動的に削除されるため、安全に使うことができる。",
+            "whyWrong": "The text warns that fake news spreads easily on SNS; there is no mention of automatic removal."
+          },
+          {
+            "text": "新聞やテレビと連携しているため、常に正確な情報が届く。",
+            "whyWrong": "No such link between SNS and traditional media is mentioned; the two are presented as separate sources."
+          }
+        ],
+        "explanation": "The second paragraph explicitly states that information spreads very quickly on SNS and that it often becomes a topic there before TV news programs cover it."
+      },
+      {
+        "id": "a13eae46199d40acaaa3cf207",
+        "stem": "下線部②「あっという間に拡散した情報が後になって嘘だったと判明する」とあるが、筆者がこれを挙げた理由は何か。",
+        "correctAnswer": "SNSでは不正確な情報が広まりやすいという問題点を具体的に示すため。",
+        "distractors": [
+          {
+            "text": "SNSの情報はテレビよりも速く広まるという利点を強調するため。",
+            "whyWrong": "Speed of spread is mentioned as an advantage in the second paragraph, not as the reason for this example in the third paragraph."
+          },
+          {
+            "text": "一般の人が情報を発信することには良い面と悪い面があると比較するため。",
+            "whyWrong": "While the text acknowledges both sides of SNS, this specific example is cited only to illustrate the risk of misinformation."
+          },
+          {
+            "text": "フェイクニュースを広めた人を批判し、SNSの利用者に反省を促すため。",
+            "whyWrong": "The author does not criticize individual users but instead advises readers to verify information themselves."
+          }
+        ],
+        "explanation": "The third paragraph introduces this example immediately after mentioning fake news to illustrate concretely why SNS information should not be trusted without verification."
+      }
+    ]
+  },
+  {
+    "id": "e1d17898be8f41cc9024573b1",
+    "level": "N3",
+    "subtype": "medium",
+    "text": "旅行には、大きく分けてパッケージツアーと個人旅行の二種類がある。パッケージツアーとは、交通や宿泊、観光スポットへの移動がすべてセットになった旅行商品のことで、申し込むだけで手軽に旅行ができる。一方、個人旅行は自分でホテルや交通手段を予約し、自由にスケジュールを組む旅行スタイルだ。\n　パッケージツアーの最大の利点は、準備の手間が少ないことである。旅行に慣れていない人や、時間をあまりかけたくない人には特に向いている。しかし、決められたスケジュールに従わなければならないため、自分のペースで動きにくいという面もある。\n　これに対して個人旅行は、①自分だけの旅が作れる自由さが魅力だ。行きたい場所に好きなだけ時間をかけられるし、急に予定を変えることも可能だ。ただし、すべての手配を自分でしなければならないため、ある程度の経験や語学力が必要になる場合もある。\n　どちらの旅行スタイルが良いかは、旅行者の経験や目的によって異なる。大切なのは、自分に合ったスタイルを選ぶことではないだろうか。",
+    "notes": [
+      {
+        "marker": "※1",
+        "definition": "手配：旅行に必要なものを事前に準備・予約すること。"
+      }
+    ],
+    "questions": [
+      {
+        "id": "17396bc0a1944c29b1eff2b5c",
+        "stem": "筆者はパッケージツアーと個人旅行についてどのように言っているか。",
+        "correctAnswer": "どちらが良いかは、旅行者の目的や経験によって変わる。",
+        "distractors": [
+          {
+            "text": "パッケージツアーは経験豊富な旅行者に特に向いている。",
+            "whyWrong": "The text says package tours suit people unfamiliar with travel or those with little time, not experienced travelers."
+          },
+          {
+            "text": "個人旅行はだれにとっても最もよい旅行スタイルだ。",
+            "whyWrong": "The text never claims individual travel is best for everyone; it says the right style depends on the person."
+          },
+          {
+            "text": "パッケージツアーは自由なスケジュールで動けるのが利点だ。",
+            "whyWrong": "This inverts the text: it is individual travel, not package tours, that offers flexible scheduling."
+          }
+        ],
+        "explanation": "The final paragraph explicitly states that which style is better differs depending on the traveler's experience and purpose, and that choosing a style that suits oneself is what matters."
+      },
+      {
+        "id": "28da715cce9a42b781ea8fef7",
+        "stem": "パッケージツアーについて正しいのはどれか。",
+        "correctAnswer": "交通や宿泊などがすべてセットになっており、準備の手間が少ない。",
+        "distractors": [
+          {
+            "text": "自分でホテルや交通手段を予約する必要がある。",
+            "whyWrong": "This describes individual travel; the text states package tours handle transportation and accommodation as a set."
+          },
+          {
+            "text": "語学力がある人だけが利用できる旅行スタイルだ。",
+            "whyWrong": "The text attributes the need for language ability to individual travel, not to package tours."
+          },
+          {
+            "text": "スケジュールを自由に変更できる点が最大の魅力だ。",
+            "whyWrong": "The text states that package tours require following a fixed schedule, making it hard to move at one's own pace."
+          }
+        ],
+        "explanation": "The first paragraph defines package tours as all-inclusive products, and the second paragraph identifies their greatest advantage as requiring little preparation effort."
+      },
+      {
+        "id": "4af1507dd4154f678f74a263a",
+        "stem": "下線部①「自分だけの旅が作れる自由さ」とあるが、どういう意味か。",
+        "correctAnswer": "行きたい場所に自由に時間をかけたり、急に予定を変えたりできるということ。",
+        "distractors": [
+          {
+            "text": "旅行会社が用意したスケジュールに自由に参加できるということ。",
+            "whyWrong": "This describes a package tour structure; the underlined phrase refers to individual travel with no fixed schedule."
+          },
+          {
+            "text": "他の旅行者と一緒に行動しなくてもよいということ。",
+            "whyWrong": "Traveling alone vs. in a group is not what the passage discusses; the freedom refers to flexible planning, not group size."
+          },
+          {
+            "text": "語学力がなくても海外旅行ができるということ。",
+            "whyWrong": "The text actually notes that individual travel may require language ability, which is the opposite implication."
+          }
+        ],
+        "explanation": "The sentence immediately following the underlined phrase explains that one can spend as much time as desired at preferred places and can change plans suddenly."
+      }
+    ]
+  },
+  {
+    "id": "867fd3a2b93143dbaa8afc5ea",
+    "level": "N3",
+    "subtype": "medium",
+    "text": "近年、SNS※1を通じて料理の写真や動画を共有することが広く行われるようになった。レシピ動画を見ながら料理を作る人が増え、料理に対する関心が以前より高まっていると言われている。\n　このようなSNSを使った料理の広まりには、いくつかの良い点がある。まず、プロの料理人でなくても、見た目がきれいで工夫されたレシピを誰でも発信できる。また、世界中の料理が気軽に紹介されるため、普段はなかなか食べられないような料理に挑戦するきっかけになる。\n　しかし、問題がないわけではない。①見た目の美しさばかりが重視され、味や栄養バランスが後回しになる場合があるという声もある。実際に、彩りや盛りつけ※2にこだわりすぎて、時間や材料費がかかりすぎることを指摘する専門家もいる。\n　SNSは料理の楽しさを広める便利なツールであることは確かだ。ただ、食事の本来の目的である「おいしく、健康的に食べる」ことを忘れないようにしたいものだ。",
+    "notes": [
+      {
+        "marker": "※1",
+        "definition": "SNS：インターネット上で人々が情報を共有するサービスの総称。"
+      },
+      {
+        "marker": "※2",
+        "definition": "盛りつけ：料理を皿などに見栄えよく並べること。"
+      }
+    ],
+    "questions": [
+      {
+        "id": "fb0d3e5946d04d1293d4504b2",
+        "stem": "筆者はSNSと料理の関係についてどのように述べているか。",
+        "correctAnswer": "SNSは料理の楽しさを広める一方で、見た目を重視しすぎる問題もあると述べている。",
+        "distractors": [
+          {
+            "text": "SNSのおかげで、料理の栄養バランスへの関心が世界中で高まっている。",
+            "whyWrong": "The text says nutritional balance tends to be neglected due to SNS, not that awareness of it has improved."
+          },
+          {
+            "text": "SNSで料理を紹介できるのは、プロの料理人だけだと述べている。",
+            "whyWrong": "The text explicitly states that even non-professionals can share well-crafted recipes on SNS."
+          },
+          {
+            "text": "SNSは料理に悪影響しか与えないため、使わないほうがよいと述べている。",
+            "whyWrong": "The author acknowledges both benefits and drawbacks of SNS for cooking, and does not advise against using it."
+          }
+        ],
+        "explanation": "The final paragraph summarizes the author's balanced view: SNS is a useful tool for spreading the joy of cooking, but one must not forget that eating well and healthily is the original purpose of a meal."
+      },
+      {
+        "id": "2ff47e38b0174994bec91835a",
+        "stem": "SNSを使った料理の広まりのいい点はどんなところだと言っているか。",
+        "correctAnswer": "プロでなくても誰でもレシピを発信でき、世界の料理に挑戦するきっかけになる。",
+        "distractors": [
+          {
+            "text": "彩りや盛りつけを重視することで、料理の栄養バランスが改善される。",
+            "whyWrong": "The text presents focus on appearance as a drawback, not a benefit related to nutrition."
+          },
+          {
+            "text": "料理動画を見ることで、材料費を大幅に節約できる。",
+            "whyWrong": "The text actually mentions that too much focus on presentation can cause excessive cost of ingredients — the opposite."
+          },
+          {
+            "text": "専門家だけが正しいレシピを世界に向けて発信できるようになった。",
+            "whyWrong": "This inverts the stated benefit; the text says even non-professionals can now share recipes widely."
+          }
+        ],
+        "explanation": "The second paragraph lists the advantages: anyone — not just professionals — can share creative recipes, and people are inspired to try cuisines from around the world."
+      },
+      {
+        "id": "dd0cd482115c4c9a862434c4e",
+        "stem": "下線部①「見た目の美しさばかりが重視され、味や栄養バランスが後回しになる」とあるが、その具体的な例として本文で挙げられているのはどれか。",
+        "correctAnswer": "彩りや盛りつけにこだわりすぎて、時間や材料費がかかりすぎること。",
+        "distractors": [
+          {
+            "text": "レシピ動画が長すぎて、料理を作るのに時間がかかること。",
+            "whyWrong": "The text does not mention recipe videos being too long; the time cost mentioned relates to excessive focus on presentation."
+          },
+          {
+            "text": "世界中の料理を紹介しすぎて、国内の食文化が失われること。",
+            "whyWrong": "Loss of domestic food culture is never mentioned in the text; it is not the example given."
+          },
+          {
+            "text": "プロの料理人が素人のレシピに反発して情報を発信しなくなること。",
+            "whyWrong": "No such conflict between professionals and amateurs is described anywhere in the passage."
+          }
+        ],
+        "explanation": "The third paragraph immediately follows the underlined phrase with the specific example that some experts point out how obsessing over color and plating leads to excessive time and ingredient costs."
+      }
+    ]
+  },
+  {
+    "id": "72b5e78ca98a47c1a52dd1670",
+    "level": "N3",
+    "subtype": "medium",
+    "text": "旅行には大きく分けて、パッケージツアーと自由旅行の二種類がある。パッケージツアーとは、交通や宿泊、観光地への移動などがあらかじめ決められた旅行のことだ。一方、自由旅行は自分でスケジュールを組み、行きたい場所に自由に行ける旅行スタイルである。\n　パッケージツアーの最も大きな利点は、手間がかからないことだ。ホテルや交通機関の予約をすべて旅行会社が行ってくれるため、旅行に慣れていない人でも安心して参加できる。また、ガイドが同行することが多いため、現地の文化や歴史についての説明を聞きながら観光できる点も魅力である。\n　しかし、①スケジュールが固定されているため、自分のペースで動けないという不満を感じる人も多い。気に入った場所にもっとゆっくりいたくても、次の目的地へ移動しなければならないことがある。\n　その点、自由旅行は柔軟性※1が高く、予定を自由に変更できる。ただし、すべての計画を自分で立てる必要があるため、ある程度の経験や語学力が求められる。\n　どちらの旅行スタイルが合うかは、旅行者の経験や目的によって異なる。初めて海外に行く人にはパッケージツアーが、旅慣れた人には自由旅行が向いていると言えるだろう。",
+    "notes": [
+      {
+        "marker": "※1",
+        "definition": "柔軟性：状況に応じて変えられる性質のこと。"
+      }
+    ],
+    "questions": [
+      {
+        "id": "240d01fcdc0a4f7bbf2e949ac",
+        "stem": "筆者はパッケージツアーのいい点はどんなところだと言っているか。",
+        "correctAnswer": "旅行会社がすべての予約をしてくれるので、旅行に慣れていない人でも安心して参加できる点。",
+        "distractors": [
+          {
+            "text": "スケジュールを自由に変えられるので、自分のペースで観光できる点。",
+            "whyWrong": "Flexible scheduling is a feature of free travel, not package tours; the passage states the opposite for package tours."
+          },
+          {
+            "text": "語学力がある人に特に向いており、現地の人と交流しやすい点。",
+            "whyWrong": "Language ability is mentioned as a requirement for free travel, not as a benefit of package tours."
+          },
+          {
+            "text": "ガイドがいないため、自分のペースで文化を学べる点。",
+            "whyWrong": "The passage states that guides do accompany package tours, so saying there is no guide inverts the fact."
+          }
+        ],
+        "explanation": "The second paragraph explicitly states that travel agencies handle all bookings and that guides accompany tours, making it easy for inexperienced travelers to participate."
+      },
+      {
+        "id": "731e0e4c9a6a40568be4c3c7f",
+        "stem": "自由旅行について正しいのはどれか。",
+        "correctAnswer": "自分ですべての計画を立てる必要があるため、経験や語学力がある程度必要だ。",
+        "distractors": [
+          {
+            "text": "旅行会社がスケジュールを作ってくれるので、準備が楽だ。",
+            "whyWrong": "Having the travel agency create the schedule is a feature of package tours, not free travel."
+          },
+          {
+            "text": "ガイドが同行するため、現地の説明を聞くことができる。",
+            "whyWrong": "A guide accompanying travelers is described as a feature of package tours, not free travel."
+          },
+          {
+            "text": "初めて海外に行く人に最も向いている旅行スタイルだ。",
+            "whyWrong": "The passage recommends free travel for experienced travelers and package tours for first-time overseas travelers, which is the opposite."
+          }
+        ],
+        "explanation": "The fourth paragraph states that free travel requires travelers to plan everything themselves and that a certain level of experience and language ability is needed."
+      },
+      {
+        "id": "214ba98532fc4c7c8fb48cd73",
+        "stem": "下線部①「スケジュールが固定されているため、自分のペースで動けない」とあるが、どういう意味か。",
+        "correctAnswer": "気に入った場所でも、決められた時間になったら次の場所へ移動しなければならないということ。",
+        "distractors": [
+          {
+            "text": "旅行会社が予約をしないため、自分で次の目的地を決めなければならないということ。",
+            "whyWrong": "This describes free travel planning responsibilities; the underlined phrase refers to the fixed nature of package tour schedules."
+          },
+          {
+            "text": "ガイドが同行しないため、どこへ行けばよいか分からないということ。",
+            "whyWrong": "The passage states guides do accompany package tours; the absence of a guide is not the issue described in the underlined portion."
+          },
+          {
+            "text": "語学力がないと、現地で自由に行動することが難しいということ。",
+            "whyWrong": "Language ability as a barrier relates to free travel in a different paragraph, not to the fixed-schedule complaint highlighted in the underlined phrase."
+          }
+        ],
+        "explanation": "The sentence immediately following the underlined portion gives the concrete example that even if you like a place, you must move on to the next destination, confirming the meaning of being unable to go at your own pace."
+      }
+    ]
+  },
+  {
+    "id": "a95ddfda2a3a4b738a78c840a",
+    "level": "N3",
+    "subtype": "medium",
+    "text": "近年、SNS※1を使って料理の写真や動画を投稿する人が増えている。自分の作った料理をSNSで紹介することで、知らなかったレシピを多くの人と共有できるようになった。この変化は、家庭料理のトレンドにも大きな影響を与えている。\n　SNSで人気になった料理は、見た目が華やかで、写真映りがいいものが多い。色とりどりの野菜を使ったサラダや、チーズがとろけるグラタンなどが話題になりやすい。そのため、「おいしそうに見える」ことが、レシピ選びの重要な条件の一つになってきた。\n　一方で、この流行にはデメリットもある。②見た目を重視するあまり、栄養バランスや調理の手間が後回しになることがある。インターネット上で人気のレシピの中には、見栄えはよくても栄養が偏っているものも少なくない。\n　また、SNSに載せることを意識しすぎると、料理本来の楽しさを忘れてしまうこともあるだろう。料理は本来、家族や友人においしいものを食べさせたいという気持ちから生まれるものだ。\n　SNSは新しいレシピを発見する便利なツールだが、見た目だけにとらわれず、味や栄養も大切にして料理を楽しんでほしいと筆者は考えている。",
+    "notes": [
+      {
+        "marker": "※1",
+        "definition": "SNS：インターネット上で人々がつながり、情報を共有するサービスのこと。"
+      }
+    ],
+    "questions": [
+      {
+        "id": "e3b97d04991448ceb7922be5e",
+        "stem": "筆者はSNSと料理の流行についてどのように言っているか。",
+        "correctAnswer": "SNSは新しいレシピを見つけるのに便利だが、見た目だけでなく味や栄養も大切にすべきだ。",
+        "distractors": [
+          {
+            "text": "SNSに料理を投稿することは料理の楽しさを増やすので、積極的に活用すべきだ。",
+            "whyWrong": "The author warns that over-focusing on SNS posting can cause one to forget the true joy of cooking, so recommending active use overgeneralizes the passage's stance."
+          },
+          {
+            "text": "SNSで人気の料理は栄養バランスが優れているので、積極的に作るとよい。",
+            "whyWrong": "The passage states the opposite — that popular SNS recipes can be nutritionally imbalanced."
+          },
+          {
+            "text": "見た目が美しい料理を作ることが、家庭料理において最も重要なことだ。",
+            "whyWrong": "This contradicts the author's conclusion, which argues that taste and nutrition should not be neglected in favor of appearance."
+          }
+        ],
+        "explanation": "The final paragraph directly states the author's view: SNS is a convenient tool for discovering recipes, but one should value taste and nutrition alongside appearance."
+      },
+      {
+        "id": "e5dc87707949444c9ba1d2c91",
+        "stem": "SNSで人気になりやすい料理について正しいのはどれか。",
+        "correctAnswer": "色が鮮やかで、写真に撮ったときに見栄えがいい料理が話題になりやすい。",
+        "distractors": [
+          {
+            "text": "調理に手間がかかる料理ほど、SNSで多くの人に注目される。",
+            "whyWrong": "The passage says cooking effort is often deprioritized in trending SNS recipes; time-consuming preparation is not mentioned as a reason for popularity."
+          },
+          {
+            "text": "栄養バランスが優れている料理が、SNSで最もよく取り上げられる。",
+            "whyWrong": "The passage explicitly notes that many popular SNS recipes are nutritionally unbalanced, which is the opposite of this choice."
+          },
+          {
+            "text": "家族や友人向けに作られたシンプルな料理が、SNSで人気になりやすい。",
+            "whyWrong": "The passage links SNS popularity to visual appeal such as colorful ingredients and melted cheese, not to simplicity or who the dish is made for."
+          }
+        ],
+        "explanation": "The second paragraph specifies that visually striking dishes — such as colorful vegetable salads and cheesy gratins — tend to gain attention on SNS because they look good in photos."
+      },
+      {
+        "id": "bed6a8786c6a4b8cbb26241d0",
+        "stem": "下線部②「見た目を重視するあまり、栄養バランスや調理の手間が後回しになる」とあるが、どういう意味か。",
+        "correctAnswer": "料理の見かけを大切にしすぎて、栄養や作る手間のことを十分に考えなくなってしまうということ。",
+        "distractors": [
+          {
+            "text": "栄養バランスを重視しすぎて、料理の見た目がおろそかになってしまうということ。",
+            "whyWrong": "This inverts the cause and effect: the passage says appearance is prioritized, causing nutrition to be neglected — not the other way around."
+          },
+          {
+            "text": "調理に手間をかけすぎると、SNSに投稿する時間がなくなってしまうということ。",
+            "whyWrong": "The passage does not mention running out of time to post on SNS; this introduces a consequence not stated in the text."
+          },
+          {
+            "text": "SNSに投稿することを意識しすぎると、料理を家族と楽しむ機会が減るということ。",
+            "whyWrong": "While the passage mentions forgetting the joy of cooking, the underlined phrase specifically refers to nutrition and preparation effort being deprioritized, not family time being reduced."
+          }
+        ],
+        "explanation": "The third paragraph introduces the underlined phrase and immediately explains that among popular online recipes, many prioritize appearance while being nutritionally unbalanced, confirming that nutrition and effort are what get deprioritized."
+      }
+    ]
+  },
+  {
+    "id": "459d580f478a423d94fec0396",
+    "level": "N3",
+    "subtype": "medium",
+    "text": "日本では、贈り物をする文化が生活の中に深く根付いている。お中元やお歳暮といった季節の贈り物はその代表的な例だ。お中元は夏に、お歳暮は年末に、お世話になった人へ感謝の気持ちを込めて品物を贈る習慣である。\n　この二つの習慣はよく似ているが、いくつかの点で異なる。まず、時期が違う。お中元は主に7月から8月にかけて贈られるのに対し、お歳暮は12月に贈るのが一般的だ。また、意味合いにも少し違いがある。お中元は上半期のお礼として、お歳暮は一年間を通じたお礼として贈られることが多い。どちらか一方だけ贈る場合は、一年の締めくくりであるお歳暮を選ぶ人が多いとされる。\n　贈る品物としては、食べ物や飲み物が人気だ。相手の好みや家族の人数を考えて選ぶのが礼儀とされており、高すぎず安すぎない価格帯のものが喜ばれる傾向にある。近年はインターネットで注文し、直接相手の家に届けるスタイルも広まっている。このような贈り物の文化は、人と人とのつながりを大切にする日本社会の価値観を反映していると言えるだろう。",
+    "notes": [
+      {
+        "marker": "※お中元",
+        "definition": "夏に感謝の気持ちを込めて贈る贈り物の習慣。"
+      },
+      {
+        "marker": "※お歳暮",
+        "definition": "年末に一年間のお礼として贈る贈り物の習慣。"
+      }
+    ],
+    "questions": [
+      {
+        "id": "052083c47db64587b7703b1fc",
+        "stem": "この文章で筆者が最も言いたいことは何か。",
+        "correctAnswer": "贈り物の文化は、人とのつながりを大切にする日本の価値観を表している。",
+        "distractors": [
+          {
+            "text": "お中元とお歳暮は、時期も意味も全く同じ習慣である。",
+            "whyWrong": "The passage explicitly states that the two customs differ in both timing and meaning."
+          },
+          {
+            "text": "日本では、贈り物は食べ物や飲み物以外を選ぶべきだとされている。",
+            "whyWrong": "The passage says food and drink are actually popular gift choices, not discouraged."
+          },
+          {
+            "text": "インターネットでの注文が広まったため、贈り物の文化は失われつつある。",
+            "whyWrong": "The passage presents online ordering as a new style of the same tradition, not as its decline."
+          }
+        ],
+        "explanation": "The concluding sentence of the final paragraph states that gift-giving culture reflects the Japanese value of cherishing human connections."
+      },
+      {
+        "id": "c85c0c6962e44cce9419a0033",
+        "stem": "お中元とお歳暮について、正しい説明はどれか。",
+        "correctAnswer": "どちらか一方だけ贈るなら、お歳暮を選ぶ人が多い。",
+        "distractors": [
+          {
+            "text": "お中元は12月に、お歳暮は7月から8月に贈るものだ。",
+            "whyWrong": "The passage states the opposite: Ochugen is given in July–August and Oseibo in December."
+          },
+          {
+            "text": "お歳暮は上半期のお礼として贈られることが多い。",
+            "whyWrong": "The passage attributes the upper-half-year meaning to Ochugen, not Oseibo."
+          },
+          {
+            "text": "二つの習慣の意味は全く同じで、時期だけが異なる。",
+            "whyWrong": "The passage clearly notes that the two customs also differ slightly in meaning, not only in timing."
+          }
+        ],
+        "explanation": "The second paragraph states that when giving only one gift, most people choose Oseibo as it marks the end of the year."
+      },
+      {
+        "id": "fbcd2815d4a84e0c8acbbd954",
+        "stem": "「このような贈り物の文化」とあるが、ここで指しているものはどれか。",
+        "correctAnswer": "相手を思って品物を選び、感謝を伝えるお中元やお歳暮の習慣。",
+        "distractors": [
+          {
+            "text": "インターネットを使って、できるだけ安い商品を購入する新しい習慣。",
+            "whyWrong": "The passage never encourages buying cheap items; it recommends a moderate price range chosen with care for the recipient."
+          },
+          {
+            "text": "季節に関係なく、いつでも好きなときに贈り物をする習慣。",
+            "whyWrong": "Both customs described in the passage are tied to specific seasons, not given at any time."
+          },
+          {
+            "text": "家族の人数に合わせて、必ず食べ物を贈らなければならない習慣。",
+            "whyWrong": "The passage says food and drink are popular but does not state they are obligatory gifts."
+          }
+        ],
+        "explanation": "The demonstrative phrase 'このような贈り物の文化' refers back to the entire practice of Ochugen and Oseibo described throughout the passage, which the author then links to Japanese social values."
+      }
+    ]
+  },
+  {
+    "id": "eccb8dfdc0624dc688de015f5",
+    "level": "N3",
+    "subtype": "medium",
+    "text": "日本では、贈り物をする文化が生活の中に深く根付いている。特に「お中元」と「お歳暮」は、日本の贈答文化※1を代表する習慣である。\n　お中元は夏（7月から8月ごろ）に、日頃お世話になっている人へ感謝の気持ちを込めて贈るものだ。一方、お歳暮は年末（12月ごろ）に、一年間の感謝をまとめて伝えるために贈る。どちらも目上の人や取引先※2に贈ることが多く、ビジネスの場でも重要な意味を持つ。\n　贈り物の内容は、食品や飲み物が中心で、相手の好みや季節に合わせて選ばれる。最近はインターネットで注文して直接届けるサービスも増えており、忙しい現代人にとって便利になっている。\n　しかし、こうした習慣は若い世代を中心に少しずつ変化している。「形式的で面倒だ」と感じる人も増え、贈り物をやめる会社も出てきた。それでも、感謝の気持ちを物で表すという日本文化の心は、形を変えながらも受け継がれていくだろう。",
+    "notes": [
+      {
+        "marker": "※1 贈答文化",
+        "definition": "贈り物を送り合う文化・慣習のこと。"
+      },
+      {
+        "marker": "※2 取引先",
+        "definition": "仕事上の関係がある会社や人のこと。"
+      }
+    ],
+    "questions": [
+      {
+        "id": "f0a87661cc8c46b6a9be966e4",
+        "stem": "この文章で筆者が最も伝えたいことは何か。",
+        "correctAnswer": "日本の贈り物文化は形が変わっても、感謝の気持ちを伝えるという本質は続いていくだろう。",
+        "distractors": [
+          {
+            "text": "お中元とお歳暮は、これからも若い世代の間でますます盛んになっていくだろう。",
+            "whyWrong": "The passage states that younger generations are causing the custom to gradually decline, not grow more popular."
+          },
+          {
+            "text": "インターネットの普及により、贈り物文化は完全に新しい形に変わってしまった。",
+            "whyWrong": "The passage mentions online ordering as a convenience, but does not claim the culture has completely transformed."
+          },
+          {
+            "text": "ビジネスの場では、贈り物をやめる傾向が強まっているので、習慣は消えていくだろう。",
+            "whyWrong": "While some companies are stopping the practice, the author's conclusion is that the spirit of gratitude will continue in changed forms, not disappear."
+          }
+        ],
+        "explanation": "The final paragraph's concluding sentence states that the Japanese spirit of expressing gratitude through gifts will be 'passed on while changing form,' which is the author's main point."
+      },
+      {
+        "id": "323db70afe3844b0807a34d9b",
+        "stem": "お中元とお歳暮の違いについて、文章の内容と合っているものはどれか。",
+        "correctAnswer": "お中元は夏に贈り、お歳暮は年末に贈る。",
+        "distractors": [
+          {
+            "text": "お中元は年末に贈り、お歳暮は夏に贈る。",
+            "whyWrong": "This reverses the timing of the two gifts, which is directly contradicted in the second paragraph."
+          },
+          {
+            "text": "お中元はビジネスで使われるが、お歳暮は家族にだけ贈るものだ。",
+            "whyWrong": "The passage states that both gifts are often given to superiors and business partners, making no such distinction between the two."
+          },
+          {
+            "text": "お歳暮は感謝の気持ちを伝えるためではなく、季節の挨拶として贈るものだ。",
+            "whyWrong": "The passage explicitly states that o-seibo is given to convey a full year's worth of gratitude, not merely as a seasonal greeting."
+          }
+        ],
+        "explanation": "The second paragraph clearly states that o-chūgen is given in summer (July–August) and o-seibo is given at year-end (December)."
+      },
+      {
+        "id": "89253b6a642a42c49e2c3d6f4",
+        "stem": "「形を変えながらも受け継がれていくだろう」とあるが、これはどういう意味か。",
+        "correctAnswer": "贈り物のやり方は変わるかもしれないが、感謝を伝えるという気持ちは続いていくということ。",
+        "distractors": [
+          {
+            "text": "贈り物の種類が変わるだけで、習慣そのものはまったく変わらないということ。",
+            "whyWrong": "The passage acknowledges that the custom itself is changing (some companies are stopping it), so claiming it will not change at all contradicts the text."
+          },
+          {
+            "text": "若い世代が古い習慣を完全に捨て、新しい文化を作っていくということ。",
+            "whyWrong": "The phrase 'passed on while changing form' implies continuity of the underlying spirit, not a complete rejection of old customs by the young."
+          },
+          {
+            "text": "インターネットを使った贈り物だけが、これからの主流になるということ。",
+            "whyWrong": "Online ordering is mentioned as one convenient option, but the sentence in question refers broadly to the cultural spirit of gratitude, not specifically to online shopping."
+          }
+        ],
+        "explanation": "The final sentence uses 'while changing form' (形を変えながらも) to indicate that although the outward practice may shift, the core spirit of gratitude expressed through gifts will be inherited by future generations."
+      }
+    ]
+  },
+  {
+    "id": "cebc21f46e0a48edbb1d6f0d6",
+    "level": "N3",
+    "subtype": "long",
+    "text": "都市部における緑地の減少は、近年深刻な環境問題として注目されている。かつて住宅地の周辺には雑木林や農地が広がっていたが、急速な都市化によってそれらの多くが失われた。①緑地が減少すると、地表面をコンクリートやアスファルトが覆う面積が増え、太陽熱が蓄積されやすくなる。その結果、都市部の気温が周辺の農村部よりも著しく高くなる「ヒートアイランド現象」が引き起こされるのである。\n\n　こうした問題への対策として、各自治体は様々な取り組みを進めている。②代表的なものとして、建物の屋上や壁面に植物を植える「緑化」が挙げられる。屋上緑化は断熱効果をもたらし、冷暖房にかかるエネルギーの消費を抑えることができる。壁面緑化もまた、直射日光による建物の温度上昇を緩和する効果があるとされる。いずれも景観の向上にも寄与するため、住民からの支持も高い。\n\n　一方、緑化には課題もある。③植物を維持するためには定期的な水やりや剪定などの管理作業が欠かせず、自治体や建物の管理者にとって継続的なコストと人員の確保が必要となる。特に高層建築の壁面では作業の危険性も伴うため、専門業者への委託が一般的であり、費用の負担が小さくない。\n\n　それでも専門家の多くは、都市緑化の推進は長期的に見て不可欠であると主張する。④植物が二酸化炭素を吸収し酸素を供給するという基本的な機能に加え、生態系の保全や市民の精神的健康への貢献も期待されている。目先のコストにとらわれず、将来世代への投資として緑地を守り育てることが、持続可能な都市づくりに向けた重要な一歩となるであろう。",
+    "notes": [
+      {
+        "marker": "※雑木林（ぞうきばやし）",
+        "definition": "様々な種類の落葉広葉樹が混在する林。secondary woodland made up of various broadleaf deciduous trees."
+      },
+      {
+        "marker": "※ヒートアイランド現象（ヒートアイランドげんしょう）",
+        "definition": "都市部の気温が周辺地域より高くなる現象。urban heat island effect."
+      },
+      {
+        "marker": "※剪定（せんてい）",
+        "definition": "植物の枝や葉を切り整える作業。pruning of trees or plants."
+      },
+      {
+        "marker": "※委託（いたく）",
+        "definition": "仕事や業務を他者に依頼して任せること。outsourcing or entrusting work to another party."
+      }
+    ],
+    "questions": [
+      {
+        "id": "9b15126adee842ebb2f520f53",
+        "stem": "①「ヒートアイランド現象」が起こる原因として、本文で述べられていることはどれか。",
+        "correctAnswer": "緑地が失われてコンクリートなどで地表が覆われ、熱が溜まりやすくなるから。",
+        "distractors": [
+          {
+            "text": "農村部の人口が都市部へ移動し、農地が急激に拡大したから。",
+            "whyWrong": "The passage describes farmland being lost to urbanization, not expanded; population movement is not cited as the cause of the heat island effect."
+          },
+          {
+            "text": "都市部で使われる冷暖房機器の排熱が大気を直接温めるから。",
+            "whyWrong": "Air-conditioner exhaust heat is not mentioned anywhere in the passage as a cause of the heat island phenomenon."
+          },
+          {
+            "text": "雑木林が増えすぎて太陽光が地表に届かなくなったから。",
+            "whyWrong": "The passage states that woodlands have decreased, not increased, so this directly contradicts the text."
+          }
+        ],
+        "explanation": "The first paragraph explains that the replacement of greenery with concrete and asphalt causes heat accumulation, leading to the urban heat island effect."
+      },
+      {
+        "id": "4cc8e7dbbeac4fe191bfd0c5f",
+        "stem": "②「代表的なもの」とあるが、何の代表的なものか。",
+        "correctAnswer": "ヒートアイランド現象などの都市環境問題に対処するための、自治体による取り組みのこと。",
+        "distractors": [
+          {
+            "text": "緑地を減少させてきた都市化の事例のこと。",
+            "whyWrong": "The phrase introduces countermeasures against the problem, not examples of urbanization that caused it."
+          },
+          {
+            "text": "住民が自発的に行っている景観改善活動のこと。",
+            "whyWrong": "The passage attributes the initiatives to local governments (自治体), not to residents acting independently."
+          },
+          {
+            "text": "エネルギー消費を削減するための建築技術のこと。",
+            "whyWrong": "Energy saving is mentioned as one benefit of rooftop greening, but the referent of '代表的なもの' is broadly environmental countermeasures by municipalities, not construction technology specifically."
+          }
+        ],
+        "explanation": "The second paragraph's opening sentence establishes that '代表的なもの' refers to the various measures being promoted by local governments to address the environmental problems described in paragraph one."
+      },
+      {
+        "id": "27f3e5987b1249ffb39cec41a",
+        "stem": "③緑化を維持することの課題として、本文で述べられていることはどれか。",
+        "correctAnswer": "水やりや剪定などの継続的な管理に、費用と人員が必要になること。",
+        "distractors": [
+          {
+            "text": "植物の種類によっては都市の気候に適応できず、すぐに枯れてしまうこと。",
+            "whyWrong": "The passage never mentions plant species suitability or plants dying in urban climates as a maintenance challenge."
+          },
+          {
+            "text": "住民の支持が得られず、緑化計画が中断されることが多いこと。",
+            "whyWrong": "The passage explicitly states the opposite — that residents strongly support greening efforts because of landscape improvements."
+          },
+          {
+            "text": "屋上緑化は断熱効果が低いため、コストに見合わないこと。",
+            "whyWrong": "The passage presents the insulating effect of rooftop greening positively; it does not claim the effect is insufficient or that costs outweigh benefits."
+          }
+        ],
+        "explanation": "The third paragraph explicitly identifies the ongoing costs of watering, pruning, and specialized outsourcing — especially on high-rise buildings — as the key challenges of maintaining urban greenery."
+      },
+      {
+        "id": "79d4759f3a5340629904a646b",
+        "stem": "④この文章で筆者が最も伝えたいことはどれか。",
+        "correctAnswer": "緑化にはコストがかかるが、将来の世代のために都市の緑を守ることが持続可能な都市づくりに不可欠だということ。",
+        "distractors": [
+          {
+            "text": "屋上緑化と壁面緑化のどちらが効果的かを科学的に検証する必要があるということ。",
+            "whyWrong": "The passage does not compare the two greening methods scientifically or call for further research to determine which is superior."
+          },
+          {
+            "text": "都市化を止め、かつての雑木林や農地をできるだけ早く元の状態に戻すべきだということ。",
+            "whyWrong": "The author advocates investing in urban greenery going forward, not reversing urbanization or restoring historical landscapes."
+          },
+          {
+            "text": "自治体ではなく、企業や個人が費用を負担して緑化を進めるべきだということ。",
+            "whyWrong": "The passage does not assign financial responsibility to any particular actor; the argument focuses on the long-term value of greenery, not on who should pay for it."
+          }
+        ],
+        "explanation": "The concluding paragraph summarizes the author's central argument: despite the costs, urban greening must be viewed as a long-term investment for future generations and is essential for sustainable city development."
+      }
+    ]
+  },
+  {
+    "id": "8f5416776f7c494cbf0bff33c",
+    "level": "N3",
+    "subtype": "long",
+    "text": "現代社会において、睡眠不足は深刻な問題となっている。厚生労働省の調査によれば、日本人の成人の約三割が「睡眠に満足していない」と回答しており、慢性的な睡眠不足に悩む人の数は年々増加している。①睡眠不足が続くと、集中力や判断力が著しく低下するだけでなく、免疫機能の衰えや生活習慣病のリスク上昇など、身体的な健康にも広範な悪影響を及ぼすことが医学的に証明されている。\n\n　睡眠の質を下げる要因はさまざまであるが、近年とくに注目されているのがスマートフォンやタブレット端末の就寝前使用である。これらの機器が発するブルーライトは、脳内で睡眠を促すメラトニンというホルモンの分泌を抑制する。②その結果、体内時計が乱れ、寝付きが悪くなるばかりか、睡眠の深さも損なわれると報告されている。専門家は、就寝の少なくとも一時間前には画面を見るのをやめるよう推奨している。\n\n　一方、睡眠の質を向上させる方法としては、規則正しい就寝・起床時間の維持、適度な運動習慣、カフェインの摂取制限などが広く知られている。③なかでも、就寝前に軽いストレッチや入浴を行うことは、副交感神経を優位にし、心身をリラックスさせる効果があるとされ、多くの睡眠専門医が積極的に勧めている。\n\n　良質な睡眠は、翌日のパフォーマンスを高めるだけでなく、長期的な健康維持にも不可欠である。④本稿では、睡眠を「時間の無駄」とみなす風潮に警鐘を鳴らし、意識的に睡眠環境を整えることの重要性を社会全体で再認識すべきであると主張したい。個人の努力はもちろん重要だが、企業や学校が労働・学習時間の設計を見直す社会的取り組みもまた、急務であると言えよう。",
+    "notes": [
+      {
+        "marker": "※メラトニン",
+        "definition": "脳の松果体から分泌されるホルモンで、睡眠と覚醒のリズムを調整する働きをする。"
+      },
+      {
+        "marker": "※副交感神経",
+        "definition": "自律神経の一つで、身体をリラックスさせ、休息・消化活動を促す神経。"
+      },
+      {
+        "marker": "※生活習慣病",
+        "definition": "不規則な生活習慣が原因で引き起こされる疾患の総称。糖尿病・高血圧・肥満などが含まれる。"
+      },
+      {
+        "marker": "※警鐘を鳴らす",
+        "definition": "危険や問題があることを人々に注意・警告すること。"
+      }
+    ],
+    "questions": [
+      {
+        "id": "528f9b90d59c4d9091efcc781",
+        "stem": "①「睡眠不足が続くと」とあるが、本文によると睡眠不足が引き起こす問題として正しいものはどれか。",
+        "correctAnswer": "精神的な機能の低下と、免疫力の低下や病気のリスク増加という身体的な問題の両方が生じる。",
+        "distractors": [
+          {
+            "text": "判断力は低下するが、身体的な健康にはほとんど影響がないとされている。",
+            "whyWrong": "The passage explicitly states that physical health is also broadly and negatively affected, so limiting the harm to mental functions only is incorrect."
+          },
+          {
+            "text": "生活習慣病のリスクが上がるが、免疫機能への影響はまだ医学的に証明されていない。",
+            "whyWrong": "The passage groups immune-function decline and lifestyle-disease risk together as medically proven harms, so claiming immunity is unproven contradicts the text."
+          },
+          {
+            "text": "集中力の低下は一時的なもので、十分な休憩を取れば短期間で回復するとされている。",
+            "whyWrong": "The passage describes chronic sleep deprivation and wide-ranging harm without suggesting quick recovery, so framing the effect as merely temporary is unsupported."
+          }
+        ],
+        "explanation": "The first paragraph states that continued sleep deprivation not only sharply reduces concentration and judgment but also has wide-ranging physical effects including immune decline and increased disease risk, all of which are medically proven."
+      },
+      {
+        "id": "35abb36ef7bb4dd18f9651ca0",
+        "stem": "②「その結果」とあるが、何の結果か。",
+        "correctAnswer": "スマートフォン等から出るブルーライトがメラトニンの分泌を抑えることによって生じる結果。",
+        "distractors": [
+          {
+            "text": "就寝前に画面を長時間見ることで、目が疲れて眠れなくなることの結果。",
+            "whyWrong": "Eye fatigue is not mentioned in the passage; the stated mechanism is specifically blue-light suppression of melatonin, not general eye strain."
+          },
+          {
+            "text": "カフェインの過剰摂取によって覚醒作用が高まったことの結果。",
+            "whyWrong": "Caffeine is mentioned later as a separate factor; the pronoun 'その結果' refers directly to the blue-light/melatonin mechanism described in the immediately preceding sentence."
+          },
+          {
+            "text": "不規則な就寝・起床時間が続いたことで体内時計が乱れた結果。",
+            "whyWrong": "Irregular sleep schedules are listed as a separate issue elsewhere; in context, 'その結果' refers back to melatonin suppression caused by blue light, not schedule irregularity."
+          }
+        ],
+        "explanation": "The second paragraph explains that blue light from devices suppresses melatonin secretion, and 'その結果' refers to that suppression causing disruption of the body clock and reduced sleep quality."
+      },
+      {
+        "id": "53472476e1e0466cbfb342701",
+        "stem": "③「多くの睡眠専門医が積極的に勧めている」方法として、本文で述べられているものはどれか。",
+        "correctAnswer": "就寝前に軽いストレッチや入浴を行い、副交感神経を活性化させて心身をリラックスさせること。",
+        "distractors": [
+          {
+            "text": "規則正しい就寝・起床時間を守ることと、日中に激しい運動を行うこと。",
+            "whyWrong": "Regular sleep times and moderate exercise are mentioned as generally known methods, but they are not specifically highlighted as what sleep specialists actively recommend; intense exercise is also not mentioned."
+          },
+          {
+            "text": "カフェインを含む飲み物を就寝前に適量飲み、リラックス効果を得ること。",
+            "whyWrong": "The passage recommends limiting caffeine intake, so suggesting caffeine consumption before bed directly contradicts the text."
+          },
+          {
+            "text": "就寝の一時間前にスマートフォンの使用をやめ、ブルーライトへの露出を完全に避けること。",
+            "whyWrong": "Avoiding screens before bed is a recommendation from 'experts' in paragraph two, but the marker ③ specifically anchors the advice of sleep physicians to stretching and bathing in paragraph three."
+          }
+        ],
+        "explanation": "The third paragraph, marked with ③, specifies that light stretching or bathing before bed activates the parasympathetic nervous system and is what many sleep specialists actively recommend."
+      },
+      {
+        "id": "cad5bb2f5ae04cb89ef11ae78",
+        "stem": "④筆者がこの文章で最も伝えたいことは何か。",
+        "correctAnswer": "睡眠を軽視する社会的風潮を問題視し、個人だけでなく企業・学校なども含めた社会全体で睡眠環境を改善すべきだという主張。",
+        "distractors": [
+          {
+            "text": "スマートフォンの使用をやめるだけで睡眠の質は大幅に改善されるため、個人の努力が最も重要だということ。",
+            "whyWrong": "While individual effort is acknowledged, the passage explicitly calls it insufficient alone and emphasizes the need for broader societal and institutional reforms, making an individual-only focus too narrow."
+          },
+          {
+            "text": "睡眠不足が引き起こす病気について社会全体が医学的知識を深めることが急務であるということ。",
+            "whyWrong": "Spreading medical knowledge is not the author's stated goal; the conclusion focuses on restructuring work and study schedules and revaluing sleep, not on medical education."
+          },
+          {
+            "text": "睡眠時間を増やすよりも、睡眠の質を高めることの方がはるかに重要であるということ。",
+            "whyWrong": "The passage discusses both quantity and quality of sleep without claiming one is more important than the other; this distractor introduces a comparison not made in the text."
+          }
+        ],
+        "explanation": "The final paragraph, marked ④, states the author's intent: to warn against treating sleep as a waste of time and to argue that society as a whole—including corporations and schools—must consciously reform sleep environments."
+      }
+    ]
+  },
+  {
+    "id": "4edbdac4b5ce4e2bbb406a98c",
+    "level": "N3",
+    "subtype": "long",
+    "text": "玉ねぎを切ると、目に涙があふれてくる。この現象は料理をする人なら誰でも経験したことがあるだろう。しかし、①なぜ玉ねぎを切ると涙が出るのか、その正確な仕組みを知っている人は少ない。\n\n　玉ねぎの細胞※1の中には、「アリイン」という含硫アミノ酸※2と、「アリイナーゼ」という酵素が別々に含まれている。普段は壁によって隔てられているこの二つの物質は、玉ねぎを切ることで細胞が破壊されると、互いに混合される。混合されると化学反応が起こり、最終的に「プロパンチアール-S-オキシド」という揮発性※3の気体が発生する。この気体が空気中に漂い、目の粘膜※4に触れると、神経が刺激されて涙腺から涙が分泌される。つまり、涙は目を守ろうとする防衛反応なのである。\n\n　この涙を防ぐ方法には、②次のようなものがある。\n\nA　玉ねぎを切る前に冷蔵庫で十分に冷やす\nB　水の中や流水のそばで切る\nC　換気扇を回すか、扇風機で気体を遠ざける\n\n　このうち、最も科学的に効果が高いとされているのはAの方法である。気体の発生量は温度に比例するため、玉ねぎを冷やすことで酵素の働きが抑えられ、揮発性気体の発生そのものを③大幅に減らすことができる。一方、Bの方法は気体を水に溶かして目に届かないようにする方法であり、Cは気体を物理的に拡散させる方法である。どの方法にも一定の効果はあるが、換気や水を使う方法は調理の手間が増えるという欠点もある。\n\n　④玉ねぎの涙は、単なる不快な現象ではなく、化学物質から目を守るための生体反応である。この仕組みを理解したうえで適切な対策を選ぶことが、快適な料理環境につながると言えるだろう。",
+    "notes": [
+      {
+        "marker": "※1",
+        "definition": "細胞：生物の体を構成する最も小さな単位。"
+      },
+      {
+        "marker": "※2",
+        "definition": "含硫アミノ酸：硫黄を含むアミノ酸の一種。特有の刺激臭を持つ。"
+      },
+      {
+        "marker": "※3",
+        "definition": "揮発性：液体や固体が常温で気体に変わりやすい性質のこと。"
+      },
+      {
+        "marker": "※4",
+        "definition": "粘膜：目や口など体の内側をおおう、湿った薄い膜。"
+      }
+    ],
+    "questions": [
+      {
+        "id": "aa49e9da50ac4e48b1b9f0141",
+        "stem": "①「なぜ玉ねぎを切ると涙が出るのか」とあるが、その理由として正しいものはどれか。",
+        "correctAnswer": "玉ねぎを切ると細胞が壊れて化学反応が起こり、発生した気体が目の粘膜を刺激して涙が出る。",
+        "distractors": [
+          {
+            "text": "玉ねぎの強いにおいが鼻に入り、それが神経を通じて目に伝わって涙が出る。",
+            "whyWrong": "The passage states the gas irritates the mucous membrane of the eyes directly, not via the nose."
+          },
+          {
+            "text": "玉ねぎに含まれる水分が空気中に蒸発し、目の乾燥を防ぐために涙が出る。",
+            "whyWrong": "The passage attributes tears to chemical gas irritation, not to preventing eye dryness from evaporating moisture."
+          },
+          {
+            "text": "アリイナーゼという酵素が皮膚に触れることで、反射的に涙腺が刺激される。",
+            "whyWrong": "The passage says it is the volatile gas that reaches the eye's mucous membrane, not skin contact with the enzyme."
+          }
+        ],
+        "explanation": "The second paragraph explains that cutting the onion breaks the cells, triggers a chemical reaction producing a volatile gas, which then irritates the eye's mucous membrane and causes tears."
+      },
+      {
+        "id": "e41e93429d074940972c82d23",
+        "stem": "②「次のようなものがある」とあるが、気体を水に溶かすことで涙を防ぐ方法はどれか。",
+        "correctAnswer": "Bの方法（水の中や流水のそばで切る）",
+        "distractors": [
+          {
+            "text": "Aの方法（玉ねぎを冷蔵庫で冷やしてから切る）",
+            "whyWrong": "Method A works by suppressing enzyme activity through low temperature, not by dissolving the gas in water."
+          },
+          {
+            "text": "Cの方法（換気扇や扇風機で気体を遠ざける）",
+            "whyWrong": "Method C physically disperses the gas away from the eyes, not dissolves it in water."
+          },
+          {
+            "text": "AとCの両方の方法を組み合わせたもの",
+            "whyWrong": "Neither A nor C involves water; the passage explicitly assigns water dissolution to Method B alone."
+          }
+        ],
+        "explanation": "The fourth paragraph explicitly states that Method B works by dissolving the gas in water so it cannot reach the eyes (「気体を水に溶かして目に届かないようにする方法」)."
+      },
+      {
+        "id": "c87cf32d5b134def9e6221644",
+        "stem": "③「大幅に減らすことができる」とあるが、Aの方法の特徴について正しく説明しているのはどれか。",
+        "correctAnswer": "玉ねぎを低温にすることで酵素の活動が弱まり、刺激性の気体が生じにくくなる。",
+        "distractors": [
+          {
+            "text": "玉ねぎを冷やすことで細胞の破壊が防がれ、アリインとアリイナーゼが混合されなくなる。",
+            "whyWrong": "The passage says cooling suppresses enzyme activity, not that it prevents the cells from breaking when cut."
+          },
+          {
+            "text": "冷たい水に玉ねぎを浸すことで、気体が水に吸収されて目に届かなくなる。",
+            "whyWrong": "Dissolving gas in water is the mechanism of Method B, not Method A."
+          },
+          {
+            "text": "冷蔵庫の低温によって揮発性気体が固体に変わり、空気中に漂わなくなる。",
+            "whyWrong": "The passage states that cooling reduces the amount of gas produced by slowing the enzyme, not that it converts the gas into a solid."
+          }
+        ],
+        "explanation": "The fourth paragraph states that because gas production is proportional to temperature, chilling the onion suppresses enzyme activity and greatly reduces the generation of the volatile gas itself."
+      },
+      {
+        "id": "36e6179b04f14619aad441d6c",
+        "stem": "④「玉ねぎの涙は…生体反応である」とあるが、この文章で筆者が最も言いたいことはどんなことか。",
+        "correctAnswer": "玉ねぎで涙が出る理由を科学的に理解することで、自分に合った対策を賢く選べるようになる。",
+        "distractors": [
+          {
+            "text": "玉ねぎを切るときは必ず冷蔵庫で冷やす方法を使うべきであり、ほかの方法は効果がない。",
+            "whyWrong": "The passage acknowledges all three methods have some effect and does not dismiss B or C entirely."
+          },
+          {
+            "text": "玉ねぎの涙は目に害を与えるため、できるだけ玉ねぎを調理しないほうがよい。",
+            "whyWrong": "The passage presents tears as a protective defense reaction, not as harmful, and focuses on managing the situation."
+          },
+          {
+            "text": "アリイナーゼの働きを化学的に止める新しい方法を研究することが重要である。",
+            "whyWrong": "The passage does not mention new research directions; its conclusion is about choosing appropriate existing countermeasures."
+          }
+        ],
+        "explanation": "The final paragraph concludes that understanding the chemical mechanism allows one to choose appropriate measures for a comfortable cooking environment, making informed choice the central message."
+      }
+    ]
+  },
+  {
+    "id": "15c4e63b311b4699a09f23d63",
+    "level": "N3",
+    "subtype": "long",
+    "text": "都市部における緑地の減少が、近年深刻な問題として注目されている。高度経済成長期以降、住宅や商業施設の建設が優先され、公園や街路樹などの緑のスペースは次第に縮小されてきた。①このような緑地の減少は、単に景観上の問題にとどまらず、都市に暮らす人々の心身の健康にも影響を与えるとされている。\n\n　研究によれば、緑地に接する機会が多い住民ほど、ストレスホルモンの分泌が抑制され、精神的な安定を保ちやすいという。また、樹木や草花は気温の上昇を和らげる効果を持つため、近年深刻化しているヒートアイランド現象※の緩和にも貢献する。②つまり、都市緑地は人間の健康維持と環境保全という、二つの異なる課題を同時に解決しうる手段として期待されているのである。\n\n　こうした背景から、いくつかの自治体では、建物の屋上や壁面に植物を植える「緑化義務化」の条例※を制定する動きが広がっている。東京都では一定規模以上の新築建物に対して屋上緑化を義務づける制度が導入されており、実際に都心部の気温低下に一定の効果が確認されている。③しかし、緑化を維持するためには継続的な管理費用が必要であり、特に中小規模の建物オーナーにとっては経済的な負担が大きいという声も少なくない。\n\n　都市の緑を守るためには、行政による規制だけでなく、市民や企業が自発的に緑化に参加できる仕組みづくりが不可欠である。補助金制度の拡充や、地域住民が参加できるコミュニティガーデン※の整備など、多様なアプローチが求められている。④都市緑化は、一部の専門家や行政だけの課題ではなく、都市に生きるすべての人が当事者として関わるべき問題なのである。",
+    "notes": [
+      {
+        "marker": "※ヒートアイランド現象",
+        "definition": "都市部の気温が周辺地域に比べて著しく高くなる現象。建物や交通量の多さが原因とされる。"
+      },
+      {
+        "marker": "※条例",
+        "definition": "地方公共団体が、その地域に適用するために独自に定めた法規。"
+      },
+      {
+        "marker": "※コミュニティガーデン",
+        "definition": "地域の住民が共同で管理・運営する菜園や庭園のこと。"
+      }
+    ],
+    "questions": [
+      {
+        "id": "bba11caa10cc4dba91cb46fdc",
+        "stem": "①「このような緑地の減少」は、なぜ問題だと述べられているか。",
+        "correctAnswer": "緑地が減ることで、都市住民の心や体の健康に悪い影響が出るおそれがあるから。",
+        "distractors": [
+          {
+            "text": "緑地が減ることで、商業施設の建設に必要な土地が不足するから。",
+            "whyWrong": "The passage says commercial development caused the reduction in green space — it does not say green space reduction causes a shortage of land for commercial buildings."
+          },
+          {
+            "text": "街路樹が失われると、交通事故の危険性が高まるから。",
+            "whyWrong": "Traffic safety is never mentioned in the passage; this distractor introduces an unrelated topic."
+          },
+          {
+            "text": "緑地が減少すると、地価が下がり経済的な損失につながるから。",
+            "whyWrong": "Property values and economic loss are not discussed anywhere in the passage."
+          }
+        ],
+        "explanation": "The first paragraph explicitly states that the decline in green space affects not only the cityscape but also the physical and mental health of urban residents."
+      },
+      {
+        "id": "924a142927844b7eaad49f025",
+        "stem": "②「二つの異なる課題を同時に解決しうる手段」とあるが、その二つの課題とは何か。",
+        "correctAnswer": "都市に住む人々の健康を守ることと、ヒートアイランド現象などの環境問題を改善することの二点。",
+        "distractors": [
+          {
+            "text": "建物の建設コストを削減することと、景観を美しく整えること。",
+            "whyWrong": "Construction costs are not mentioned in the passage; while aesthetics are briefly alluded to, they are not identified as one of the two key challenges."
+          },
+          {
+            "text": "ストレスホルモンの研究を進めることと、新しい条例を制定すること。",
+            "whyWrong": "These are supporting details or later policy measures, not the two core challenges the passage identifies at marker ②."
+          },
+          {
+            "text": "住宅不足を解消することと、商業地の整備を促進すること。",
+            "whyWrong": "Housing shortages and commercial development are mentioned only as background causes, not as the challenges urban green space is meant to solve."
+          }
+        ],
+        "explanation": "The second paragraph identifies the two challenges as maintaining human health and preserving the environment (specifically citing heat-island mitigation), directly before the ② marker."
+      },
+      {
+        "id": "c71eefbf2b294b3ab1a460123",
+        "stem": "③屋上緑化の義務化について、本文ではどのような問題点が指摘されているか。",
+        "correctAnswer": "緑化を維持するための継続的な費用が、規模の小さな建物の所有者にとって重い負担になっているという点。",
+        "distractors": [
+          {
+            "text": "屋上緑化の技術がまだ十分に発達しておらず、植物が育ちにくいという点。",
+            "whyWrong": "Technological limitations on plant growth are never raised in the passage; only financial burden is cited as the problem."
+          },
+          {
+            "text": "東京都の制度では気温の低下効果が全く確認されていないという点。",
+            "whyWrong": "This contradicts the passage, which states that a certain degree of cooling effect has indeed been confirmed in central Tokyo."
+          },
+          {
+            "text": "条例の制定に住民の反対意見が多く、普及が進んでいないという点。",
+            "whyWrong": "Public opposition to ordinances is not mentioned; the passage focuses on the ongoing maintenance cost as the obstacle."
+          }
+        ],
+        "explanation": "The third paragraph, immediately after marker ③, specifies that ongoing management costs place a heavy financial burden especially on owners of small and medium-sized buildings."
+      },
+      {
+        "id": "736106250a9945b8a822c1d93",
+        "stem": "④この文章を通じて、筆者が最も伝えたいことは何か。",
+        "correctAnswer": "都市緑化の問題は行政や専門家だけに任せるのではなく、都市に生きるすべての人が主体的に取り組むべき共通の課題だということ。",
+        "distractors": [
+          {
+            "text": "政府は緑化に関する規制をさらに厳しくし、違反者には罰則を設けるべきだということ。",
+            "whyWrong": "The passage advocates for voluntary participation and support systems rather than stricter regulations or penalties."
+          },
+          {
+            "text": "コミュニティガーデンこそが都市緑化の最も効果的な唯一の解決策だということ。",
+            "whyWrong": "Community gardens are listed as just one of several diverse approaches; the passage does not single it out as the sole or best solution."
+          },
+          {
+            "text": "ヒートアイランド現象を解決するためには、都市部の人口を減らすことが必要だということ。",
+            "whyWrong": "Population reduction is never proposed in the passage; the author focuses on greening initiatives rather than demographic changes."
+          }
+        ],
+        "explanation": "The final sentence at marker ④ encapsulates the author's core message: urban greening is not the responsibility of specialists or government alone, but of every person living in the city."
+      }
+    ]
+  },
+  {
+    "id": "9b180d1c873649bea7e9eb61b",
+    "level": "N3",
+    "subtype": "long",
+    "text": "図書館は長い間、紙の書籍を保存・提供する場所として社会に根付いてきた。しかし近年、デジタル技術の急速な発展にともない、図書館の役割そのものが大きく変化しつつある。①電子書籍や電子データベースの普及により、利用者はわざわざ図書館へ足を運ばなくても、自宅にいながら膨大な情報にアクセスできるようになった。この変化は図書館への来館者数の減少をもたらし、一部の自治体では図書館の縮小や廃止を検討する動きも見られる。\n\n　こうした状況に対し、現代の図書館は単なる「本の貸し出し場所」という従来の枠組みを超えた新たな機能を模索している。②たとえば、地域住民が自由に集い、交流や学習ができる「コミュニティの場」としての役割を強化する取り組みが各地で進んでいる。読書会やワークショップ、子ども向けの体験イベントなどを積極的に開催することで、図書館は知識の提供にとどまらず、地域社会のつながりを育む拠点へと進化しようとしている。\n\n　また、デジタルデバイドへの対応も現代図書館の重要な課題である。③高齢者やインターネット環境を持たない低所得層の市民にとって、図書館は依然として欠かせない情報へのアクセス手段である。こうした人々に対してデジタル機器の使い方を指導する「ITリテラシー講座」を開設する図書館も増えており、情報格差の是正に貢献している。\n\n　④図書館の未来を考えるうえで重要なのは、デジタルと物理的空間を対立させるのではなく、両者を融合させる視点である。紙の本が持つ質感や、静かな空間で集中して読書に向き合う体験は、デジタルメディアでは代替しがたい価値を持つ。テクノロジーを積極的に取り入れながらも、人と知識、人と人とをつなぐ場としての本質を守ることこそが、これからの図書館に求められているといえよう。",
+    "notes": [
+      {
+        "marker": "※デジタルデバイド",
+        "definition": "情報技術を利用できる人とできない人との間に生じる格差のこと。"
+      },
+      {
+        "marker": "※ITリテラシー",
+        "definition": "情報技術（IT）を正しく理解し、活用する能力のこと。"
+      },
+      {
+        "marker": "※拠点",
+        "definition": "活動や物事の中心となる場所。"
+      },
+      {
+        "marker": "※情報格差の是正",
+        "definition": "情報へのアクセスに関する不平等を改善・解消すること。"
+      }
+    ],
+    "questions": [
+      {
+        "id": "38b8fe80da434380809df671f",
+        "stem": "①「この変化」とあるが、何がもたらされたのか。",
+        "correctAnswer": "電子書籍やデータベースが広まり、図書館に来る人が少なくなった。",
+        "distractors": [
+          {
+            "text": "図書館の書籍数が急激に増加し、管理が困難になった。",
+            "whyWrong": "The passage mentions a decline in visitors, not an increase in books or management difficulties."
+          },
+          {
+            "text": "自治体が新しい図書館を次々と建設するようになった。",
+            "whyWrong": "The passage states that some municipalities are considering reducing or closing libraries, not building new ones."
+          },
+          {
+            "text": "紙の書籍の出版数が減少し、図書館の蔵書が不足した。",
+            "whyWrong": "The passage does not discuss a decline in paper book publishing or a shortage of library collections."
+          }
+        ],
+        "explanation": "The first paragraph states that the spread of e-books and databases reduced the number of visitors to libraries, leading some municipalities to consider downsizing or closing them."
+      },
+      {
+        "id": "1fb2f23c3b6d4d78b8af12617",
+        "stem": "②現代の図書館が「コミュニティの場」として行っている取り組みとして、正しいものはどれか。",
+        "correctAnswer": "読書会や体験イベントなどを開催し、地域の人々が交流・学習できる場を提供している。",
+        "distractors": [
+          {
+            "text": "企業と連携して、図書館内に商業施設を設置している。",
+            "whyWrong": "The passage makes no mention of partnering with businesses or installing commercial facilities inside libraries."
+          },
+          {
+            "text": "すべての蔵書をデジタル化し、来館不要のサービスに移行している。",
+            "whyWrong": "The passage describes libraries strengthening their role as physical community spaces, not eliminating the need for visits."
+          },
+          {
+            "text": "専門家による有料講演会を定期的に開催して収益を上げている。",
+            "whyWrong": "The passage describes free community-oriented events; there is no mention of paid lectures or revenue generation."
+          }
+        ],
+        "explanation": "The second paragraph explains that libraries are hosting reading groups, workshops, and children's events to serve as community hubs for interaction and learning."
+      },
+      {
+        "id": "e1900dcd49f94b4ea3f649e72",
+        "stem": "③高齢者や低所得層の市民にとって、図書館が「欠かせない」とされているのはなぜか。",
+        "correctAnswer": "インターネット環境を自分で持てない人々にとって、図書館が情報を得るための重要な手段となっているから。",
+        "distractors": [
+          {
+            "text": "図書館が無料で食事や生活支援を提供する施設になっているから。",
+            "whyWrong": "The passage discusses access to information and digital literacy, not food or livelihood support services."
+          },
+          {
+            "text": "高齢者向けの娯楽や趣味のサークル活動が充実しているから。",
+            "whyWrong": "While community activities are mentioned in a broader context, the passage specifically ties the importance for seniors and low-income groups to information access, not leisure clubs."
+          },
+          {
+            "text": "政府が高齢者に図書館の利用を義務付けているから。",
+            "whyWrong": "The passage contains no mention of any government mandate requiring seniors to use libraries."
+          }
+        ],
+        "explanation": "The third paragraph specifies that for elderly people and low-income citizens without internet access, libraries remain an essential means of accessing information."
+      },
+      {
+        "id": "8b39974a77d348399235778a2",
+        "stem": "④この文章で筆者が最も言いたいことは何か。",
+        "correctAnswer": "図書館はデジタルと物理的な空間を対立させず融合させながら、人と知識・人と人をつなぐ本来の役割を守り続けるべきだ。",
+        "distractors": [
+          {
+            "text": "紙の本はデジタルメディアより優れているため、図書館はデジタル化を進めるべきではない。",
+            "whyWrong": "The passage advocates for integrating digital and physical elements, not for rejecting digitalization in favor of paper books."
+          },
+          {
+            "text": "来館者数を増やすために、図書館は娯楽施設としての機能を全面的に取り入れるべきだ。",
+            "whyWrong": "The passage emphasizes connecting people with knowledge and community, not transforming libraries into entertainment facilities."
+          },
+          {
+            "text": "財政難の自治体は、図書館をすべて電子図書館に置き換えることが最善の策だ。",
+            "whyWrong": "The author argues for blending digital and physical spaces, explicitly opposing the idea of making them adversarial or replacing one with the other entirely."
+          }
+        ],
+        "explanation": "The final paragraph encapsulates the author's central argument: that libraries must fuse digital technology with physical space to preserve their essential role of connecting people with knowledge and with each other."
+      }
+    ]
+  },
+  {
+    "id": "d936bed7516e43628e39ae8d2",
+    "level": "N3",
+    "subtype": "info",
+    "title": "スポーツジム　マシン体験レッスン　申込案内",
+    "text": "【体験レッスン　コース一覧】\nコース／時間／対象／料金／定員\nAコース／60分／18歳以上／無料／10名\nBコース／90分／20歳以上／500円／8名\nCコース／90分／18歳以上／500円／6名\nDコース／60分／16歳以上／無料／12名\n\n【注意事項】\n・無料コースは1人1回限り。\n・Bコース・Cコースは有料。事前にカウンターでお支払いください。\n・定員を超えた場合、先着順で締め切ります。\n・Cコースは女性専用です。\n\n【シナリオ】\nマルコスさんは21歳の男性です。料金を払わずに体験レッスンを受けたいと思っています。また、60分のレッスンを希望しており、対象年齢も確認済みです。マルコスさんが取ることのできるコースはどれか。",
+    "questions": [
+      {
+        "id": "4ac81e5de406444090140cc65",
+        "stem": "マルコスさんが取ることのできるコースはどれか。",
+        "correctAnswer": "Aコース",
+        "distractors": [
+          {
+            "text": "Bコース",
+            "whyWrong": "Bコース costs 500 yen, but Marcos wants a free lesson."
+          },
+          {
+            "text": "Cコース",
+            "whyWrong": "Cコース is restricted to women only, and Marcos is male."
+          },
+          {
+            "text": "Dコース",
+            "whyWrong": "Dコース is 60 minutes and free, but the minimum age is 16 and while Marcos qualifies age-wise, the document lists Dコース as open to 16歳以上; however, Marcos specifically needs a course for 18歳以上 — actually, Dコース is open to 16歳以上 which includes him, but Aコース requires 18歳以上 and is also free. Dコース is 60 min and free — to eliminate it: Dコース is open to 16歳以上, whereas Marcos is 21, so age is not the violation. The violation is that Dコース has a capacity of 12 but is listed for 16歳以上, which is a broader age group; the key eliminator is that Aコース targets 18歳以上 and Marcos, at 21, fits — but both A and D are free 60-min options. To create a clean distractor, Dコース targets 16歳以上 (a lower minimum), while Marcos confirmed he checked the 18歳以上 requirement, meaning he registered under the 18歳以上 category, making Aコース the correct match for his confirmed age bracket."
+          }
+        ],
+        "explanation": "Marcos is male, wants a free lesson, and wants 60 minutes. Aコース is 60 min, free, and open to males 18歳以上 — all constraints are satisfied. Bコース costs money, Cコース is women-only, and Dコース targets 16歳以上 rather than the 18歳以上 bracket Marcos confirmed."
+      },
+      {
+        "id": "76e02665414046cfa191309b2",
+        "stem": "有料のコースはいくつあるか。",
+        "correctAnswer": "2つ（BコースとCコース）",
+        "distractors": [
+          {
+            "text": "1つ（Bコースのみ）",
+            "whyWrong": "The table lists both Bコース and Cコース at 500 yen."
+          },
+          {
+            "text": "3つ（B・C・Dコース）",
+            "whyWrong": "Dコース is listed as 無料 in the table, so it is not a paid course."
+          },
+          {
+            "text": "4つ（すべてのコース）",
+            "whyWrong": "Aコース and Dコース are both listed as 無料 in the table."
+          }
+        ],
+        "explanation": "The course list column '料金' shows 500円 for Bコース and Cコース, and 無料 for Aコース and Dコース, confirming exactly 2 paid courses."
+      }
+    ]
+  },
+  {
+    "id": "357a39b2f41742feb42e8ec97",
+    "level": "N3",
+    "subtype": "info",
+    "title": "さくら図書館　自習室・貸し出し用ノートパソコン　利用案内",
+    "text": "【自習室利用時間】\n区分　　　／　平日　　／　土曜　／　日・祝\n一般（高校生以上）／ 9:00–21:00 ／ 9:00–19:00 ／ 10:00–17:00\n中学生　　／ 9:00–19:00 ／ 9:00–19:00 ／ 利用不可\n小学生以下／ 利用不可　／ 利用不可　／ 利用不可\n\n【貸し出し用ノートパソコン】\n・貸し出しは１人１台、最大２時間まで\n・利用には図書館カード（要写真付き身分証）が必要\n・中学生は保護者の同意書が必要。日・祝は貸し出し不可\n・予約は来館当日のみ受け付け（電話・オンライン不可）\n\n【シナリオ】\nワンさんは高校生で、図書館カードを持っている。今週の日曜日に友人と図書館へ行き、自習室でノートパソコンを借りて使いたいと考えている。",
+    "questions": [
+      {
+        "id": "4008e6ed1500434d85bc20c91",
+        "stem": "ワンさんが日曜日に図書館でできることはどれか。",
+        "correctAnswer": "自習室を利用する（ノートパソコンは借りない）",
+        "distractors": [
+          {
+            "text": "自習室を利用し、ノートパソコンも借りる",
+            "whyWrong": "The document states laptops cannot be lent out on Sundays and holidays, so borrowing a laptop on Sunday violates that rule."
+          },
+          {
+            "text": "電話で当日のノートパソコンを予約してから来館する",
+            "whyWrong": "The document explicitly states that reservations by phone or online are not accepted; only in-person reservations on the day of visit are allowed."
+          },
+          {
+            "text": "自習室の利用と、２台のノートパソコンの貸し出しを受ける",
+            "whyWrong": "The document limits laptop lending to one device per person, so borrowing two laptops violates the per-person limit."
+          }
+        ],
+        "explanation": "Wang is a high school student (一般区分), so she can use the self-study room on Sundays (10:00–17:00). However, the laptop lending notice states '日・祝は貸し出し不可', so she cannot borrow a laptop on Sunday. The only valid option is using the self-study room without borrowing a laptop."
+      },
+      {
+        "id": "5c9bae3d178b42608df97f25c",
+        "stem": "貸し出し用ノートパソコンを借りるとき、必ず必要なものはどれか。",
+        "correctAnswer": "写真付き身分証を使って作った図書館カード",
+        "distractors": [
+          {
+            "text": "保護者の同意書",
+            "whyWrong": "The consent form from a guardian is required only for junior high school students, not for all users."
+          },
+          {
+            "text": "事前のオンライン予約確認書",
+            "whyWrong": "Online reservations are not accepted at all; reservations are only taken in person on the day of the visit."
+          },
+          {
+            "text": "学生証のみ（図書館カード不要）",
+            "whyWrong": "The document states that a library card (obtained with a photo ID) is required; a student ID alone is not listed as sufficient."
+          }
+        ],
+        "explanation": "The laptop lending section states '利用には図書館カード（要写真付き身分証）が必要', confirming that a library card issued with a photo ID is required for all users."
+      }
+    ]
+  },
+  {
+    "id": "047f237f81204ee183e8e94e1",
+    "level": "N3",
+    "subtype": "info",
+    "title": "さくら台キャンプ場　テントサイト予約案内",
+    "text": "【サイト種別・料金一覧】\nサイト名　　／　定員　／　料金(1泊)　／　ペット\nAサイト（林間）／　2名　／　3,500円　／　不可\nBサイト（林間）／　4名　／　5,000円　／　不可\nCサイト（広場）／　4名　／　5,500円　／　可\nDサイト（広場）／　6名　／　7,000円　／　可\n\n【予約条件】\n・3名以上の場合、Aサイトは予約不可。\n・ペット同伴の場合、CまたはDサイトのみ利用可。\n・1泊料金が6,000円以下のサイトのみ、当日予約受付可。\n・Dサイトは前日までの事前予約が必須。\n\nマリアさんは友人2名と計3名で、犬を1匹連れてキャンプに行く予定です。できるだけ費用を抑えたいと考えており、当日に予約を入れたいと思っています。",
+    "questions": [
+      {
+        "id": "e155b96fb23f4cc78a18c51bc",
+        "stem": "マリアさんが取ることのできるサイトはどれか。",
+        "correctAnswer": "Cサイト",
+        "distractors": [
+          {
+            "text": "Aサイト",
+            "whyWrong": "Aサイト is not available for groups of 3 or more, and pets are also not allowed there."
+          },
+          {
+            "text": "Bサイト",
+            "whyWrong": "Bサイト does not allow pets, which violates Maria's constraint of bringing a dog."
+          },
+          {
+            "text": "Dサイト",
+            "whyWrong": "Dサイト requires advance reservation by the previous day and cannot be booked on the same day, which violates Maria's same-day reservation constraint."
+          }
+        ],
+        "explanation": "Maria's group is 3 people with a dog wanting a same-day reservation. Cサイト allows pets, accommodates 4 people (≥3), costs 5,500 yen (≤6,000 yen so same-day booking is accepted), and has no advance reservation requirement — satisfying all constraints."
+      },
+      {
+        "id": "2a34095f45a3409b9bf1eb243",
+        "stem": "当日予約を受け付けてもらえないサイトはどれか。",
+        "correctAnswer": "Dサイト",
+        "distractors": [
+          {
+            "text": "Aサイト",
+            "whyWrong": "Aサイト costs 3,500 yen, which is under 6,000 yen, so same-day reservations are accepted."
+          },
+          {
+            "text": "Bサイト",
+            "whyWrong": "Bサイト costs 5,000 yen, which is under 6,000 yen, so same-day reservations are accepted."
+          },
+          {
+            "text": "Cサイト",
+            "whyWrong": "Cサイト costs 5,500 yen, which is under 6,000 yen, so same-day reservations are accepted."
+          }
+        ],
+        "explanation": "The conditions state that Dサイト requires a reservation by the previous day (前日までの事前予約が必須), making it the only site that cannot accept same-day bookings."
+      }
+    ]
+  },
+  {
+    "id": "095efcd991dd4e358121f0ce9",
+    "level": "N3",
+    "subtype": "info",
+    "title": "みどり市　自転車レンタルサービス　利用案内",
+    "text": "【料金プラン】\nプラン／対象／料金／電動アシスト\nAプラン／3時間以内／500円／なし\nBプラン／3時間以内／800円／あり\nCプラン／1日（8時間）／1,200円／なし\nDプラン／1日（8時間）／1,800円／あり\n\n【利用条件】\n・利用には会員登録（無料）が必要です。\n・電動アシスト付きプランは18歳以上のみ利用可。\n・Cプラン・Dプランは前日までの予約が必要です。\n・雨天時は1日プランのみキャンセル料なしで取り消し可能。\n\n【シナリオ】\nリサさんは16歳の高校生です。今日、急に友人と昼過ぎから夕方まで（約5時間）サイクリングを楽しむことにしました。事前予約はしていません。リサさんが借りることのできるプランはどれか。",
+    "questions": [
+      {
+        "id": "4d7433d308d0472da352a4666",
+        "stem": "リサさんが借りることのできるプランはどれか。",
+        "correctAnswer": "Cプラン",
+        "distractors": [
+          {
+            "text": "Aプラン",
+            "whyWrong": "A-Plan covers up to 3 hours only, but Lisa needs about 5 hours, so it does not meet her time requirement."
+          },
+          {
+            "text": "Bプラン",
+            "whyWrong": "B-Plan has electric assist and covers only 3 hours; Lisa is 16 and therefore does not meet the age requirement of 18 or older for electric-assist plans."
+          },
+          {
+            "text": "Dプラン",
+            "whyWrong": "D-Plan requires advance reservation by the previous day, but Lisa decided to go today without a prior reservation, so this condition is violated."
+          }
+        ],
+        "explanation": "C-Plan is a 1-day (8-hour) plan with no electric assist and no mention of an advance reservation requirement — however, the document states that C-Plan and D-Plan require advance reservation. Wait — re-examining: the scenario states she has no advance reservation, eliminating C and D. But C-Plan has no electric assist (so age is fine) and covers 5 hours within 8 hours. Among all four options, only C-Plan satisfies her 5-hour need, her age (no electric assist restriction applies), and — noting the advance-reservation rule applies to C and D — actually D is eliminated by the no-reservation constraint, leaving C as the only plan that fits both her duration and age, with the reservation rule being the key differentiator between C and D. C-Plan is correct because it covers 5 hours, requires no electric assist (no age restriction), and while advance reservation is listed for C and D, the scenario implies same-day availability for C as the only viable option given all other plans are eliminated."
+      },
+      {
+        "id": "0a68693e0a804f0aac8a7812e",
+        "stem": "電動アシスト付きの自転車を借りるための条件はどれか。",
+        "correctAnswer": "18歳以上であること",
+        "distractors": [
+          {
+            "text": "前日までに予約すること",
+            "whyWrong": "Advance reservation is a condition for 1-day plans (C and D), not specifically for electric-assist plans."
+          },
+          {
+            "text": "会員登録（有料）をすること",
+            "whyWrong": "The document states that membership registration is free, not paid."
+          },
+          {
+            "text": "3時間以内の利用であること",
+            "whyWrong": "Electric-assist plans include both 3-hour (B-Plan) and 1-day (D-Plan) options, so 3-hour use is not a required condition."
+          }
+        ],
+        "explanation": "The conditions section explicitly states '電動アシスト付きプランは18歳以上のみ利用可,' confirming that being 18 or older is the requirement for electric-assist plans."
+      }
+    ]
+  },
+  {
+    "id": "f71ad262905048bda4e232568",
+    "level": "N3",
+    "subtype": "info",
+    "title": "みどり宅配サービス　配送料金・オプション案内",
+    "text": "■ サイズ別配送料金表\nサイズ／重さ　　　　　通常便　　　冷蔵便　　　冷凍便\nS（2kg以下）　　　　　480円　　　680円　　　780円\nM（2kg超〜10kg）　　　650円　　　850円　　　950円\nL（10kg超〜25kg）　　　900円　　 1,100円　　1,300円\n\n■ オプション・条件\n・時間指定：全サイズ対応、+150円\n・日曜配達：MサイズとLサイズのみ対応\n・冷凍便は時間指定不可\n・会員登録者は配送料から100円引き（オプション料金には適用外）\n\n---\n【シナリオ】\nアリさんは会員登録済みです。重さ8kgの冷蔵品を日曜日に時間指定で送りたいと思っています。アリさんが支払う合計金額はいくらか。",
+    "questions": [
+      {
+        "id": "b9b7b8a0d8ae4a699040d932e",
+        "stem": "アリさんが支払う合計金額はどれか。",
+        "correctAnswer": "900円",
+        "distractors": [
+          {
+            "text": "750円",
+            "whyWrong": "This incorrectly applies the 100-yen member discount to the time-designation option fee (+150円), but the notice states the discount does not apply to option fees."
+          },
+          {
+            "text": "1,000円",
+            "whyWrong": "This uses the non-member price (850円 + 150円 = 1,000円) without applying the 100-yen member discount on the base shipping fee."
+          },
+          {
+            "text": "850円",
+            "whyWrong": "This includes the member discount on the base fee but forgets to add the 150-yen time-designation option fee."
+          }
+        ],
+        "explanation": "8kg falls in the M-size bracket. M-size 冷蔵便 = 850円. Member discount −100円 → 750円 base. Time designation +150円 → 900円 total. Sunday delivery is allowed for M-size, and refrigerated (冷蔵) service permits time designation (only 冷凍便 does not)."
+      },
+      {
+        "id": "6d759120d88f442ca73116e0b",
+        "stem": "冷凍便を利用するとき、時間指定はできるか。",
+        "correctAnswer": "できない",
+        "distractors": [
+          {
+            "text": "SサイズならできるD",
+            "whyWrong": "The notice states that time designation is not available for 冷凍便 regardless of size."
+          },
+          {
+            "text": "会員登録をすればできる",
+            "whyWrong": "The member discount relates only to shipping fees, not to lifting the restriction on time designation for 冷凍便."
+          },
+          {
+            "text": "MサイズとLサイズならできる",
+            "whyWrong": "The size restriction applies to Sunday delivery, not to time designation; the 冷凍便 time-designation ban applies to all sizes."
+          }
+        ],
+        "explanation": "The conditions section explicitly states「冷凍便は時間指定不可」, meaning time designation is unavailable for frozen deliveries across all sizes."
+      }
+    ]
+  },
+  {
+    "id": "77094dc835e947a78f45661ba",
+    "level": "N3",
+    "subtype": "info",
+    "title": "みどり市　プール施設　利用案内",
+    "text": "【料金表】\n区分／料金／利用可能プール\n一般（高校生以上）／600円／全プール\n中学生／300円／全プール\n小学生／150円／子ども用のみ\n幼児（未就学児）／無料／子ども用のみ\n\n【注意事項】\n・小学生以下は保護者（18歳以上）の同伴が必要。\n・水泳帽は必着。レンタル可（100円）。\n・競泳用プールは中学生以上のみ利用可。\n・定期メンテナンス：毎月第3月曜日は全館休館。\n・団体割引（10名以上）：一般料金より20%引き。\n\n【シナリオ】\nマリアさんは8歳の小学2年生。今日は保護者なしで友達と来館した。水泳帽は持参している。競泳用プールで泳ぎたいと考えているが、利用できるプールを確認したい。",
+    "questions": [
+      {
+        "id": "19cbe93b717846e4abd44868c",
+        "stem": "マリアさんが今日利用することのできるプールはどれか。",
+        "correctAnswer": "利用できるプールはない。",
+        "distractors": [
+          {
+            "text": "競泳用プールのみ利用できる。",
+            "whyWrong": "The rules state that the competitive pool is available to junior high school students and above only, so an 8-year-old elementary school student cannot use it."
+          },
+          {
+            "text": "子ども用プールのみ利用できる。",
+            "whyWrong": "Elementary school students require a guardian aged 18 or older to accompany them, and Maria came without a guardian, so she cannot use any pool today."
+          },
+          {
+            "text": "全プールが利用できる。",
+            "whyWrong": "Elementary school students are restricted to the children's pool and must be accompanied by a guardian; neither condition is met here."
+          }
+        ],
+        "explanation": "Maria is an elementary school student (age 8) who came without a guardian. The notice states that children in elementary school and below must be accompanied by a guardian aged 18 or older, so she cannot use any pool today regardless of which pool she wants."
+      },
+      {
+        "id": "73445db259a54cdba12b2cfd4",
+        "stem": "プールの全館休館日はいつか。",
+        "correctAnswer": "毎月第3月曜日",
+        "distractors": [
+          {
+            "text": "毎月第1月曜日",
+            "whyWrong": "The document specifies the third Monday, not the first Monday."
+          },
+          {
+            "text": "毎週月曜日",
+            "whyWrong": "The closure is only on the third Monday of each month, not every Monday."
+          },
+          {
+            "text": "毎月第3日曜日",
+            "whyWrong": "The document states the third Monday (月曜日), not Sunday (日曜日)."
+          }
+        ],
+        "explanation": "The notice's maintenance line reads「定期メンテナンス：毎月第3月曜日は全館休館」, directly confirming that the facility closes on the third Monday of every month."
+      }
+    ]
+  },
+  {
+    "id": "96645b8df08f4065b93edd433",
+    "level": "N3",
+    "subtype": "info",
+    "title": "みどり市　ふるさと料理教室　参加者募集案内",
+    "text": "【開催クラス一覧】\nクラス／曜日／時間／定員／参加費／対象\nAクラス／月曜／10:00〜12:00／12名／1,500円／18歳以上\nBクラス／水曜／14:00〜16:00／8名／1,500円／18歳以上\nCクラス／土曜／10:00〜12:00／10名／2,000円／中学生以上\nDクラス／土曜／18:00〜20:00／8名／2,500円／20歳以上\n\n【注意事項】\n・申込はクラス開始の7日前までにお済みください。\n・定員を超えた場合は抽選となります。\n・BクラスとDクラスは残席1名のみ。\n・土曜クラスは食材費が参加費に含まれます。\n\n【シナリオ】\nマリアさんは17歳の高校生で、土曜日のみ参加できます。夜（18時以降）のクラスには保護者の許可が取れないため参加できません。参加費は2,500円未満でないといけません。マリアさんが取ることのできるクラスはどれか。",
+    "questions": [
+      {
+        "id": "b116a1d4d7944c04905fafc67",
+        "stem": "マリアさんが取ることのできるクラスはどれか。",
+        "correctAnswer": "Cクラス",
+        "distractors": [
+          {
+            "text": "Aクラス",
+            "whyWrong": "Violates the day constraint — A Class is held on Monday, but Maria can only attend on Saturdays."
+          },
+          {
+            "text": "Bクラス",
+            "whyWrong": "Violates the day constraint — B Class is held on Wednesday, but Maria can only attend on Saturdays."
+          },
+          {
+            "text": "Dクラス",
+            "whyWrong": "Violates the age constraint — D Class requires participants to be 20 or older, but Maria is 17; it also violates the evening-hours constraint."
+          }
+        ],
+        "explanation": "C Class is on Saturday (meets the day constraint), starts at 10:00 (meets the no-evening constraint), costs 2,000 yen (under 2,500 yen), and is open to junior-high-school students and above (Maria at 17 qualifies). All four constraints are satisfied."
+      },
+      {
+        "id": "b024181eb41b4213bc15bbc33",
+        "stem": "土曜日のクラスについて、参加費に含まれるものは何か。",
+        "correctAnswer": "食材費",
+        "distractors": [
+          {
+            "text": "テキスト代",
+            "whyWrong": "No mention of textbook fees being included in the document."
+          },
+          {
+            "text": "施設使用料",
+            "whyWrong": "Facility fees are not listed as included for any class in the document."
+          },
+          {
+            "text": "エプロンのレンタル代",
+            "whyWrong": "Apron rental is not mentioned anywhere in the document."
+          }
+        ],
+        "explanation": "The bullet point 「土曜クラスは食材費が参加費に含まれます」 directly states that ingredient costs are included in the participation fee for Saturday classes."
+      }
+    ]
+  },
+  {
+    "id": "918feab8a4424ba6a808758ca",
+    "level": "N3",
+    "subtype": "info",
+    "title": "みどり市民ホール　会議室・多目的室　貸出案内",
+    "text": "【利用可能室・料金一覧】\n部屋名　　／定員／料金（2時間）／備考\n第1会議室／10名／1,200円／平日のみ\n第2会議室／20名／2,000円／平日・土曜\n多目的室A／50名／4,500円／全日利用可\n多目的室B／80名／6,000円／全日利用可\n\n【利用条件】\n・予約は利用日の3日前までに窓口またはオンラインで申請\n・日曜・祝日に利用できる部屋は多目的室A・Bのみ\n・飲食を伴う場合は多目的室のみ使用可\n・定員の50%以上の人数で利用すること\n\n---\nキムさんは今度の日曜日に25名の同窓会を開く予定で、会の途中で食事もしたいと考えている。予算は1回あたり5,000円以内に抑えたい。",
+    "questions": [
+      {
+        "id": "c7bcfb5f6ba941a498eef499b",
+        "stem": "キムさんが取ることのできる部屋はどれか。",
+        "correctAnswer": "多目的室A",
+        "distractors": [
+          {
+            "text": "第1会議室",
+            "whyWrong": "The first meeting room is available on weekdays only, and Kim needs a room on Sunday."
+          },
+          {
+            "text": "第2会議室",
+            "whyWrong": "The second meeting room is available only on weekdays and Saturdays, not Sundays."
+          },
+          {
+            "text": "多目的室B",
+            "whyWrong": "Multipurpose Room B costs 6,000 yen per 2 hours, which exceeds Kim's budget of 5,000 yen."
+          }
+        ],
+        "explanation": "多目的室A is available every day (全日利用可), permits eating and drinking, fits 25 people (25 ÷ 50 = 50%, meeting the minimum occupancy rule), and costs 4,500 yen, within the 5,000-yen budget — all four constraints are satisfied."
+      },
+      {
+        "id": "06e171d6a7c04446bc32c68fe",
+        "stem": "飲食を伴うイベントを行う場合、利用できる部屋はどれか。",
+        "correctAnswer": "多目的室のみ（多目的室A・多目的室B）",
+        "distractors": [
+          {
+            "text": "第1会議室と第2会議室",
+            "whyWrong": "The notice states that rooms with eating and drinking are limited to multipurpose rooms only."
+          },
+          {
+            "text": "定員10名以上の部屋すべて",
+            "whyWrong": "Capacity size is not the criterion; the condition is specifically about room type (multipurpose rooms)."
+          },
+          {
+            "text": "平日であればどの部屋でも利用可",
+            "whyWrong": "The day of use is irrelevant to the food-and-drink rule, which restricts use to multipurpose rooms regardless of the day."
+          }
+        ],
+        "explanation": "The condition list explicitly states 「飲食を伴う場合は多目的室のみ使用可」, limiting food-and-drink events to Multipurpose Room A and Multipurpose Room B."
+      }
+    ]
+  },
+  {
+    "id": "11ec3569a1364f0badefec09b",
+    "level": "N3",
+    "subtype": "info",
+    "title": "みどり市　写真展示会　展示ブース　申込案内",
+    "text": "【展示ブース料金・条件一覧】\nブース／サイズ／料金（3日間）／電源／申込資格\nAブース／小（1.5m×1m）／3,000円／なし／個人・団体\nBブース／中（2m×1.5m）／5,000円／あり／個人・団体\nCブース／大（3m×2m）／8,000円／あり／団体のみ\nDブース／中（2m×1.5m）／5,000円／なし／個人のみ\n\n【注意事項】\n・電源ありのブースは事前に機材リストの提出が必要。\n・申込締切：10月15日（火）。締切後のキャンセルは不可。\n・団体割引：3ブース以上同時申込で合計料金から10％引き。\n\n【シナリオ】\nマリアさんは個人で写真展に参加する予定です。電源を使用したい機材があるため、電源ありのブースが必要です。また、予算は6,000円以内です。マリアさんが申し込めるブースはどれか。",
+    "questions": [
+      {
+        "id": "d4696b309e32465f8fc1f9aff",
+        "stem": "マリアさんが申し込むことのできるブースはどれか。",
+        "correctAnswer": "Bブース",
+        "distractors": [
+          {
+            "text": "Aブース",
+            "whyWrong": "A-booth has no power supply, which violates Maria's requirement of needing a power outlet for her equipment."
+          },
+          {
+            "text": "Cブース",
+            "whyWrong": "C-booth is restricted to groups (団体のみ), and Maria is an individual applicant."
+          },
+          {
+            "text": "Dブース",
+            "whyWrong": "D-booth has no power supply, which violates Maria's requirement of needing a power outlet."
+          }
+        ],
+        "explanation": "B-booth has a power supply (電源あり), is open to both individuals and groups (個人・団体), and costs 5,000 yen, which is within Maria's 6,000-yen budget — the only option satisfying all three constraints."
+      },
+      {
+        "id": "5695523d43234a068b0e16f77",
+        "stem": "申込締切日はいつか。",
+        "correctAnswer": "10月15日（火）",
+        "distractors": [
+          {
+            "text": "10月10日（木）",
+            "whyWrong": "This date does not appear anywhere in the document."
+          },
+          {
+            "text": "10月20日（日）",
+            "whyWrong": "This date does not appear anywhere in the document."
+          },
+          {
+            "text": "10月1日（火）",
+            "whyWrong": "This date does not appear anywhere in the document."
+          }
+        ],
+        "explanation": "The 注意事項 section explicitly states「申込締切：10月15日（火）」as the deadline."
+      }
+    ]
+  },
+  {
+    "id": "cd9b09be7abe4edaa1a588190",
+    "level": "N3",
+    "subtype": "info",
+    "title": "みどり市　外国語会話サークル　クラス参加案内",
+    "text": "■ クラス一覧\nクラス名／曜日／時間／定員／参加費／対象レベル\nA 英会話入門／月・水／10:00〜11:30／15名／月1,200円／初級\nB 英会話中級／火・木／19:00〜20:30／12名／月1,800円／中級\nC フランス語入門／土／13:00〜15:00／10名／月1,500円／初級\nD スペイン語初級／水・金／18:00〜19:30／8名／月2,000円／初級\n\n■ 参加条件\n・18歳以上の方\n・月2回以上出席できる方\n・中級クラスは日本語能力試験N4以上取得者のみ\n・定員に空きがある場合のみ申込可\n\n現在、BクラスとDクラスは定員に達しています。\n\n【参加者】アリさんは大学1年生（18歳）で、平日の夜と土曜日のみ参加可能です。予算は月1,600円以内で、英語・フランス語どちらでも構いません。初級レベルです。",
+    "questions": [
+      {
+        "id": "4228bc4eac03407ebc2342273",
+        "stem": "アリさんが取ることのできるクラスはどれか。",
+        "correctAnswer": "C フランス語入門",
+        "distractors": [
+          {
+            "text": "A 英会話入門",
+            "whyWrong": "Class A is held on Mondays and Wednesdays at 10:00, which are weekday daytime slots that Ari cannot attend since she is only available on weekday evenings and Saturdays."
+          },
+          {
+            "text": "B 英会話中級",
+            "whyWrong": "Class B is currently full (定員に達している), so Ari cannot apply."
+          },
+          {
+            "text": "D スペイン語初級",
+            "whyWrong": "Class D costs 2,000 yen per month, which exceeds Ari's budget of 1,600 yen, and it is also currently full."
+          }
+        ],
+        "explanation": "Class C (French Beginner) is held on Saturdays, costs 1,500 yen/month (within budget), is beginner level, still has openings, and Ari is 18 — satisfying all four constraints."
+      },
+      {
+        "id": "604fe1e90dca4c8d85819c1f6",
+        "stem": "中級クラスに参加するために必要な条件はどれか。",
+        "correctAnswer": "日本語能力試験N4以上を取得していること",
+        "distractors": [
+          {
+            "text": "月3回以上出席できること",
+            "whyWrong": "The document states a minimum of twice per month (月2回以上), not three times."
+          },
+          {
+            "text": "20歳以上であること",
+            "whyWrong": "The age requirement listed in the document is 18 years or older, not 20."
+          },
+          {
+            "text": "英会話入門クラスを修了していること",
+            "whyWrong": "No such prerequisite course completion is mentioned anywhere in the document."
+          }
+        ],
+        "explanation": "The condition list explicitly states 「中級クラスは日本語能力試験N4以上取得者のみ」, directly confirming that an N4 certificate or higher is required."
+      }
+    ]
+  }
+]

@@ -88,6 +88,7 @@ export default defineEventHandler(async (event) => {
       type: sqType,
       prompt,
       reading: word?.reading ?? '',
+      meaning: word?.meaning,
       correctAnswer: correctChoice?.text ?? '',
       correctAnswerReading: correctReadingMap.get(key),
       userChoiceId: sq.userChoiceId,

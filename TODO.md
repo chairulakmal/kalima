@@ -1,40 +1,30 @@
 # TODO
 
-## Demo milestone — pre-V1
-
-All questions are pre-seeded (500 total); no on-demand question generation. AI is used on-demand only for post-session results analysis, and will remain so through V5.
-
-- [x] Seed 500 questions offline (100 × reading, orthography, contextual, synonym, usage) → `prisma/seed-data/questions-n3.json`
-- [x] `prisma/seed-data/` split by JLPT level — `seed.ts` reads all `questions-n*.json` files
-- [x] `prisma/seed.ts` — upsert seed rows into `ExamQuestion` with `model='seed'`
-- [x] `prepare.post.ts` — sample from seed pool, no on-demand AI generation
-- [x] `app/error.vue` — styled 404/500 error page
-- [x] `文脈規定` question type (contextual fill-in, 問題3)
-- [x] Mixed vocab session — 8-6-11-5 distribution, 30 questions in exam order
-- [x] 30-minute countdown timer (vocab sessions only, colour shifts at 5:00 and 2:00)
-- [x] Per-question type label in quiz header
-- [x] Token-based auth guard for `/admin`
-
----
-
-## Next — V1: Vocab Section
-
-- [x] `用法` question type (問題5 — choose the sentence that uses the word correctly)
-- [x] Generate 100 `usage` seed questions
-- [x] Token-based auth guard for `/admin` (HMAC session cookie, constant-time compare, login throttle)
-- [x] Security hardening — Claude API + admin dashboard (see `SECURITY.md`)
-
----
-
 ## Upcoming
 
-### V2 — Reading Section
+### V1 — Reading Section
 
-- [ ] `Passage` data model (Prisma schema)
-- [ ] AI passage generation/curation for N3
-- [ ] Reading question types: main idea, detail extraction, inference
-- [ ] New session type or mixed-session flow for reading
-- [ ] UI: passage + question layout (scrollable passage, question below)
+**Schema + seeding:**
+- [ ] Add `Passage` and `ReadingQuestion` models to `prisma/schema.prisma`
+      — `Passage(id, level, subtype, title?, text, notes Json?)` with `ReadingQuestion[]`
+      — `ReadingQuestion(id, passageId, stem, correctAnswer, distractors Json, explanation)` 
+- [ ] Write `prisma/seed-reading.ts` — upsert from `passages-n3.json`
+
+**Session flow:**
+- [ ] Add `SessionMode = 'reading'` — a reading session serves a set of passages, not individual questions
+- [ ] `POST /api/session/prepare` reading branch — sample passages by subtype (N3 exam ratio: 4 short + 2 medium + 1 long + 1 info = 8 passages, 16 questions)
+- [ ] `POST /api/session/submit` — adapt to reading session (answers keyed by `ReadingQuestion.id`)
+- [ ] `GET /api/session/results` — reading session results
+
+**UI — passage-visible reading:**
+- INVARIANT: All questions for a passage are answered while the passage is visible on screen. This
+  is how the real JLPT exam works. The passage never disappears until all its questions are answered.
+- [ ] `ReadingCard.vue` — passage text (scrollable) + current question + choices, all on one screen
+      Desktop: passage left, questions right (split layout)
+      Mobile (412px): passage above (collapsed/expanded toggle), question + choices below
+- [ ] Within a passage: Q1 → Q2 → … → Qn navigation; passage stays visible
+- [ ] Between passages: passage changes, Q counter resets; overall progress bar shows passages done
+- [ ] `results.vue` — reading results: per-passage breakdown with passage text visible on review
 
 ### V3 — Grammar Section
 
@@ -48,6 +38,17 @@ All questions are pre-seeded (500 total); no on-demand question generation. AI i
 - [ ] Audio delivery (CDN / streaming)
 - [ ] In-page audio player UI
 - [ ] Listening question types matching JLPT format
+
+### V4.5 — User Accounts & Mistake Notebook *(consider after full exam excluding listening ships)*
+
+- [ ] User authentication (email/OAuth)
+- [ ] Per-user mistake log — record each incorrect answer with `wordId`, `QuestionType`, and timestamp
+- [ ] Mistake notebook view — browse and filter personal weak words by type
+- [ ] Optional: spaced-repetition scheduling (surface weak words more often in new sessions)
+
+> Prerequisite: V1–V3 complete (vocab + reading + grammar available). The mistake log is most useful when all non-listening question types are seeded and a user can meaningfully track cross-section weaknesses. Listening (V4) can be added to the tracking system incrementally.
+
+---
 
 ### V5 — Real Exam Mode
 
@@ -121,3 +122,12 @@ All questions are pre-seeded (500 total); no on-demand question generation. AI i
 - [x] Seed data split by JLPT level (`questions-n3.json`); `seed.ts` reads all `questions-n*.json`
 - [x] Index page redesign — vocab primary card with 問題1–5 sub-cards; Reading/Grammar coming-soon placeholders
 - [x] BRAND.md overhaul + `main.css` aligned (AMOLED dark theme, spacing scale, tap targets)
+
+### Demo / MVP — Security hardening
+- [x] Token-based auth guard for `/admin` (HMAC session cookie, constant-time compare, login throttle)
+- [x] Security hardening — Claude API + admin dashboard (see `SECURITY.md`)
+
+### V1 — Passage generation (offline)
+- [x] `scripts/generate-passages.ts` — generates `prisma/seed-data/passages-n3.json` (short×20, medium×10, long×5, info×10)
+- [x] `scripts/audit-passages.ts` — structural audit + AI vocab check + `--fix` auto-regeneration for flagged passages
+- [x] Passages reviewed and repaired via `--fix` mode; `passages-n3.json` finalised

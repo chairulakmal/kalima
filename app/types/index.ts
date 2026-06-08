@@ -96,6 +96,7 @@ export interface QuestionResult {
   type: QuestionType
   prompt: string
   reading: string
+  meaning?: string
   correctAnswer: string
   correctAnswerReading?: string
   userChoiceId: string | null
