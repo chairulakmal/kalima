@@ -982,9 +982,9 @@
     "level": "N3",
     "tags": [],
     "exampleSentence": {
-      "japanese": "彼は頭がいいうえに、性格もいいので、みんなから好かれている。",
-      "reading": "かれはあたまがいいうえに、しょうかくもいいので、みんなからすかれている。",
-      "english": "Not only is he smart, but he also has a good personality, so everyone likes him."
+      "japanese": "試験に合格した。そのうえ、奨学金ももらえることになった。",
+      "reading": "しけんにごうかくした。そのうえ、しょうがくきんももらえることになった。",
+      "english": "I passed the exam. On top of that, I was also awarded a scholarship."
     }
   },
   {
@@ -1498,9 +1498,9 @@
     "level": "N3",
     "tags": [],
     "exampleSentence": {
-      "japanese": "疲れて、彼はため息をついた。",
-      "reading": "つかれて、かれはためいきをついた。",
-      "english": "Tired, he let out a sigh."
+      "japanese": "はあ、また同じ失敗をしてしまった。",
+      "reading": "はあ、またおなじしっぱいをしてしまった。",
+      "english": "Sigh, I made the same mistake again."
     }
   },
   {
@@ -9278,7 +9278,7 @@
     "level": "N3",
     "tags": [],
     "exampleSentence": {
-      "japanese": "犬が骨をくわえて走っていった。",
+      "japanese": "犬が骨を咥えて走っていった。",
       "reading": "いぬがほねをくわえてはしっていった。",
       "english": "The dog ran off holding a bone in its mouth."
     }
@@ -10009,7 +10009,7 @@
     "level": "N3",
     "tags": [],
     "exampleSentence": {
-      "japanese": "机の上にほこりがたまっているので、掃除しなくてはいけません。",
+      "japanese": "机の上に埃がたまっているので、掃除しなくてはいけません。",
       "reading": "つくえのうえにほこりがたまっているので、そうじしなくてはいけません。",
       "english": "Dust has accumulated on the desk, so I need to clean it."
     }
@@ -11809,9 +11809,9 @@
     "level": "N3",
     "tags": [],
     "exampleSentence": {
-      "japanese": "私たちのテニスペアは今年のダブルス大会で優勝した。",
-      "reading": "わたしたちのてにすぺあはことしのだぶるすたいかいでゆうしょうした。",
-      "english": "Our tennis pair won the doubles tournament this year."
+      "japanese": "子供たちは2対2のチームに分かれてサッカーをした。",
+      "reading": "こどもたちは2たい2のチームにわかれてサッカーをした。",
+      "english": "The children split into teams of 2 versus 2 to play soccer."
     }
   },
   {
@@ -14813,9 +14813,9 @@
     "level": "N3",
     "tags": [],
     "exampleSentence": {
-      "japanese": "次の選挙で投票するために、事前に投票所の場所を確認しました。",
-      "reading": "つぎのせんきょでとうひょうするために、じぜんにとうひょうしょのばしょをかくにんしました。",
-      "english": "I checked the location of the polling station in advance in order to vote in the next election."
+      "japanese": "来月の投票で新しいリーダーが決まります。",
+      "reading": "らいげつのとうひょうであたらしいりーだーがきまります。",
+      "english": "The new leader will be decided by the vote next month."
     }
   },
   {
@@ -15186,7 +15186,7 @@
     "level": "N3",
     "tags": [],
     "exampleSentence": {
-      "japanese": "本のページをめくるときは、丁寧に扱った方がいいです。",
+      "japanese": "本のページを捲るときは、丁寧に扱った方がいいです。",
       "reading": "ほんのぺーじをめくるときは、ていねいにあつかったほうがいいです。",
       "english": "When turning over the pages of a book, it's better to handle them carefully."
     }
@@ -15270,7 +15270,7 @@
     "level": "N3",
     "tags": [],
     "exampleSentence": {
-      "japanese": "蚊に刺されて、腕をかいています。",
+      "japanese": "蚊に刺されて、腕を掻いています。",
       "reading": "かにさされて、うでをかいています。",
       "english": "I got bitten by a mosquito and I'm scratching my arm."
     }
@@ -16270,7 +16270,7 @@
       "Intermediate_Japanese_Ln.13"
     ],
     "exampleSentence": {
-      "japanese": "私はすでに宿題を終わらせました。",
+      "japanese": "私は既に宿題を終わらせました。",
       "reading": "わたしはすでにしゅくだいをおわらせました。",
       "english": "I have already finished my homework."
     }
@@ -16719,7 +16719,7 @@
     "level": "N3",
     "tags": [],
     "exampleSentence": {
-      "japanese": "このプロジェクトは難しいだけでなく、さらに時間がかかります。",
+      "japanese": "このプロジェクトは難しいだけでなく、更に時間がかかります。",
       "reading": "このぷろじぇくとはむずかしいだけでなく、さらにじかんがかかります。",
       "english": "This project is not only difficult, but furthermore, it will take time."
     }
@@ -17800,7 +17800,7 @@
     "level": "N3",
     "tags": [],
     "exampleSentence": {
-      "japanese": "この会社の売上は業界で2番目につぐ規模だ。",
+      "japanese": "この会社の売上は業界で2番目に次ぐ規模だ。",
       "reading": "このかいしゃのうりあげはぎょうかいでにばんめにつぐきぼだ。",
       "english": "This company's sales rank second in the industry."
     }
@@ -20448,9 +20448,9 @@
     "level": "N3",
     "tags": [],
     "exampleSentence": {
-      "japanese": "彼の顔には不安な気持ちが現れていた。",
-      "reading": "かれのかおにはふあんなきもちがあらわれていた。",
-      "english": "His face showed signs of anxiety."
+      "japanese": "彼は感謝の気持ちを言葉で現した。",
+      "reading": "かれはかんしゃのきもちをことばであらわした。",
+      "english": "He expressed his gratitude in words."
     }
   },
   {
@@ -25001,7 +25001,7 @@
     "level": "N3",
     "tags": [],
     "exampleSentence": {
-      "japanese": "雨の日は帽子をかぶって外出します。",
+      "japanese": "雨の日は帽子を被って外出します。",
       "reading": "あめのひはぼうしをかぶってがいしゅつします。",
       "english": "On rainy days, I go out wearing a hat."
     }
@@ -30365,7 +30365,7 @@
     "level": "N3",
     "tags": [],
     "exampleSentence": {
-      "japanese": "台所にネズミが入ってきたので、ねずみ取りを設置しました。",
+      "japanese": "台所に鼠が入ってきたので、ねずみ取りを設置しました。",
       "reading": "だいどころにねずみがはいってきたので、ねずみとりをせっちしました。",
       "english": "A mouse got into the kitchen, so I set up a mousetrap."
     }
