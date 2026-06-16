@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { QuestionResult } from '~/types/index'
 
+useHead({ title: 'Results · Kalima' })
+
 interface ResultsResponse {
   sessionId: string
   level: string

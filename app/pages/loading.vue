@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { ClientQuestion, Level, SessionMode } from '~/types/index'
 
+useHead({ title: 'Getting ready… · Kalima' })
+
 const route = useRoute()
 const router = useRouter()
 const session = useSession()

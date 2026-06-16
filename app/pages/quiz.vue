@@ -1,5 +1,13 @@
 <script setup lang="ts">
 const store = useSessionStore()
+
+const TYPE_LABELS: Record<string, string> = {
+  reading: '漢字読み', orthography: '表記', contextual: '文脈規定',
+  synonym: '言い換え類義', usage: '用法', vocab: '文字・語彙',
+}
+useHead(computed(() => ({
+  title: `${store.level ?? 'N3'} ${TYPE_LABELS[store.type] ?? store.type} · Kalima`,
+})))
 const session = useSession()
 const router = useRouter()
 const {
