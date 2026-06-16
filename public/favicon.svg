@@ -1,0 +1,22 @@
+<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+  <!-- Gold tile -->
+  <rect width="32" height="32" rx="6" fill="#f4a22d"/>
+
+  <!-- Cream page stack — drawn first; cover overlaps left edge -->
+  <rect x="22" y="5" width="5" height="22" rx="2" fill="#fef3dc"/>
+
+  <!-- Spine (deep gold) — cover overlaps right edge -->
+  <rect x="5" y="5" width="5" height="22" rx="2" fill="#9a5e08"/>
+
+  <!-- Navy front cover — sits on top, bridging spine and pages -->
+  <rect x="9" y="5" width="14" height="22" rx="2" fill="#1e3a5f"/>
+
+  <!-- Corner guards (bright gold on navy) -->
+  <rect x="9.5" y="5.5"  width="3" height="3" rx="1" fill="#f4a22d"/>
+  <rect x="19.5" y="5.5"  width="3" height="3" rx="1" fill="#f4a22d"/>
+  <rect x="9.5" y="23.5" width="3" height="3" rx="1" fill="#f4a22d"/>
+  <rect x="19.5" y="23.5" width="3" height="3" rx="1" fill="#f4a22d"/>
+
+  <!-- Ribbon bookmark (dark gold, emerges from bottom of cover) -->
+  <polygon points="15,25 17,25 16.5,31 15.5,31" fill="#c97e14"/>
+</svg>

@@ -220,6 +220,11 @@ Interactive icons sit inside a **≥ 48 px hit area** even when the glyph is 20�
   browser tab where a navy-on-navy tile would disappear.
 - **Minimum sizes:** app 64 px · UI 40 px · favicon 24 px.
 - **Clear space:** keep a margin equal to the height of Bun's eye on all sides.
+- **Implementation:** `public/favicon.svg` (SVG primary; served as
+  `<link rel="icon" type="image/svg+xml">`). `public/favicon.ico` is kept as a legacy
+  fallback for environments that don't support SVG favicons. The SVG uses a 32 × 32
+  viewBox: gold tile (rx 6), deep-gold spine left, cream pages right, navy front cover
+  centered, four gold corner guards, gold ribbon bookmark at the bottom.
 
 ---
 
@@ -372,6 +377,9 @@ structural tokens (scale, radius, type) are theme-independent.
   --tap-min: 48px;      /* minimum interactive target */
 
   /* ── fonts ── */
+  /* In Tailwind v4 the @theme names are --font-display / --font-body / --font-jp,
+     which generate the font-display / font-body / font-jp utility classes.
+     The --f-* aliases below are defined in :root so component CSS can use var(--f-jp) etc. */
   --f-display: "Outfit", system-ui, sans-serif;
   --f-body: "Source Sans 3", system-ui, sans-serif;
   --f-jp: "Noto Sans JP", "Hiragino Sans", sans-serif;

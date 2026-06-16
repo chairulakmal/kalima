@@ -82,6 +82,31 @@
   --maxw:      1120px; /* desktop shell cap */
   --maxw-read: 42rem;  /* reading-measure cap — ~66 Latin / ~38 JP chars */
   --tap-min:   48px;   /* minimum interactive target height */
+
+  /* ── Font aliases — BRAND.md --f-* names for direct var() use in component CSS ── */
+  /* Tailwind generates font-display / font-body / font-jp utilities from --font-*    */
+  --f-display: "Outfit", system-ui, sans-serif;
+  --f-body:    "Source Sans 3", system-ui, sans-serif;
+  --f-jp:      "Noto Sans JP", "Hiragino Sans", sans-serif;
+
+  /* ── Type scale sizes — mirrors Tailwind defaults; exposes var(--text-*) for CSS ── */
+  --text-xs:   0.75rem;
+  --text-sm:   0.875rem;
+  --text-base: 1rem;
+  --text-lg:   1.125rem;
+  --text-xl:   1.25rem;
+  --text-2xl:  1.5rem;
+  --text-3xl:  1.875rem;
+  --text-4xl:  2.25rem;
+  --text-5xl:  3rem;
+
+  /* ── Color ramp aliases — var(--navy-100) etc. for direct use alongside Tailwind ── */
+  --navy-100: #dde6f2; --navy-200: #baccde; --navy-300: #8aaac5;
+  --navy-400: #5b89b0; --navy-500: #2d6898; --navy-600: #1e3a5f; --navy-700: #112036;
+  --gold-100: #fef3dc; --gold-200: #fce4a8; --gold-300: #f9d070;
+  --gold-400: #f4a22d; --gold-500: #c97e14; --gold-600: #9a5e08; --gold-700: #6b3e03;
+  --cer-100: #dbeafe;  --cer-200: #bfdbfe;  --cer-300: #93c5fd;
+  --cer-400: #60a5fa;  --cer-500: #2d7dd2;  --cer-600: #1d4ed8;  --cer-700: #1e3a8a;
 }
 
 /* ── Light theme ─────────────────────────────────────────────────────────────── */
