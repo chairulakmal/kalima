@@ -54,7 +54,7 @@ const id = route.params.id as string
 // useRequestFetch forwards the httpOnly admin_session cookie during SSR so the
 // detail renders server-side on a hard refresh instead of fetching client-only.
 const requestFetch = useRequestFetch()
-const { data, error, refresh } = await useAsyncData<DetailResponse>(
+const { data, error } = await useAsyncData<DetailResponse>(
   `admin-question-${id}`,
   () => requestFetch(`/api/admin/questions/${id}`),
 )
@@ -132,7 +132,8 @@ function rankClass(rank: string | null): string {
 <template>
   <div class="min-h-screen bg-paper py-8 px-4">
     <div class="max-w-2xl mx-auto">
-      <NuxtLink to="/admin"
+      <NuxtLink
+to="/admin"
         class="inline-flex items-center gap-1 font-display text-sm font-semibold text-cerulean hover:text-navy mb-6 transition-colors">
         ← Back to list
       </NuxtLink>
@@ -149,7 +150,8 @@ function rankClass(rank: string | null): string {
             </div>
             <div class="flex flex-col items-end gap-2 flex-shrink-0">
               <div class="flex items-center gap-2">
-                <span v-if="data.word"
+                <span
+v-if="data.word"
                   class="font-display text-xs font-semibold px-2.5 py-1 rounded-full bg-navy text-white">
                   {{ data.word.level }}
                 </span>
@@ -159,10 +161,10 @@ function rankClass(rank: string | null): string {
               </div>
               <button
                 v-if="data.deletable"
-                @click="deleteQuestion"
                 :disabled="deleting"
                 class="font-display text-xs font-semibold text-bad hover:text-bad/70 disabled:opacity-40
                        transition-colors border border-bad/30 rounded-lg px-3 py-1 hover:bg-bad/5"
+                @click="deleteQuestion"
               >
                 {{ deleting ? 'Deleting…' : 'Delete question' }}
               </button>
@@ -182,7 +184,8 @@ function rankClass(rank: string | null): string {
         </div>
 
         <!-- Metadata -->
-        <div class="bg-white rounded-2xl p-5 mb-4 flex flex-wrap gap-x-6 gap-y-2"
+        <div
+class="bg-white rounded-2xl p-5 mb-4 flex flex-wrap gap-x-6 gap-y-2"
              style="box-shadow: 0 2px 8px -4px rgba(15,28,46,0.10);">
           <div>
             <span class="font-display text-xs text-ink-faint">Model</span>
@@ -257,7 +260,8 @@ function rankClass(rank: string | null): string {
               :key="r.id"
               class="flex items-start gap-3 text-sm border-b border-line pb-2 last:border-0 last:pb-0"
             >
-              <span class="flex-shrink-0 font-display text-xs font-bold px-2 py-0.5 rounded-full mt-0.5"
+              <span
+class="flex-shrink-0 font-display text-xs font-bold px-2 py-0.5 rounded-full mt-0.5"
                     :class="rankClass(r.rank)">
                 {{ r.rank }}
               </span>
@@ -284,11 +288,11 @@ function rankClass(rank: string | null): string {
                 <button
                   v-for="r in RANKS"
                   :key="r"
-                  @click="reviewRank = r"
                   class="font-display px-4 py-2 rounded-xl text-sm font-bold transition-all border-2"
                   :class="reviewRank === r
                     ? [RANK_COLORS[r], 'border-transparent']
                     : 'bg-white border-line text-ink-soft hover:border-cerulean hover:text-cerulean'"
+                  @click="reviewRank = r"
                 >
                   {{ r }}
                 </button>
@@ -308,14 +312,14 @@ function rankClass(rank: string | null): string {
                 placeholder="e.g. distractor 竃く is not a real word"
                 class="w-full rounded-xl border border-line px-3 py-2 font-body text-sm text-ink
                        focus:outline-none focus:ring-2 focus:ring-cerulean/40 focus:border-cerulean bg-white"
-              />
+              >
             </div>
 
             <div class="flex items-center gap-3">
               <button
-                @click="submitReview"
                 :disabled="!reviewRank || reviewSubmitting"
                 class="btn-primary px-5 py-2 rounded-xl text-sm"
+                @click="submitReview"
               >
                 {{ reviewSubmitting ? 'Submitting…' : 'Submit review' }}
               </button>

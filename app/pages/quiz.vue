@@ -1,13 +1,5 @@
 <script setup lang="ts">
 const store = useSessionStore()
-
-const TYPE_LABELS: Record<string, string> = {
-  reading: '漢字読み', orthography: '表記', contextual: '文脈規定',
-  synonym: '言い換え類義', usage: '用法', vocab: '文字・語彙',
-}
-useHead(computed(() => ({
-  title: `${store.level ?? 'N3'} ${TYPE_LABELS[store.type] ?? store.type} · Kalima`,
-})))
 const session = useSession()
 const router = useRouter()
 const {
@@ -106,6 +98,10 @@ const TYPE_LABELS: Record<string, string> = {
   vocab:       '文字・語彙',
 }
 
+useHead(computed(() => ({
+  title: `${store.level ?? 'N3'} ${TYPE_LABELS[store.type] ?? store.type} · Kalima`,
+})))
+
 // For vocab sessions, show the current question's individual type.
 const typeLabel = computed(() => {
   if (store.type === 'vocab' && currentQuestion.value) {
@@ -123,7 +119,8 @@ const typeLabel = computed(() => {
       <div class="mb-7">
         <div class="flex items-center justify-between mb-3">
           <div class="flex items-center gap-2">
-            <span class="font-display text-xs font-semibold tracking-widest uppercase
+            <span
+class="font-display text-xs font-semibold tracking-widest uppercase
                          px-2.5 py-0.5 rounded-full bg-navy text-white">
               {{ store.level }}
             </span>
@@ -132,7 +129,8 @@ const typeLabel = computed(() => {
 
           <div class="flex items-center gap-3">
             <!-- Countdown timer — vocab sessions only -->
-            <span v-if="isVocabSession"
+            <span
+v-if="isVocabSession"
                   class="font-display text-sm tabular-nums transition-colors"
                   :class="timerClass">
               {{ timerDisplay }}

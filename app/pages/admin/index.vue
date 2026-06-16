@@ -144,15 +144,15 @@ const canBulkDelete = computed(
         </div>
         <div class="flex items-center gap-4">
           <button
-            @click="refresh()"
             :disabled="pending"
             class="font-display text-sm font-semibold text-cerulean hover:text-navy disabled:opacity-40 transition-colors"
+            @click="refresh()"
           >
             Refresh
           </button>
           <button
-            @click="logout()"
             class="font-display text-sm font-semibold text-ink-faint hover:text-red-500 transition-colors"
+            @click="logout()"
           >
             Sign out
           </button>
@@ -162,22 +162,22 @@ const canBulkDelete = computed(
       <!-- Rank filter -->
       <div class="flex flex-wrap gap-2 mb-4">
         <button
-          @click="setRank(null)"
           class="font-display px-3 py-1 rounded-full text-xs font-semibold transition-colors"
           :class="rankFilter === null
             ? 'bg-navy text-white'
             : 'bg-white border border-line text-ink-soft hover:border-cerulean hover:text-cerulean'"
+          @click="setRank(null)"
         >
           All
         </button>
         <button
           v-for="r in RANK_OPTIONS"
           :key="r"
-          @click="setRank(r)"
           class="font-display px-3 py-1 rounded-full text-xs font-semibold transition-colors"
           :class="rankFilter === r
             ? (r === 'unranked' ? 'bg-ink-faint text-white' : RANK_COLORS[r])
             : 'bg-white border border-line text-ink-soft hover:border-cerulean hover:text-cerulean'"
+          @click="setRank(r)"
         >
           {{ r === 'unranked' ? 'Unranked' : r }}
         </button>
@@ -186,10 +186,10 @@ const canBulkDelete = computed(
       <!-- Bulk delete -->
       <div v-if="canBulkDelete" class="mb-4">
         <button
-          @click="bulkDelete"
           :disabled="bulkDeleting"
           class="font-display px-4 py-2 text-sm font-semibold rounded-xl bg-bad text-white
                  hover:opacity-90 disabled:opacity-40 disabled:cursor-not-allowed transition-opacity"
+          @click="bulkDelete"
         >
           {{ bulkDeleting ? 'Deleting…' : `Delete all ${rankFilter === 'unranked' ? 'unranked' : 'rank ' + rankFilter} (${data?.total ?? 0})` }}
         </button>
@@ -210,7 +210,7 @@ const canBulkDelete = computed(
                 <th class="px-4 py-3 text-left font-display text-xs font-semibold text-ink-faint uppercase tracking-wide">Model</th>
                 <th class="px-4 py-3 text-left font-display text-xs font-semibold text-ink-faint uppercase tracking-wide">Explanation</th>
                 <th class="px-4 py-3 text-left font-display text-xs font-semibold text-ink-faint uppercase tracking-wide">Created</th>
-                <th class="px-4 py-3"></th>
+                <th class="px-4 py-3"/>
               </tr>
             </thead>
             <tbody class="divide-y divide-line">
@@ -254,10 +254,10 @@ const canBulkDelete = computed(
                 <td class="px-4 py-3">
                   <button
                     v-if="q.deletable"
-                    @click="deleteOne(q, $event)"
                     :disabled="deletingId === q.id"
                     class="font-display text-xs font-semibold text-bad hover:text-bad/70
                            disabled:opacity-40 transition-colors whitespace-nowrap"
+                    @click="deleteOne(q, $event)"
                   >
                     {{ deletingId === q.id ? '…' : 'Delete' }}
                   </button>
@@ -271,16 +271,16 @@ const canBulkDelete = computed(
         <div v-if="data.totalPages > 1" class="flex items-center justify-between">
           <button
             :disabled="page === 1"
-            @click="page--"
             class="btn-secondary px-4 py-2 text-sm rounded-xl disabled:cursor-not-allowed"
+            @click="page--"
           >
             ← Previous
           </button>
           <span class="font-display text-sm text-ink-soft">{{ page }} / {{ data.totalPages }}</span>
           <button
             :disabled="page === data.totalPages"
-            @click="page++"
             class="btn-secondary px-4 py-2 text-sm rounded-xl disabled:cursor-not-allowed"
+            @click="page++"
           >
             Next →
           </button>

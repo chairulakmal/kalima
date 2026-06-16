@@ -28,7 +28,7 @@ async function submit() {
         <p class="font-body text-sm text-ink-faint">Admin access</p>
       </div>
 
-      <form @submit.prevent="submit" class="bg-white rounded-2xl p-6 border border-line" style="box-shadow: var(--shadow);">
+      <form class="bg-white rounded-2xl p-6 border border-line" style="box-shadow: var(--shadow);" @submit.prevent="submit">
         <label class="block font-display text-xs font-semibold text-ink-soft uppercase tracking-widest mb-2">
           Password
         </label>
@@ -40,7 +40,7 @@ async function submit() {
           required
           class="w-full px-4 py-2.5 rounded-xl border border-line bg-paper font-body text-navy
                  focus:outline-none focus:border-cerulean transition-colors mb-4"
-        />
+        >
 
         <p v-if="error" class="font-body text-sm text-red-500 mb-3">{{ error }}</p>
 

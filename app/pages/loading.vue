@@ -97,7 +97,8 @@ onUnmounted(() => {
           </g>
 
           <!-- Smile -->
-          <path d="M 33 79 Q 50 89 67 79"
+          <path
+d="M 33 79 Q 50 89 67 79"
                 stroke="rgba(255,255,255,0.38)"
                 stroke-width="2.5"
                 stroke-linecap="round"/>
