@@ -89,7 +89,8 @@ const scorePhrase = computed(() => {
       <template v-else-if="data">
 
         <!-- Score card -->
-        <div class="bg-white rounded-2xl p-8 mb-5 text-center border-l-[3px] border-cerulean"
+        <div
+class="bg-white rounded-2xl p-8 mb-5 text-center border-l-[3px] border-cerulean"
              style="box-shadow: var(--shadow);">
           <p class="font-display text-xs font-semibold text-ink-faint uppercase tracking-widest mb-3">
             {{ data.level }} · {{ TYPE_LABELS[data.type] ?? data.type }} · {{ durationStr }}
@@ -144,7 +145,8 @@ const scorePhrase = computed(() => {
                 </div>
 
                 <!-- Reading (if different from prompt; not shown for contextual since prompt is the sentence) -->
-                <p v-if="r.reading && r.reading !== r.prompt && r.type !== 'contextual'"
+                <p
+v-if="r.reading && r.reading !== r.prompt && r.type !== 'contextual'"
                    class="font-jp text-sm text-ink-faint mb-0.5">
                   {{ r.reading }}
                 </p>
@@ -163,7 +165,8 @@ const scorePhrase = computed(() => {
                 <!-- Correct answer -->
                 <div class="mb-2">
                   <span class="font-jp font-bold text-good">{{ r.correctAnswer }}</span>
-                  <p v-if="r.correctAnswerReading"
+                  <p
+v-if="r.correctAnswerReading"
                      class="font-jp text-xs text-ink-faint">{{ r.correctAnswerReading }}</p>
                 </div>
 
@@ -171,7 +174,8 @@ const scorePhrase = computed(() => {
                 <QuizExplanation :text="r.explanation" />
 
                 <!-- Example sentence (suppressed for contextual/usage — the prompt/answer already is the sentence) -->
-                <div v-if="r.exampleSentence && r.type !== 'contextual' && r.type !== 'usage'"
+                <div
+v-if="r.exampleSentence && r.type !== 'contextual' && r.type !== 'usage'"
                      class="mt-2 pt-2 border-t border-ink-faint/10 space-y-0.5">
                   <p class="font-jp text-sm text-ink-soft">{{ r.exampleSentence.japanese }}</p>
                   <p class="font-jp text-xs text-ink-faint">{{ r.exampleSentence.reading }}</p>

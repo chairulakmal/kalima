@@ -42,7 +42,8 @@ const upcomingSections = [
       <div class="space-y-3 mb-6">
 
         <!-- Vocabulary — primary card with nested sub-types -->
-        <div class="bg-white rounded-2xl border border-line border-l-[3px] border-l-cerulean overflow-hidden"
+        <div
+class="bg-white rounded-2xl border border-line border-l-[3px] border-l-cerulean overflow-hidden"
              style="box-shadow: var(--shadow);">
 
           <!-- Full-section link -->
@@ -59,7 +60,8 @@ const upcomingSections = [
                 問題1–5 in order · 35 questions · 30 min
               </p>
             </div>
-            <span class="font-display text-xs font-semibold text-ink-faint
+            <span
+class="font-display text-xs font-semibold text-ink-faint
                          group-hover:text-cerulean transition-colors whitespace-nowrap pt-0.5">
               Full section →
             </span>
@@ -109,10 +111,10 @@ const upcomingSections = [
 
       <div class="flex items-center justify-center gap-1.5 mt-3 opacity-60">
         <!-- Vue logo -->
-        <img src="/vue.svg" width="14" height="12" alt="Vue logo" />
+        <img src="/vue.svg" width="14" height="12" alt="Vue logo" >
         <span class="text-xs font-body text-ink-faint">Full-stack Vue · Nuxt 4</span>
         <!-- Nuxt logo -->
-        <img src="/nuxt.svg" width="22" height="22" alt="Nuxt logo" />
+        <img src="/nuxt.svg" width="22" height="22" alt="Nuxt logo" >
       </div>
     </div>
   </div>
