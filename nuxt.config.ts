@@ -9,6 +9,15 @@ export default defineNuxtConfig({
 
   devtools: { enabled: process.env.NODE_ENV !== 'production' },
 
+  app: {
+    head: {
+      link: [
+        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      ],
+    },
+  },
+
   css: ['~/assets/css/main.css'],
 
   modules: ['@pinia/nuxt'],
