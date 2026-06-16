@@ -1,4 +1,6 @@
 <script setup lang="ts">
+useHead({ title: 'Admin · Kalima' })
+
 const RANK_OPTIONS = ['S', 'A', 'B', 'C', 'D', 'F', 'unranked'] as const
 type RankFilter = (typeof RANK_OPTIONS)[number] | null
 
