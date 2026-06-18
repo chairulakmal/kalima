@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import type { QuestionResult } from '~/types/index'
+import type { QuestionResult, QuestionType } from '~/types/index'
+import type { TypeEntry } from '~/components/results/TypeChart.vue'
 
 useHead({ title: 'Results · Kalima' })
 
@@ -35,6 +36,36 @@ const reviewQueue = useReviewQueue()
 const failsAddedCount = computed(() =>
   data.value ? data.value.results.filter(r => r.correct === false).length : 0,
 )
+
+// ── Per-type accuracy radar ───────────────────────────────────────────────────
+
+const CHART_TYPES: { type: QuestionType; label: string }[] = [
+  { type: 'reading',     label: '読み' },
+  { type: 'orthography', label: '表記' },
+  { type: 'contextual',  label: '文脈' },
+  { type: 'synonym',     label: '類義' },
+  { type: 'usage',       label: '用法' },
+]
+
+const typeAccuracy = computed((): TypeEntry[] | null => {
+  if (!data.value) return null
+  const grouped = new Map<QuestionType, { correct: number; total: number }>()
+  for (const r of data.value.results) {
+    const e = grouped.get(r.type) ?? { correct: 0, total: 0 }
+    e.total++
+    if (r.correct) e.correct++
+    grouped.set(r.type, e)
+  }
+  // Only include types actually tested — absence must not look like zero on the radar
+  const entries: TypeEntry[] = CHART_TYPES
+    .filter(({ type }) => grouped.has(type))
+    .map(({ type, label }) => {
+      const e = grouped.get(type)!
+      return { type, label, correct: e.correct, total: e.total, pct: e.correct / e.total }
+    })
+  // Only show for multi-type sessions (vocab / review / mixed)
+  return entries.length >= 2 ? entries : null
+})
 
 const { data, error } = await useAsyncData<ResultsResponse>(
   `results-${sessionId}`,
@@ -124,6 +155,33 @@ class="bg-white rounded-2xl p-8 mb-5 text-center border-l-[3px] border-cerulean"
         >
           {{ failsAddedCount }} word{{ failsAddedCount === 1 ? '' : 's' }} added to review queue
         </p>
+
+        <!-- Per-type accuracy radar — only for vocab / review / mixed sessions -->
+        <div
+          v-if="typeAccuracy"
+          class="bg-white rounded-2xl p-5 mb-5"
+          style="box-shadow: var(--shadow);"
+        >
+          <p class="font-display text-xs font-semibold text-ink-faint uppercase tracking-wide mb-3">
+            Per-type accuracy
+          </p>
+          <ResultsTypeChart :entries="typeAccuracy" />
+          <!-- Score grid below the radar -->
+          <div
+            class="grid gap-1 mt-3"
+            :style="{ gridTemplateColumns: `repeat(${typeAccuracy.length}, 1fr)` }"
+          >
+            <div v-for="e in typeAccuracy" :key="e.type" class="text-center">
+              <p class="font-jp text-xs text-ink-faint mb-0.5">{{ e.label }}</p>
+              <p
+                class="font-display text-xs font-bold"
+                :class="e.pct >= 0.7 ? 'text-good' : e.pct >= 0.4 ? 'text-warn' : 'text-bad'"
+              >
+                {{ e.correct }}/{{ e.total }}
+              </p>
+            </div>
+          </div>
+        </div>
 
         <!-- AI Analysis -->
         <div class="bg-surface-cool border border-cerulean/20 rounded-2xl p-5 mb-5">
