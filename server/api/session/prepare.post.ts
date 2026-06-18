@@ -27,7 +27,11 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 429, message: 'Too many requests. Try again later.' })
   }
 
-  const body = await readBody<{ level?: string; type?: string }>(event)
+  const body = await readBody<{
+    level?: string
+    type?: string
+    reviewItems?: { wordId: string; type: string }[]
+  }>(event)
   const level = body?.level as Level
   const mode = normalizeMode(body?.type)
 
@@ -43,6 +47,9 @@ export default defineEventHandler(async (event) => {
 
   if (mode === 'vocab') {
     return prepareVocabSession(level, wordMap)
+  }
+  if (mode === 'review') {
+    return prepareReviewSession(level, wordMap, body?.reviewItems ?? [])
   }
   return prepareSingleTypeSession(level, mode as QuestionType, wordMap)
 })
@@ -147,11 +154,66 @@ async function prepareVocabSession(level: Level, wordMap: Map<string, Word>) {
   }
 }
 
+// ── Review session (up to 10 questions drawn from specific (wordId, type) pairs) ──
+
+async function prepareReviewSession(
+  level: Level,
+  wordMap: Map<string, Word>,
+  reviewItems: { wordId: string; type: string }[],
+) {
+  if (reviewItems.length === 0) {
+    throw createError({ statusCode: 400, message: 'Review queue is empty' })
+  }
+
+  const unique = reviewItems.filter(
+    (item, i, arr) => arr.findIndex(x => x.wordId === item.wordId && x.type === item.type) === i,
+  )
+
+  const examQuestions = await prisma.examQuestion.findMany({
+    where: { OR: unique.map(({ wordId, type }) => ({ wordId, type })) },
+  })
+
+  if (examQuestions.length === 0) {
+    throw createError({ statusCode: 503, message: 'No questions found for review items' })
+  }
+
+  const sampled = shuffle(examQuestions).slice(0, QUESTION_COUNT)
+  const session = await prisma.session.create({ data: { level, type: 'review' } })
+
+  const assembled = sampled.map((examQ, order) => {
+    const word = wordMap.get(examQ.wordId)
+    if (!word) throw new Error(`Word ${examQ.wordId} not found in word list`)
+    const sqId = crypto.randomUUID()
+    const qType = examQ.type as QuestionType
+    const question = assembleQuestion(word, examQ as AssembleInput, qType, sqId)
+    const correctChoice = question.choices.find(c => c.isCorrect)!
+    return { question, sqId, correctChoiceId: correctChoice.id, order, qType }
+  })
+
+  await prisma.sessionQuestion.createMany({
+    data: assembled.map(({ sqId, question, correctChoiceId, order, qType }) => ({
+      id: sqId,
+      sessionId: session.id,
+      wordId: question.wordId,
+      type: qType,
+      correctChoiceId,
+      choicesJson: question.choices as unknown as Prisma.InputJsonValue,
+      explanation: question.explanation,
+      order,
+    })),
+  })
+
+  return {
+    sessionId: session.id,
+    questions: assembled.map(({ question }) => toClientQuestion(question)),
+  }
+}
+
 // ── Helpers ──────────────────────────────────────────────────────────────────
 
 // Note: prompts live in scripts/generate-seed.ts. This route never calls the AI.
 function normalizeMode(t?: string): SessionMode {
-  const valid: SessionMode[] = ['reading', 'orthography', 'contextual', 'synonym', 'usage', 'vocab']
+  const valid: SessionMode[] = ['reading', 'orthography', 'contextual', 'synonym', 'usage', 'vocab', 'review']
   return valid.includes(t as SessionMode) ? (t as SessionMode) : 'synonym'
 }
 

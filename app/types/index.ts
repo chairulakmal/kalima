@@ -10,9 +10,10 @@ export type QuestionType = 'reading' | 'orthography' | 'contextual' | 'synonym' 
 
 export const QUESTION_TYPES: QuestionType[] = ['reading', 'orthography', 'contextual', 'synonym', 'usage']
 
-// Session-level mode: either a single question type or the mixed full-vocab section.
-//   vocab — 35-question mixed session: 8 reading + 6 orthography + 11 contextual + 5 synonym + 5 usage
-export type SessionMode = QuestionType | 'vocab'
+// Session-level mode: either a single question type, the mixed full-vocab section, or a review session.
+//   vocab   — 35-question mixed session: 8 reading + 6 orthography + 11 contextual + 5 synonym + 5 usage
+//   review  — up to 10 questions drawn from the user's wrong-answer queue
+export type SessionMode = QuestionType | 'vocab' | 'review'
 
 // ── Source data ──────────────────────────────────────────────────────────────
 
@@ -113,4 +114,13 @@ export interface SessionStats {
   wrongWords: string[]
   weakTags: string[]
   avgTimePerQuestion: number
+}
+
+// ── Review queue ─────────────────────────────────────────────────────────────
+
+export interface ReviewItem {
+  wordId: string
+  type: QuestionType
+  prompt: string    // expression (or reading for contextual) — for display in queue badge
+  failedAt: number  // ms timestamp; queue is drawn oldest-first by this field
 }

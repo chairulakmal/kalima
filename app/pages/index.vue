@@ -2,7 +2,11 @@
 import type { SessionMode } from '~/types/index'
 
 const session = useSession()
-onMounted(() => session.clear())
+const reviewQueue = useReviewQueue()
+onMounted(() => {
+  session.clear()
+  reviewQueue.init()
+})
 
 const vocabTypes: { mode: SessionMode; num: string; jp: string; en: string }[] = [
   { mode: 'reading',    num: '問題１', jp: '漢字読み',    en: 'Kanji Reading' },
@@ -35,6 +39,42 @@ const upcomingSections = [
               : 'bg-line text-ink-faint opacity-50 cursor-default'"
             class="inline-block text-xs font-display font-semibold tracking-widest uppercase px-2.5 py-1 rounded-full"
           >{{ lvl }}</span>
+        </div>
+      </div>
+
+      <!-- Review card — shown when the wrong-answer queue has items -->
+      <div
+        v-if="reviewQueue.store.count > 0"
+        class="bg-white rounded-2xl border border-line border-l-[3px] border-l-gold overflow-hidden mb-3"
+        style="box-shadow: var(--shadow);"
+      >
+        <div class="flex items-center">
+          <NuxtLink
+            to="/loading?level=N3&type=review"
+            class="group flex-1 flex items-start justify-between gap-3 px-5 py-4 hover:bg-paper transition-colors"
+          >
+            <div>
+              <div class="flex items-baseline gap-2 mb-0.5">
+                <span class="font-display text-xs font-semibold text-gold">復習</span>
+                <span class="font-jp text-xl font-bold text-navy">レビュー</span>
+              </div>
+              <p class="font-body text-xs text-ink-faint">
+                Review · {{ reviewQueue.store.count }} word{{ reviewQueue.store.count === 1 ? '' : 's' }}
+              </p>
+            </div>
+            <span class="font-display text-xs font-semibold text-ink-faint group-hover:text-gold transition-colors whitespace-nowrap pt-0.5">
+              Start →
+            </span>
+          </NuxtLink>
+
+          <button
+            class="flex-none mr-3 w-7 h-7 flex items-center justify-center rounded-full
+                   text-ink-faint hover:bg-line hover:text-bad transition-colors"
+            title="Clear review queue"
+            @click="reviewQueue.clear()"
+          >
+            <span class="font-display text-xs leading-none select-none">✕</span>
+          </button>
         </div>
       </div>
 

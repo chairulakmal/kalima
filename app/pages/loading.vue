@@ -6,6 +6,7 @@ useHead({ title: 'Getting ready… · Kalima' })
 const route = useRoute()
 const router = useRouter()
 const session = useSession()
+const reviewQueue = useReviewQueue()
 const errorMsg = ref<string | null>(null)
 
 const phrases = [
@@ -24,11 +25,39 @@ onMounted(async () => {
   }, 1800)
 
   const level = route.query.level as string
-  const validModes: SessionMode[] = ['reading', 'orthography', 'contextual', 'synonym', 'usage', 'vocab']
+  const validModes: SessionMode[] = ['reading', 'orthography', 'contextual', 'synonym', 'usage', 'vocab', 'review']
   const type: SessionMode = validModes.includes(route.query.type as SessionMode)
     ? (route.query.type as SessionMode)
     : 'synonym'
   if (!level) { router.replace('/'); return }
+
+  if (type === 'review') {
+    reviewQueue.init()
+    const reviewItems = reviewQueue.getQueueForSession()
+    if (reviewItems.length === 0) { router.replace('/'); return }
+
+    try {
+      const [result] = await Promise.all([
+        $fetch<{ sessionId: string; questions: ClientQuestion[] }>(
+          '/api/session/prepare',
+          {
+            method: 'POST',
+            body: {
+              level,
+              type: 'review',
+              reviewItems: reviewItems.map(i => ({ wordId: i.wordId, type: i.type })),
+            },
+          },
+        ),
+        new Promise<void>(resolve => setTimeout(resolve, 1000)),
+      ])
+      session.save(result.sessionId, result.questions, level as Level, 'review')
+      router.replace('/quiz')
+    } catch {
+      errorMsg.value = 'Failed to load the review session. Please try again.'
+    }
+    return
+  }
 
   try {
     const [result] = await Promise.all([

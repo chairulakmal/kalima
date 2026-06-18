@@ -21,6 +21,7 @@ const TYPE_LABELS: Record<string, string> = {
   synonym:     '言い換え類義',
   usage:       '用法',
   vocab:       '文字・語彙',
+  review:      '復習',
 }
 
 const route = useRoute()
@@ -29,6 +30,11 @@ const sessionId = route.query.sessionId as string
 
 const analysis = ref<string | null>(null)
 const analysisLoading = ref(false)
+const reviewQueue = useReviewQueue()
+
+const failsAddedCount = computed(() =>
+  data.value ? data.value.results.filter(r => r.correct === false).length : 0,
+)
 
 const { data, error } = await useAsyncData<ResultsResponse>(
   `results-${sessionId}`,
@@ -37,6 +43,13 @@ const { data, error } = await useAsyncData<ResultsResponse>(
 
 onMounted(async () => {
   session.clear()
+
+  reviewQueue.init()
+  if (data.value) {
+    reviewQueue.addFails(data.value.results)
+    if (data.value.type === 'review') reviewQueue.removeCorrects(data.value.results)
+  }
+
   if (!sessionId) return
   analysisLoading.value = true
   try {
@@ -104,6 +117,14 @@ class="bg-white rounded-2xl p-8 mb-5 text-center border-l-[3px] border-cerulean"
           </p>
         </div>
 
+        <!-- Review queue notice -->
+        <p
+          v-if="failsAddedCount > 0"
+          class="text-center font-body text-xs text-ink-faint mb-4"
+        >
+          {{ failsAddedCount }} word{{ failsAddedCount === 1 ? '' : 's' }} added to review queue
+        </p>
+
         <!-- AI Analysis -->
         <div class="bg-surface-cool border border-cerulean/20 rounded-2xl p-5 mb-5">
           <p class="font-display text-xs font-semibold text-cerulean uppercase tracking-wide mb-3">
@@ -123,8 +144,8 @@ class="bg-white rounded-2xl p-8 mb-5 text-center border-l-[3px] border-cerulean"
           <div
             v-for="(r, i) in data.results"
             :key="r.questionId"
-            class="bg-white rounded-xl p-4"
-            style="box-shadow: 0 2px 8px -4px rgba(15,28,46,0.12);"
+            class="bg-white rounded-xl p-4 result-item"
+            :style="{ '--i': i, boxShadow: '0 2px 8px -4px rgba(15,28,46,0.12)' }"
           >
             <div class="flex items-start gap-3">
               <!-- Correct/wrong indicator -->
@@ -200,3 +221,15 @@ v-if="r.exampleSentence && r.type !== 'contextual' && r.type !== 'usage'"
     </div>
   </div>
 </template>
+
+<style scoped>
+@keyframes slide-up {
+  from { transform: translateY(12px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+.result-item {
+  animation: slide-up 280ms ease-out both;
+  animation-delay: calc(var(--i, 0) * 55ms);
+}
+</style>

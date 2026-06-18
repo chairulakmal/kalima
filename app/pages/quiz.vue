@@ -18,6 +18,22 @@ const {
   submitTest,
 } = useQuiz()
 
+// ── Directional slide transition ──────────────────────────────────────────────
+
+const direction = ref<'forward' | 'backward'>('forward')
+const transitionName = computed(() => `quiz-${direction.value}`)
+
+function goNext() {
+  direction.value = 'forward'
+  if (isLast.value) submitTest()
+  else next()
+}
+
+function goBack() {
+  direction.value = 'backward'
+  back()
+}
+
 // ── Timer (vocab sessions only) ───────────────────────────────────────────────
 
 const VOCAB_DURATION_MS = 30 * 60 * 1000
@@ -74,11 +90,10 @@ function handleKeydown(e: KeyboardEvent) {
   }
   if (e.key === 'ArrowRight' || e.key === 'Enter') {
     if (!hasAnswer.value) return
-    if (isLast.value) submitTest()
-    else next()
+    goNext()
     return
   }
-  if (e.key === 'ArrowLeft' && !isFirst.value) back()
+  if (e.key === 'ArrowLeft' && !isFirst.value) goBack()
 }
 
 function choiceState(choiceId: string): 'idle' | 'selected' | 'dimmed' {
@@ -96,15 +111,16 @@ const TYPE_LABELS: Record<string, string> = {
   synonym:     '言い換え類義',
   usage:       '用法',
   vocab:       '文字・語彙',
+  review:      '復習',
 }
 
 useHead(computed(() => ({
   title: `${store.level ?? 'N3'} ${TYPE_LABELS[store.type] ?? store.type} · Kalima`,
 })))
 
-// For vocab sessions, show the current question's individual type.
+// For vocab/review sessions, show the current question's individual type.
 const typeLabel = computed(() => {
-  if (store.type === 'vocab' && currentQuestion.value) {
+  if ((store.type === 'vocab' || store.type === 'review') && currentQuestion.value) {
     return TYPE_LABELS[currentQuestion.value.type] ?? '語彙'
   }
   return TYPE_LABELS[store.type] ?? '語彙'
@@ -143,73 +159,91 @@ v-if="isVocabSession"
         <QuizProgressBar :current="answeredCount" :total="store.questions.length" />
       </div>
 
-      <template v-if="currentQuestion">
-        <!-- Question card -->
-        <div
-          class="bg-white rounded-2xl p-7 mb-4 border-l-[3px] border-cerulean"
-          style="box-shadow: var(--shadow);"
-        >
-          <p class="font-display text-xs font-semibold text-ink-faint tracking-widest mb-4">
-            {{ String(currentIndex + 1).padStart(2, '0') }}
+      <Transition :name="transitionName" mode="out-in">
+        <div v-if="currentQuestion" :key="currentIndex">
+          <!-- Question card -->
+          <div
+            class="bg-white rounded-2xl p-7 mb-4 border-l-[3px] border-cerulean"
+            style="box-shadow: var(--shadow);"
+          >
+            <p class="font-display text-xs font-semibold text-ink-faint tracking-widest mb-4">
+              {{ String(currentIndex + 1).padStart(2, '0') }}
+            </p>
+            <QuizCard
+              :prompt="currentQuestion.prompt"
+              :context="currentQuestion.context"
+              :type="currentQuestion.type"
+            />
+          </div>
+
+          <!-- Choices -->
+          <div class="space-y-3 mb-8">
+            <QuizChoiceButton
+              v-for="(choice, i) in currentQuestion.choices"
+              :key="choice.id"
+              :text="choice.text"
+              :state="choiceState(choice.id)"
+              :disabled="isSubmitting"
+              :number="i + 1"
+              @click="selectChoice(choice.id)"
+            />
+          </div>
+
+          <!-- Navigation -->
+          <div class="flex gap-3">
+            <button
+              v-if="!isFirst"
+              class="btn-secondary flex-none px-5 py-3 rounded-xl text-sm"
+              :disabled="isSubmitting"
+              @click="goBack"
+            >
+              ← Back
+            </button>
+
+            <button
+              v-if="!isLast"
+              class="btn-primary flex-1 py-3 rounded-xl text-sm"
+              :disabled="!hasAnswer || isSubmitting"
+              @click="goNext"
+            >
+              Next →
+            </button>
+
+            <button
+              v-if="isLast"
+              class="btn-primary flex-1 py-3 rounded-xl text-sm"
+              :disabled="!hasAnswer || isSubmitting"
+              @click="goNext"
+            >
+              {{ isSubmitting ? '提出中…' : 'Submit Test' }}
+            </button>
+          </div>
+
+          <p v-if="submitError" class="mt-3 text-center font-body text-sm text-bad">
+            {{ submitError }}
           </p>
-          <QuizCard
-            :prompt="currentQuestion.prompt"
-            :context="currentQuestion.context"
-            :type="currentQuestion.type"
-          />
+
+          <p class="mt-5 text-center font-body text-xs text-ink-faint">
+            1–4 to select &nbsp;·&nbsp; ← → to navigate
+          </p>
         </div>
-
-        <!-- Choices -->
-        <div class="space-y-3 mb-8">
-          <QuizChoiceButton
-            v-for="(choice, i) in currentQuestion.choices"
-            :key="choice.id"
-            :text="choice.text"
-            :state="choiceState(choice.id)"
-            :disabled="isSubmitting"
-            :number="i + 1"
-            @click="selectChoice(choice.id)"
-          />
-        </div>
-
-        <!-- Navigation -->
-        <div class="flex gap-3">
-          <button
-            v-if="!isFirst"
-            class="btn-secondary flex-none px-5 py-3 rounded-xl text-sm"
-            :disabled="isSubmitting"
-            @click="back"
-          >
-            ← Back
-          </button>
-
-          <button
-            v-if="!isLast"
-            class="btn-primary flex-1 py-3 rounded-xl text-sm"
-            :disabled="!hasAnswer || isSubmitting"
-            @click="next"
-          >
-            Next →
-          </button>
-
-          <button
-            v-if="isLast"
-            class="btn-primary flex-1 py-3 rounded-xl text-sm"
-            :disabled="!hasAnswer || isSubmitting"
-            @click="submitTest"
-          >
-            {{ isSubmitting ? '提出中…' : 'Submit Test' }}
-          </button>
-        </div>
-
-        <p v-if="submitError" class="mt-3 text-center font-body text-sm text-bad">
-          {{ submitError }}
-        </p>
-
-        <p class="mt-5 text-center font-body text-xs text-ink-faint">
-          1–4 to select &nbsp;·&nbsp; ← → to navigate
-        </p>
-      </template>
+      </Transition>
     </div>
   </div>
 </template>
+
+<style scoped>
+.quiz-forward-enter-active,
+.quiz-forward-leave-active,
+.quiz-backward-enter-active,
+.quiz-backward-leave-active {
+  transition: transform 220ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              opacity 220ms ease-out;
+}
+
+.quiz-forward-enter-from  { transform: translateX(28px); opacity: 0; }
+.quiz-forward-leave-to    { transform: translateX(-28px); opacity: 0; }
+
+.quiz-backward-enter-from { transform: translateX(-28px); opacity: 0; }
+.quiz-backward-leave-to   { transform: translateX(28px); opacity: 0; }
+</style>
