@@ -102,23 +102,28 @@ calls. These constraints inform several design decisions documented below.
 ```
 Browser
 │
-├─ index.vue        Mode picker. User selects a SessionMode (single type or full vocab)
+├─ index.vue        Mode picker. User selects a SessionMode (single type, full vocab, or review).
+│                   Review card visible when localStorage queue is non-empty (useReviewQueueStore.count > 0).
 │                   → navigates to /loading?level=N3&type={mode}.
 │
-├─ loading.vue      Calls POST /api/session/prepare.
-│                   Stores { sessionId, questions, type } in Pinia + localStorage.
+├─ loading.vue      For review mode: reads queue via useReviewQueue().getQueueForSession(),
+│                   posts { level, type: 'review', reviewItems } to /api/session/prepare.
+│                   For all modes: stores { sessionId, questions, type } in Pinia + localStorage.
 │                   Navigates to /quiz on success.
 │
 ├─ quiz.vue         Displays one ClientQuestion at a time.
 │                   Answers collected locally — no server calls per question.
+│                   Card-to-card navigation uses directional Vue <Transition> (slide left/right).
 │                   For vocab sessions: 30-minute countdown timer with colour shifts
 │                   at ≤5 min (amber) and ≤2 min (red). No auto-submit.
-│                   Per-question type label shown in header for vocab sessions.
+│                   Per-question type label shown in header for vocab and review sessions.
 │                   On "Submit Test" (last question): POST /api/session/submit
 │                   with all answers at once. Navigates to /results on success.
 │                   No correctness feedback shown during the quiz.
 │
 └─ results.vue      GET /api/session/results → score, time, breakdown + explanations.
+                    Per-type accuracy radar chart shown for vocab/review sessions (≥2 types).
+                    Wrong answers upserted to review queue; correct review answers pruned.
                     POST /api/session/analysis → AI paragraph (async, shown when ready).
                     "Try Again" clears cache and returns to index.vue.
 
@@ -182,9 +187,10 @@ export type QuestionType = 'reading' | 'orthography' | 'contextual' | 'synonym' 
 
 export const QUESTION_TYPES: QuestionType[] = ['reading', 'orthography', 'contextual', 'synonym', 'usage']
 
-// Session-level mode: either a single question type or the mixed full-vocab section.
-//   vocab — 35-question mixed session: 8 reading + 6 orthography + 11 contextual + 5 synonym + 5 usage
-export type SessionMode = QuestionType | 'vocab'
+// Session-level mode: either a single question type, the mixed full-vocab section, or a review session.
+//   vocab   — 35-question mixed session: 8 reading + 6 orthography + 11 contextual + 5 synonym + 5 usage
+//   review  — up to 10 questions drawn from the user's wrong-answer queue (specific wordId+type pairs)
+export type SessionMode = QuestionType | 'vocab' | 'review'
 
 // ── Source data ──────────────────────────────────────────────────────────────
 
@@ -254,7 +260,7 @@ export interface Answer {
 export interface TestSession {
   id: string
   level: Level
-  questionCount: number      // 10 (single-type) or 30 (vocab)
+  questionCount: number      // 10 (single-type or review) or 35 (vocab)
   questions: Question[]
   answers: Answer[]
   startedAt: number
@@ -281,10 +287,19 @@ export interface QuestionResult {
 
 export interface SessionStats {
   score: number
-  totalQuestions: number     // 10 or 30
+  totalQuestions: number     // 10 (single-type or review) or 35 (vocab)
   wrongWords: string[]
   weakTags: string[]
   avgTimePerQuestion: number // milliseconds
+}
+
+// ── Review queue ─────────────────────────────────────────────────────────────
+
+export interface ReviewItem {
+  wordId: string
+  type: QuestionType
+  prompt: string    // expression (or reading for contextual) — displayed in the queue badge
+  failedAt: number  // ms timestamp; queue is drawn oldest-first
 }
 ```
 
@@ -386,24 +401,27 @@ Prepares a session. Called once from `loading.vue`.
 
 **Request body**
 ```typescript
+// Fresh session
 { level: Level; type: SessionMode }
+// Review session
+{ level: Level; type: 'review'; reviewItems: { wordId: string; type: string }[] }
 ```
 
 **Response — 200 OK**
 ```typescript
 {
   sessionId: string
-  questions: ClientQuestion[]  // 10 items for single-type; 30 for 'vocab'
+  questions: ClientQuestion[]  // 10 items for single-type or review; 35 for 'vocab'
 }
 ```
 
 **Error responses**
 
-| Status | `code`           | Condition                                            |
-|--------|------------------|------------------------------------------------------|
-| 400    | `INVALID_REQUEST`| `level` or `type` invalid                           |
-| 503    | `NO_SEED_DATA`   | Seed pool empty for a required type                 |
-| 500    | `PREPARE_FAILED` | Unexpected server error                              |
+| Status | `code`           | Condition                                                      |
+|--------|------------------|----------------------------------------------------------------|
+| 400    | `INVALID_REQUEST`| `level` or `type` invalid; or `reviewItems` empty / all invalid types |
+| 503    | `NO_SEED_DATA`   | Seed pool empty for a required type; or no rows for review pairs |
+| 500    | `PREPARE_FAILED` | Unexpected server error                                        |
 
 **Server-side flow — single-type session**
 
@@ -412,7 +430,7 @@ Prepares a session. Called once from `loading.vue`.
 3. If pool is empty, return HTTP 503.
 4. Shuffle pool; take 10.
 5. Load word metadata from `words/${level}.json`.
-6. Assemble 10 `Question` objects; shuffle choices.
+6. Assemble 10 `Question` objects; shuffle choices. Skip any `wordId` not present in the word list.
 7. Persist `Session` (type = requestedType) and 10 `SessionQuestion` rows (each with `type` set).
 8. Project each `Question` to `ClientQuestion` via `toClientQuestion()`.
 9. Return `{ sessionId, questions }`.
@@ -425,6 +443,16 @@ Prepares a session. Called once from `loading.vue`.
 2. Concatenate all questions in problem order (reading first, usage last).
 3. Persist `Session` (type = 'vocab') and 35 `SessionQuestion` rows, each tagged with its own `type`.
 4. Return `{ sessionId, questions: ClientQuestion[35] }`.
+
+**Server-side flow — review session**
+
+1. Filter `reviewItems` to those with a valid `type` (whitelist: the five `QuestionType` values). Return 400 if none remain.
+2. Deduplicate by `(wordId, type)`.
+3. Fetch `ExamQuestion` rows matching any of the `(wordId, type)` pairs via Prisma `OR` query. Return 503 if no rows found.
+4. Shuffle results; take up to 10.
+5. Assemble questions (skip any `wordId` missing from the word list).
+6. Persist `Session` (type = 'review') and `SessionQuestion` rows with each question's own `type`.
+7. Return `{ sessionId, questions }`.
 
 ---
 
@@ -689,10 +717,12 @@ The cache protects against data loss on accidental page refresh during a quiz.
   sessionId: string
   questions: ClientQuestion[]
   level: Level
-  type: SessionMode          // 'vocab' | QuestionType
+  type: SessionMode          // 'vocab' | 'review' | QuestionType
   startedAt: number          // Unix timestamp (ms)
 }
 ```
+
+The wrong-answer queue is stored separately under `kalima_review_v1` as `ReviewItem[]`. It is managed by `useReviewQueueStore` (a separate Pinia options store) and persists across sessions and browser restarts.
 
 **Lifecycle**
 
@@ -899,7 +929,7 @@ Each of V1–V3 is available as a **standalone practice mode**; V4 combines all 
 
 | Version | Focus | Key additions |
 |---------|-------|---------------|
-| **Demo** | Recruiter demo | 5 vocab types · mixed vocab session (8-6-11-5-5, 35 q) · 30-min timer · AI results analysis · `/admin` audit · HMAC admin auth |
+| **Demo** | Recruiter demo | 5 vocab types · mixed vocab session (8-6-11-5-5, 35 q) · 30-min timer · wrong-answer review queue · per-type SVG radar chart · directional quiz transitions · AI results analysis · `/admin` audit · HMAC admin auth |
 | **V1** | Reading section | JLPT reading comprehension passages + questions |
 | **V2** | Grammar section | JLPT grammar / language-knowledge questions |
 | **V3** | Listening section | JLPT listening questions (audio-based) |
@@ -912,8 +942,12 @@ Each of V1–V3 is available as a **standalone practice mode**; V4 combines all 
 - Mixed `vocab` session: 35 questions in exam order (8-6-11-5-5 distribution), 30-minute countdown timer
 - 100 pre-seeded questions per type (500 total); each single-type session picks 10 at random; seeds in `prisma/seed-data/questions-n3.json`
 - Japanese-language answer choices; server-side assembly and answer validation
+- **Wrong-answer review queue**: Pinia options store + localStorage (`kalima_review_v1`); `addFails` upserts on any session, `removeCorrects` prunes on review sessions; `dequeue` returns up to 10 oldest-first
+- **Review session mode** (`SessionMode = 'review'`): sends `reviewItems: [{ wordId, type }]` to `POST /api/session/prepare`; server validates types, deduplicates, queries by exact `(wordId, type)` pairs via Prisma `OR`, no timer
+- **Per-type accuracy radar**: hand-rolled SVG pentagon/triangle/quadrilateral (N-vertex, `computed(() => entries.length)`); only tested types are passed — "not tested" is structurally absent, not visually zero
+- **Directional quiz transitions**: `<Transition name="quiz-forward|quiz-backward" mode="out-in">`; direction ref toggled by `goNext()` / `goBack()` before index update; scoped keyframes respect `prefers-reduced-motion`
 - Level: N3; no user accounts; **homepage is intentionally public** — designed for tech recruiters
-- Results page: score, time, per-question breakdown, `whyWrong` for wrong answers, AI performance analysis
+- Results page: score, time, per-question breakdown, `whyWrong` for wrong answers, staggered `slide-up` animations on result items (`--i` CSS custom property), AI performance analysis
 - Admin: `/admin` lists all seed questions with S–F review system (majority vote, bulk delete, unranked protection); HMAC session token, constant-time compare, brute-force throttle on login
 
 **V1 — Reading section**
@@ -960,3 +994,4 @@ Each of V1–V3 is available as a **standalone practice mode**; V4 combines all 
 | 2026-06-07 | chairulakmal  | Add `usage` (問題5 用法) question type. Expand vocab session to 35 questions (8-6-11-5-5). Seed pool complete at 500 questions (100 × 5 types). Split seed data by JLPT level (`questions-n3.json`); `seed.ts` reads all `questions-n*.json`. Index page redesign: vocab primary card with 問題1–5 sub-cards, Reading/Grammar coming-soon placeholders. BRAND.md overhaul and `main.css` alignment (AMOLED dark theme, spacing scale, tap targets). |
 | 2026-06-07 | chairulakmal  | Security hardening (see `SECURITY.md`). Claude API: per-IP throttle on `analysis` (10/hr) + `prepare` (30/10 min); atomic daily budget via `consumeBudget()` (closes TOCTOU race); graceful degrade on Anthropic errors. Admin: `admin_session` cookie now holds an opaque HMAC token instead of the password; constant-time secret comparison (`safeEqual`); brute-force throttle on login (5/15 min). New utils `server/utils/adminAuth.ts`, `server/utils/throttle.ts`. |
 | 2026-06-08 | chairulakmal  | Fix Pinia SSR crash (Pinia 2.3.1 + Vue 3.4+ null-prototype `dep` objects in setup stores): convert `session.ts` to options store. Fix Nitro routing conflict (`questions.get.ts` + `questions/` directory): moved to `questions/index.get.ts`. Fix admin page empty-on-refresh: switch from `await useAsyncData` to `useLazyAsyncData` in `ssr: false` pages. Docs updated to reflect Demo state (5 vocab types, admin auth shipped, roadmap renumbered V1–V4). |
+| 2026-06-18 | chairulakmal  | Add directional quiz card transitions (`quiz-forward` / `quiz-backward` Vue Transition, scoped keyframes, `prefers-reduced-motion` via global CSS). Add wrong-answer review queue (`useReviewQueueStore`, `useReviewQueue`, `ReviewItem`; Pinia options store with self-managed localStorage). Add review session mode (`SessionMode = 'review'`; `reviewItems` payload; server whitelist validation + dedup). Add per-type accuracy SVG radar chart (`TypeChart.vue`; N-vertex polygon; tested-only entries). Fix `prepare.post.ts`: consistent `continue`-on-missing-word in all assembly loops; `reviewItems[].type` whitelist guard. Docs updated to reflect all Demo additions. |

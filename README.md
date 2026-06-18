@@ -1,15 +1,14 @@
 # Kalima
 
-**A full-stack JLPT mock exam app.** Practice any of the five N3 vocabulary question types individually, or take the full 35-question vocabulary section in exam order under a 30-minute timer — then get a personalised Sonnet-powered performance analysis, all without an account.
+**A full-stack JLPT mock exam app.** Practice any of the five N3 vocabulary question types individually, take the full 35-question vocabulary section under a 30-minute timer, or drill your weak words via a persistent wrong-answer review queue — then get a personalised Sonnet-powered performance analysis, all without an account.
 
 > **Live demo → [kalima.chairulakmal.com](https://kalima.chairulakmal.com)**
-> **Admin audit → [kalima.chairulakmal.com/admin](https://kalima.chairulakmal.com/admin)**
 
 ---
 
 ## What it covers
 
-Five vocabulary question types from the JLPT N3 paper, matching the real exam format. Play each type individually (10 questions) or take the full vocab section (35 questions, 8-6-11-5-5 distribution, 30-minute timer):
+Five vocabulary question types from the JLPT N3 paper, matching the real exam format. Play each type individually (10 questions), take the full vocab section (35 questions, 8-6-11-5-5 distribution, 30-minute timer), or run a targeted review session against your wrong-answer queue:
 
 | # | Japanese | English | Format |
 |---|---|---|---|
@@ -18,6 +17,8 @@ Five vocabulary question types from the JLPT N3 paper, matching the real exam fo
 | 問題３ | 文脈規定 | Contextual Fill-in | Sentence with a blank → pick the word that fits |
 | 問題４ | 言い換え類義 | Synonym | Pick the word closest in meaning, substitutable in the example sentence |
 | 問題５ | 用法 | Correct Usage | Pick the sentence that uses the target word correctly |
+
+After any session, wrong answers are automatically added to a **review queue** (localStorage-backed Pinia store). The home screen surfaces a gold review card whenever the queue is non-empty; starting it sends the specific `(wordId, type)` pairs to the server for targeted practice. Words answered correctly during a review session are pruned from the queue.
 
 ---
 
@@ -44,6 +45,18 @@ Questions are pre-generated offline via `scripts/generate-seed.ts` (500 rows, on
 
 Session state (`sessionId`, shuffled questions, `startedAt`) is mirrored to localStorage so a mid-quiz refresh doesn't lose progress. It is cleared on session completion or on starting a new session. The database is always authoritative.
 
+### Wrong-answer queue is device-local by design
+
+Every wrong answer is upserted into a `ReviewItem[]` array in a Pinia options store that self-manages its own localStorage persistence (`kalima_review_v1`). The store is never hydrated during SSR — `load()` is called only from `onMounted` via `useReviewQueue().init()`, keeping all localStorage access behind `import.meta.client`. No server changes were required; the review session reuses the existing `POST /api/session/prepare` endpoint with a `reviewItems` payload, and the server validates every `type` field against a whitelist before querying.
+
+### Quiz cards slide with directional transitions
+
+Advancing to the next question slides the old card left and brings the new one in from the right; navigating back reverses the direction. This is implemented with a computed `<Transition>` name (`quiz-forward` / `quiz-backward`) and `mode="out-in"`, using a `direction` ref that the `goNext()` / `goBack()` wrappers set before updating `currentIndex`. The scoped keyframes respect `prefers-reduced-motion` via a global `animation-duration: 0.01ms` rule in `main.css`.
+
+### Per-type accuracy is a hand-rolled SVG radar chart
+
+The results page renders a pentagon (or triangle/quadrilateral for fewer types) SVG radar chart with no chart library. Vertex count derives from `computed(() => props.entries.length)` so the geometry recalculates reactively. Grid rings, axis lines, the filled data polygon, and vertex dots are all paths/circles driven by polar-coordinate helpers. Only types actually tested in the session are passed as entries — untested types are excluded before the component ever sees the data, so an absent type can never visually collapse to the centre and be misread as a zero score.
+
 ### Admin review system prevents question quality drift
 
 `/admin` lists all 500 seed questions. Each can be rated S–F by any reviewer; the effective rank is a majority vote across all reviews. Questions with no reviews are protected from bulk delete — the system won't silently discard unreviewed content. The admin area is protected by an HMAC-derived session token with constant-time comparison and a brute-force throttle on login (see `SECURITY.md`).
@@ -68,11 +81,15 @@ Session state (`sessionId`, shuffled questions, `startedAt`) is mirrored to loca
 ## Session flow
 
 ```
-/               Pick mode: full vocab section or individual question type
-/loading        POST /api/session/prepare — samples from seed pool (10 q single-type, 35 q vocab)
-/quiz           Answers collected client-side; 30-min countdown for vocab sessions
+/               Pick mode: full vocab section, individual question type, or review queue
+/loading        Fresh session: POST /api/session/prepare { level, type }
+                Review session: POST /api/session/prepare { level, type: 'review', reviewItems }
+/quiz           Answers collected client-side; directional slide transitions between cards
+                30-min countdown timer for vocab sessions only
                 Submit → POST /api/session/submit (all answers at once)
 /results        GET  /api/session/results  — score · time · per-question breakdown · whyWrong
+                Per-type accuracy radar chart (vocab / review sessions)
+                Wrong answers upserted to review queue; correct review answers pruned
                 POST /api/session/analysis — Sonnet paragraph (async, shown when ready)
 /admin/login    Password-protected entry point
 /admin          Paginated audit list of all generated questions
@@ -86,11 +103,14 @@ Session state (`sessionId`, shuffled questions, `startedAt`) is mirrored to loca
 ```
 app/
   pages/          index · loading · quiz · results · admin/
-  components/     QuizCard · ChoiceButton · Explanation · ProgressBar · LoadingSpinner
-  composables/    useQuiz · useSession
+  components/
+    quiz/         QuizCard · ChoiceButton · Explanation · ProgressBar
+    results/      TypeChart.vue — hand-rolled SVG radar chart
+    ui/           LoadingSpinner
+  composables/    useQuiz · useSession · useReviewQueue
   middleware/     admin.global.ts — client-side admin auth guard
-  stores/         session (Pinia)
-  types/          index.ts — shared TypeScript types
+  stores/         session · reviewQueue (both Pinia options stores)
+  types/          index.ts — shared TypeScript types (incl. ReviewItem)
 
 server/
   api/session/    prepare · submit · results · analysis
@@ -105,7 +125,8 @@ words/
   n1–n5.json     Word lists (read by the server at runtime via fs, not bundled)
 
 scripts/
-  generate-seed.ts  Offline question generation (Sonnet tool use, validator, upsert)
+  generate-seed.ts      Offline question generation (Sonnet tool use, validator, upsert)
+  generate-passages.ts  Offline reading passage generation (for V1)
 ```
 
 ---
@@ -149,8 +170,8 @@ npm run start     # runs prisma db push, seeds questions, then starts the Node s
 
 | Version | Focus |
 |---|---|
-| **Demo** (now) | 5 vocab types · 35 q mixed session (8-6-11-5-5) · 30-min timer · Sonnet analysis · HMAC-protected admin |
-| **V1** | Reading section · AI passage generation |
+| **Demo** (now) | 5 vocab types · 35 q mixed session (8-6-11-5-5) · 30-min timer · wrong-answer review queue · per-type SVG radar chart · directional quiz transitions · Sonnet analysis · HMAC-protected admin |
+| **V1** | Reading section · AI passage generation (passages pre-generated; session UI in progress) |
 | **V2** | Grammar section |
 | **V3** | Listening section |
 | **V4** | Full exam mode — all sections, timed, single submission · N1–N5 unlock |

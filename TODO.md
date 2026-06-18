@@ -127,6 +127,14 @@
 - [x] Token-based auth guard for `/admin` (HMAC session cookie, constant-time compare, login throttle)
 - [x] Security hardening — Claude API + admin dashboard (see `SECURITY.md`)
 
+### Demo / MVP — UX & data viz polish
+- [x] Directional quiz card transitions — `<Transition name="quiz-forward|quiz-backward" mode="out-in">` with scoped keyframes; `prefers-reduced-motion` respected via global `animation-duration: 0.01ms` in `main.css`
+- [x] Staggered result item animations — `slide-up` keyframe, `--i` CSS custom property drives `animation-delay`
+- [x] Per-type accuracy radar chart (`app/components/results/TypeChart.vue`) — hand-rolled SVG, N-vertex polygon (2–5 types), only tested types passed; structurally prevents "untested = zero" visual collapse
+- [x] Wrong-answer review queue — `useReviewQueueStore` (Pinia options store, self-managed localStorage at `kalima_review_v1`), `useReviewQueue` composable, `ReviewItem` type
+- [x] Review session mode (`SessionMode = 'review'`) — gold home-screen card, `reviewItems` payload to prepare endpoint, server validates + deduplicates type whitelist, no timer
+- [x] `prepare.post.ts` hardening — consistent word-not-found handling (`continue` in all assembly loops); `reviewItems[].type` validated against whitelist before Prisma query
+
 ### V1 — Passage generation (offline)
 - [x] `scripts/generate-passages.ts` — generates `prisma/seed-data/passages-n3.json` (short×20, medium×10, long×5, info×10)
 - [x] `scripts/audit-passages.ts` — structural audit + AI vocab check + `--fix` auto-regeneration for flagged passages
