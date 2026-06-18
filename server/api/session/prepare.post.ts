@@ -69,15 +69,16 @@ async function prepareSingleTypeSession(level: Level, type: QuestionType, wordMa
   const sampled = shuffle(pool).slice(0, QUESTION_COUNT)
   const session = await prisma.session.create({ data: { level, type } })
 
-  const assembled = sampled.map((examQ, order) => {
+  let order = 0
+  const assembled: { question: ReturnType<typeof assembleQuestion>; sqId: string; correctChoiceId: string; order: number }[] = []
+  for (const examQ of sampled) {
     const word = wordMap.get(examQ.wordId)
-    if (!word) throw new Error(`Word ${examQ.wordId} not found in word list`)
-
+    if (!word) continue
     const sqId = crypto.randomUUID()
     const question = assembleQuestion(word, examQ as AssembleInput, type, sqId)
     const correctChoice = question.choices.find(c => c.isCorrect)!
-    return { question, sqId, correctChoiceId: correctChoice.id, order }
-  })
+    assembled.push({ question, sqId, correctChoiceId: correctChoice.id, order: order++ })
+  }
 
   await prisma.sessionQuestion.createMany({
     data: assembled.map(({ sqId, question, correctChoiceId, order }) => ({
@@ -165,9 +166,15 @@ async function prepareReviewSession(
     throw createError({ statusCode: 400, message: 'Review queue is empty' })
   }
 
-  const unique = reviewItems.filter(
-    (item, i, arr) => arr.findIndex(x => x.wordId === item.wordId && x.type === item.type) === i,
-  )
+  const validTypes = new Set<string>(['reading', 'orthography', 'contextual', 'synonym', 'usage'])
+
+  const unique = reviewItems
+    .filter(item => validTypes.has(item.type))
+    .filter((item, i, arr) => arr.findIndex(x => x.wordId === item.wordId && x.type === item.type) === i)
+
+  if (unique.length === 0) {
+    throw createError({ statusCode: 400, message: 'No valid question types in review items' })
+  }
 
   const examQuestions = await prisma.examQuestion.findMany({
     where: { OR: unique.map(({ wordId, type }) => ({ wordId, type })) },
@@ -180,15 +187,17 @@ async function prepareReviewSession(
   const sampled = shuffle(examQuestions).slice(0, QUESTION_COUNT)
   const session = await prisma.session.create({ data: { level, type: 'review' } })
 
-  const assembled = sampled.map((examQ, order) => {
+  let order = 0
+  const assembled: { question: ReturnType<typeof assembleQuestion>; sqId: string; correctChoiceId: string; order: number; qType: QuestionType }[] = []
+  for (const examQ of sampled) {
     const word = wordMap.get(examQ.wordId)
-    if (!word) throw new Error(`Word ${examQ.wordId} not found in word list`)
+    if (!word) continue
     const sqId = crypto.randomUUID()
     const qType = examQ.type as QuestionType
     const question = assembleQuestion(word, examQ as AssembleInput, qType, sqId)
     const correctChoice = question.choices.find(c => c.isCorrect)!
-    return { question, sqId, correctChoiceId: correctChoice.id, order, qType }
-  })
+    assembled.push({ question, sqId, correctChoiceId: correctChoice.id, order: order++, qType })
+  }
 
   await prisma.sessionQuestion.createMany({
     data: assembled.map(({ sqId, question, correctChoiceId, order, qType }) => ({
