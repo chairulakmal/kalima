@@ -26,38 +26,38 @@
 - [ ] Between passages: passage changes, Q counter resets; overall progress bar shows passages done
 - [ ] `results.vue` — reading results: per-passage breakdown with passage text visible on review
 
-### V3 — Grammar Section
+### V2 — Grammar Section
 
 - [ ] Grammar question types (particle choice, conjugation, sentence structure)
 - [ ] Grammar item data model
 - [ ] Grammar question assembly path
 
-### V4 — Listening Section
+### V3 — Listening Section
 
 - [ ] Audio content sourcing or AI script generation
 - [ ] Audio delivery (CDN / streaming)
 - [ ] In-page audio player UI
 - [ ] Listening question types matching JLPT format
 
-### V4.5 — User Accounts & Mistake Notebook *(consider after full exam excluding listening ships)*
+### V3.5 — User Accounts & Mistake Notebook *(consider after full exam excluding listening ships)*
 
 - [ ] User authentication (email/OAuth)
 - [ ] Per-user mistake log — record each incorrect answer with `wordId`, `QuestionType`, and timestamp
 - [ ] Mistake notebook view — browse and filter personal weak words by type
 - [ ] Optional: spaced-repetition scheduling (surface weak words more often in new sessions)
 
-> Prerequisite: V1–V3 complete (vocab + reading + grammar available). The mistake log is most useful when all non-listening question types are seeded and a user can meaningfully track cross-section weaknesses. Listening (V4) can be added to the tracking system incrementally.
+> Prerequisite: V1–V2 complete (vocab + reading + grammar available). The mistake log is most useful when all non-listening question types are seeded and a user can meaningfully track cross-section weaknesses. Listening (V3) can be added to the tracking system incrementally.
 
 ---
 
-### V5 — Real Exam Mode
+### V4 — Real Exam Mode
 
 - [ ] Section sequencing engine: vocab → reading → grammar → listening in one session
 - [ ] Per-section timers matching actual JLPT time allocation
 - [ ] Lock between sections — no early exit, no revisiting previous sections
 - [ ] Single combined submission at the end of the full exam
 - [ ] Combined results page: section scores + overall score + cross-section AI analysis
-- [ ] Unlock N1–N5 after V5 ships with stable N3
+- [ ] Unlock N1–N5 with V4, once N3 is stable
 - [ ] Re-enable on-demand AI *question generation* — deferred until all sections are fully seeded and real exam mode is complete (results analysis remains on-demand throughout)
 
 ---
@@ -79,7 +79,7 @@
 - [x] `server/api/session/submit.post.ts`
 - [x] `server/api/session/results.get.ts`
 - [x] `server/api/session/analysis.post.ts` (AI, rate-limited by DAILY_API_LIMIT)
-- [x] `server/api/admin/questions.get.ts` (paginated, rank filter)
+- [x] `server/api/admin/questions/index.get.ts` (paginated, rank filter)
 - [x] `server/api/admin/questions/[id].get.ts`
 - [x] `server/api/admin/questions/[id].delete.ts`
 - [x] `server/api/admin/questions/[id]/review.post.ts`

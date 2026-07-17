@@ -145,7 +145,7 @@ class="font-display text-xs font-semibold text-ink-faint
       </div>
 
       <p class="text-center text-xs text-ink-faint font-body leading-relaxed">
-        500 AI-generated questions · schema-validated distractors<br>
+        496 AI-generated questions · schema-validated distractors<br>
         Claude Sonnet-powered analysis · modelled on official JLPT N3 guides
       </p>
 

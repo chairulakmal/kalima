@@ -99,7 +99,7 @@ async function prepareSingleTypeSession(level: Level, type: QuestionType, wordMa
   }
 }
 
-// ── Full vocabulary section (8-6-11-5 across 4 types) ───────────────────────
+// ── Full vocabulary section (8-6-11-5-5 across 5 types) ─────────────────────
 
 async function prepareVocabSession(level: Level, wordMap: Map<string, Word>) {
   const session = await prisma.session.create({ data: { level, type: 'vocab' } })

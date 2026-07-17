@@ -39,7 +39,7 @@ For 問題４, the synonym must be substitutable into the example sentence — t
 
 ### Generation and analysis are separate — but share one counter
 
-Questions are pre-generated offline via `scripts/generate-seed.ts` (500 rows, one per word–type pair). The live app never generates questions on demand. A single `DAILY_API_LIMIT` counter in the DB guards the one live AI call — the post-session analysis. On limit: analysis returns `null` and the UI silently omits the panel.
+Questions are pre-generated offline via `scripts/generate-seed.ts` (496 rows, one per word–type pair). The live app never generates questions on demand. A single `DAILY_API_LIMIT` counter in the DB guards the one live AI call — the post-session analysis. On limit: analysis returns `null` and the UI silently omits the panel.
 
 ### localStorage is a resilience layer, not a source of truth
 
@@ -59,7 +59,7 @@ The results page renders a pentagon (or triangle/quadrilateral for fewer types) 
 
 ### Admin review system prevents question quality drift
 
-`/admin` lists all 500 seed questions. Each can be rated S–F by any reviewer; the effective rank is a majority vote across all reviews. Questions with no reviews are protected from bulk delete — the system won't silently discard unreviewed content. The admin area is protected by an HMAC-derived session token with constant-time comparison and a brute-force throttle on login (see `SECURITY.md`).
+`/admin` lists all 496 seed questions. Each can be rated S–F, and the effective rank is computed by majority vote across a question's reviews (`computeRank`, tie-breaking toward the worst rank). Today there is a single admin identity, so each question carries one review and the vote resolves to it; the vote logic is in place for when multiple reviewer identities exist. Questions with no reviews are protected from bulk delete — the system won't silently discard unreviewed content. The admin area is protected by an HMAC-derived session token with constant-time comparison and a brute-force throttle on login (see `SECURITY.md`).
 
 ---
 
@@ -140,7 +140,7 @@ cp .env.example .env          # fill in DATABASE_URL, ANTHROPIC_API_KEY, ADMIN_P
 docker compose up -d          # start Postgres on :5432
 npm install
 npx prisma db push
-npm run db:seed               # load the 500 pre-generated questions
+npm run db:seed               # load the 496 pre-generated questions
 npm run dev                   # http://localhost:3000
 ```
 
@@ -158,11 +158,12 @@ npm run dev                   # http://localhost:3000
 ## Deployment (Railway)
 
 ```bash
-npx nuxi build
-npm run start     # runs prisma db push, seeds questions, then starts the Node server
+npm run build
+npm start         # runs prisma db push, seeds questions, then starts the Node server
 ```
 
-`railway.json` sets the builder to **Railpack** and the health-check to `/`.
+`railway.json` sets the builder to **Railpack**, pins one replica in `asia-southeast1`, and
+restarts on failure (max 10 retries).
 
 ---
 

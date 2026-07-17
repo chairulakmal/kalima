@@ -87,7 +87,7 @@ calls. These constraints inform several design decisions documented below.
 
 ### Non-Goals
 
-- **On-demand AI question generation during a session.** Questions are pre-seeded; `scripts/generate-seed.ts` is the only path to new questions. Re-enabling live generation is deferred until all exam sections are fully seeded (V5).
+- **On-demand AI question generation during a session.** Questions are pre-seeded; `scripts/generate-seed.ts` is the only path to new questions. Re-enabling live generation is deferred until all exam sections are fully seeded (V4).
 - **On-demand AI beyond results analysis.** The only live Anthropic call is `POST /api/session/analysis`. This remains the sole on-demand AI call indefinitely.
 - **Authentication on the demo homepage.** The `/` quiz is intentionally public. V1+ features will be gated.
 - **N1, N2, N4, N5 level support.** Word lists for all levels exist at `/words/`; only N3 is active. Enabling additional levels requires no schema changes.
@@ -331,7 +331,7 @@ model Session {
 model ExamQuestion {
   id             String               @id @default(cuid())
   wordId         String
-  type           String               // 'reading' | 'orthography' | 'contextual' | 'synonym'
+  type           String               // 'reading' | 'orthography' | 'contextual' | 'synonym' | 'usage'
   correctAnswer  String
   correctReading String?              // kana reading of correctAnswer; present for reading/contextual
   distractors    Json                 // ExamDistractor[]
@@ -391,7 +391,11 @@ model RateLimit {
 ## 5. API Contracts
 
 All endpoints return `Content-Type: application/json`.
-All error responses use the shape `{ error: string, code: string }`.
+
+Errors are raised with h3's `createError({ statusCode, message })`, so the serialized body is
+h3's standard shape — `{ statusCode, statusMessage, message, url, ... }`. There is **no application-level
+`code` field**; the tables below list the literal `message` each condition produces. Clients should
+branch on `statusCode`, not on message text.
 
 ---
 
@@ -417,11 +421,15 @@ Prepares a session. Called once from `loading.vue`.
 
 **Error responses**
 
-| Status | `code`           | Condition                                                      |
-|--------|------------------|----------------------------------------------------------------|
-| 400    | `INVALID_REQUEST`| `level` or `type` invalid; or `reviewItems` empty / all invalid types |
-| 503    | `NO_SEED_DATA`   | Seed pool empty for a required type; or no rows for review pairs |
-| 500    | `PREPARE_FAILED` | Unexpected server error                                        |
+| Status | `message`                                          | Condition                                       |
+|--------|----------------------------------------------------|-------------------------------------------------|
+| 400    | `Invalid level`                                    | `level` not recognised                          |
+| 400    | `Review queue is empty`                            | `reviewItems` missing or empty                  |
+| 400    | `No valid question types in review items`          | every `reviewItems` entry has an unknown type   |
+| 429    | `Too many requests. Try again later.`              | per-IP throttle (30 per 10 min)                 |
+| 503    | `Seed questions not loaded. Run db:seed first.`    | seed pool empty                                 |
+| 503    | `No seed questions for type "<type>". Run db:seed first.` | pool empty for a required type            |
+| 503    | `No questions found for review items`              | no rows match the requested (wordId, type) pairs |
 
 **Server-side flow — single-type session**
 
@@ -475,10 +483,9 @@ Submits all answers at once at the end of a quiz session. Called once from `quiz
 
 **Error responses**
 
-| Status | `code`           | Condition                                      |
-|--------|------------------|------------------------------------------------|
-| 400    | `INVALID_REQUEST`| `sessionId` absent or `answers` not an array   |
-| 500    | `SUBMIT_FAILED`  | Unexpected server error                        |
+| Status | `message`         | Condition                                     |
+|--------|-------------------|-----------------------------------------------|
+| 400    | `Invalid request` | `sessionId` absent or `answers` not an array  |
 
 **Server-side flow**
 
@@ -516,12 +523,13 @@ Returns full results including explanations. Called once from `results.vue`.
 
 **Error responses**
 
-| Status | `code`               | Condition                              |
+| Status | `message`            | Condition                              |
 |--------|----------------------|----------------------------------------|
-| 400    | `MISSING_SESSION_ID` | `sessionId` query param absent         |
-| 404    | `SESSION_NOT_FOUND`  | `sessionId` does not exist             |
-| 422    | `SESSION_INCOMPLETE` | One or more questions are unanswered   |
-| 500    | `RESULTS_FAILED`     | Unexpected server error                |
+| 400    | `sessionId required` | `sessionId` query param absent         |
+| 404    | `Session not found`  | `sessionId` does not exist             |
+
+There is **no** incomplete-session check: an unsubmitted session returns results, and
+`results.get.ts` falls back to `new Date()` when `completedAt` is null.
 
 **Server-side flow**
 
@@ -532,13 +540,15 @@ Returns full results including explanations. Called once from `results.vue`.
    ```
    Key by `${wordId}::${type}` for O(1) lookup.
 3. Load word metadata from the word-list JSON for all wordIds.
-4. For each `SessionQuestion`, reconstruct the prompt by type:
-   - `reading` / `orthography`: `word.expression` (underlined in the UI)
-   - `synonym`: `word.expression`
-   - `contextual`: replace the target word in `exampleSentence.japanese` with `（　　）`
+4. For each `SessionQuestion`, reconstruct the prompt by type (`results.get.ts:62-74`):
+   - `orthography`: `word.reading` — the kana. **Not `expression`**: 問題2 shows the reading and asks
+     for the kanji, so prompting with `expression` would leak the answer.
+   - `contextual`: replace the target in `exampleSentence.japanese` with `（　　）`, choosing whichever
+     of `expression` / `reading` actually occurs in the sentence; falls back to `expression` if neither does.
+   - everything else (`reading`, `synonym`, `usage`): `word.expression`.
 5. Build `QuestionResult` per question. For incorrect answers, match the chosen distractor
    text against `ExamQuestion.distractors` to recover `whyWrong`.
-6. Suppress `exampleSentence` from the result for `contextual` questions (it is already the prompt).
+6. `exampleSentence` is returned for **every** type, including `contextual` — it is not suppressed.
 
 ---
 
@@ -561,22 +571,26 @@ Generates an AI performance analysis using `claude-sonnet-4-6`. Called once from
 
 **Error responses**
 
-| Status | `code`               | Condition                              |
-|--------|----------------------|----------------------------------------|
-| 400    | `MISSING_SESSION_ID` | `sessionId` body field absent          |
-| 404    | `SESSION_NOT_FOUND`  | `sessionId` does not exist             |
-| 422    | `SESSION_INCOMPLETE` | One or more questions are unanswered   |
-| 500    | `ANALYSIS_FAILED`    | Unexpected server error                |
+| Status | `message`                             | Condition                          |
+|--------|---------------------------------------|------------------------------------|
+| 400    | `Invalid request`                     | `sessionId` body field absent      |
+| 404    | `Session not found`                   | `sessionId` does not exist         |
+| 429    | `Too many requests. Try again later.` | per-IP throttle (10 per hour)      |
+
+Budget exhaustion is **not** an error: it returns `200 { analysis: null }` and the results page
+silently omits the panel.
 
 **Server-side flow**
 
 1. If `Session.analysis` is already populated, return the cached value immediately.
-2. Check `canGenerate()` — if the daily limit is exhausted, return `{ analysis: null }`.
-3. Call `incrementCount()`.
-4. Load session, questions, and word metadata.
-5. Call `claude-sonnet-4-6` (see §6.2).
-6. Persist the returned paragraph to `Session.analysis`.
-7. Return `{ analysis }`.
+2. Call `consumeBudget()` — a single atomic upsert+increment that reserves a slot and reports
+   whether it landed within `DAILY_API_LIMIT`. If it did not, return `{ analysis: null }`.
+   (This replaced an earlier check-then-increment pair, which was a TOCTOU race — see SECURITY.md C2.
+   The read-only `canGenerate()` still exists in `rateLimit.ts` but is unused.)
+3. Load session, questions, and word metadata.
+4. Call `claude-sonnet-4-6` (see §6.2).
+5. Persist the returned paragraph to `Session.analysis`.
+6. Return `{ analysis }`.
 
 ---
 
@@ -642,7 +656,7 @@ Returns full detail for a single `ExamQuestion`, including word lookup and revie
 ## 6. AI Integration
 
 **Question generation** (offline only, `scripts/generate-seed.ts`) uses `claude-sonnet-4-6`.
-**Session analysis** (`POST /api/session/analysis`) uses `claude-sonnet-4-6` and is the only live Anthropic call. On-demand question generation is permanently disabled until V5 (all exam sections seeded).
+**Session analysis** (`POST /api/session/analysis`) uses `claude-sonnet-4-6` and is the only live Anthropic call. On-demand question generation is permanently disabled until V4 (all exam sections seeded).
 
 > **Question format reference:** `questions/README.md` documents universal AI generation rules and the live output contract. Per-type prompt rules (vocab types) are in `questions/vocab.md`.
 
@@ -654,7 +668,7 @@ Questions are **not** generated on demand during a session. `scripts/generate-se
 is run offline to produce `prisma/seed-data/questions.json`. `prisma/seed.ts` upserts
 these rows into `ExamQuestion` with `model='seed'` on each deploy.
 
-**Pool size:** 100 questions per type. Current state: 500 seeded (all five types: reading, orthography, contextual, synonym, usage). Seed file: `prisma/seed-data/questions-n3.json`; `prisma/seed.ts` reads all `questions-n*.json` files to support future JLPT levels.
+**Pool size:** 100 questions per type. Current state: 496 seeded across all five types — reading 100, orthography 96, contextual 100, synonym 100, usage 100. Seed file: `prisma/seed-data/questions-n3.json`; `prisma/seed.ts` reads all `questions-n*.json` files to support future JLPT levels.
 
 **Generation dispatch by type**
 
@@ -681,7 +695,7 @@ Full prompt rules remain documented in [`questions/README.md`](questions/README.
 
 **Model:** `claude-sonnet-4-6` · **max_tokens:** 700
 
-Sonnet is used over Haiku because pattern recognition across 10–30 questions — identifying
+Sonnet is used over Haiku because pattern recognition across 10–35 questions — identifying
 semantic confusion, kanji misreading types, form/register errors — is meaningfully better.
 Typical cost per analysis request: ~$0.009 (~600 input + ~450 output tokens).
 
@@ -923,7 +937,7 @@ schema change to `ExamQuestion` and keeps the prompt consistent if the word data
 
 ## 13. Product Roadmap
 
-All versions target **N3** only. N1–N5 are unlocked after V5 ships and N3 is stable.
+All versions target **N3** only. N1–N5 are unlocked with V4, once N3 is stable.
 
 Each of V1–V3 is available as a **standalone practice mode**; V4 combines all sections into a single timed real-exam experience.
 
@@ -940,7 +954,7 @@ Each of V1–V3 is available as a **standalone practice mode**; V4 combines all 
 **Demo (current)**
 - Five selectable vocab question types: `reading` (漢字読み), `orthography` (表記), `contextual` (文脈規定), `synonym` (言い換え類義), `usage` (用法)
 - Mixed `vocab` session: 35 questions in exam order (8-6-11-5-5 distribution), 30-minute countdown timer
-- 100 pre-seeded questions per type (500 total); each single-type session picks 10 at random; seeds in `prisma/seed-data/questions-n3.json`
+- Pre-seeded pool of 496 (100 per type, except orthography at 96); each single-type session picks 10 at random; seeds in `prisma/seed-data/questions-n3.json`
 - Japanese-language answer choices; server-side assembly and answer validation
 - **Wrong-answer review queue**: Pinia options store + localStorage (`kalima_review_v1`); `addFails` upserts on any session, `removeCorrects` prunes on review sessions; `dequeue` returns up to 10 oldest-first
 - **Review session mode** (`SessionMode = 'review'`): sends `reviewItems: [{ wordId, type }]` to `POST /api/session/prepare`; server validates types, deduplicates, queries by exact `(wordId, type)` pairs via Prisma `OR`, no timer
@@ -991,7 +1005,7 @@ Each of V1–V3 is available as a **standalone practice mode**; V4 combines all 
 | 2026-06-07 | chairulakmal  | Switch to pre-seeded demo model: 60 → 300 questions offline via `scripts/generate-seed.ts`. Rate limit narrowed to analysis only. |
 | 2026-06-07 | chairulakmal  | Expand pool to 100/type (300 total). Upgrade analysis to `claude-sonnet-4-6` (comprehensive, 3–5 sentences). Apply `DAILY_API_LIMIT` to analysis. Example sentence per result. |
 | 2026-06-07 | chairulakmal  | Add `contextual` (問題3 文脈規定) question type. Add `SessionMode = QuestionType \| 'vocab'` for mixed 30-question vocab sessions (8-6-11-5 distribution). Add `SessionQuestion.type` column for per-question type tracking. Add 30-minute countdown timer (vocab sessions; amber ≤5 min, red ≤2 min). Update `results.get.ts` for per-question (wordId, type) lookup. Update `generate-seed.ts` with contextual prompt and validator. |
-| 2026-06-07 | chairulakmal  | Add `usage` (問題5 用法) question type. Expand vocab session to 35 questions (8-6-11-5-5). Seed pool complete at 500 questions (100 × 5 types). Split seed data by JLPT level (`questions-n3.json`); `seed.ts` reads all `questions-n*.json`. Index page redesign: vocab primary card with 問題1–5 sub-cards, Reading/Grammar coming-soon placeholders. BRAND.md overhaul and `main.css` alignment (AMOLED dark theme, spacing scale, tap targets). |
+| 2026-06-07 | chairulakmal  | Add `usage` (問題5 用法) question type. Expand vocab session to 35 questions (8-6-11-5-5). Seed pool at 496 questions (100 per type, except orthography at 96). Split seed data by JLPT level (`questions-n3.json`); `seed.ts` reads all `questions-n*.json`. Index page redesign: vocab primary card with 問題1–5 sub-cards, Reading/Grammar coming-soon placeholders. BRAND.md overhaul and `main.css` alignment (AMOLED dark theme, spacing scale, tap targets). |
 | 2026-06-07 | chairulakmal  | Security hardening (see `SECURITY.md`). Claude API: per-IP throttle on `analysis` (10/hr) + `prepare` (30/10 min); atomic daily budget via `consumeBudget()` (closes TOCTOU race); graceful degrade on Anthropic errors. Admin: `admin_session` cookie now holds an opaque HMAC token instead of the password; constant-time secret comparison (`safeEqual`); brute-force throttle on login (5/15 min). New utils `server/utils/adminAuth.ts`, `server/utils/throttle.ts`. |
 | 2026-06-08 | chairulakmal  | Fix Pinia SSR crash (Pinia 2.3.1 + Vue 3.4+ null-prototype `dep` objects in setup stores): convert `session.ts` to options store. Fix Nitro routing conflict (`questions.get.ts` + `questions/` directory): moved to `questions/index.get.ts`. Fix admin page empty-on-refresh: switch from `await useAsyncData` to `useLazyAsyncData` in `ssr: false` pages. Docs updated to reflect Demo state (5 vocab types, admin auth shipped, roadmap renumbered V1–V4). |
 | 2026-06-18 | chairulakmal  | Add directional quiz card transitions (`quiz-forward` / `quiz-backward` Vue Transition, scoped keyframes, `prefers-reduced-motion` via global CSS). Add wrong-answer review queue (`useReviewQueueStore`, `useReviewQueue`, `ReviewItem`; Pinia options store with self-managed localStorage). Add review session mode (`SessionMode = 'review'`; `reviewItems` payload; server whitelist validation + dedup). Add per-type accuracy SVG radar chart (`TypeChart.vue`; N-vertex polygon; tested-only entries). Fix `prepare.post.ts`: consistent `continue`-on-missing-word in all assembly loops; `reviewItems[].type` whitelist guard. Docs updated to reflect all Demo additions. |
