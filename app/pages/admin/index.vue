@@ -54,7 +54,7 @@ const rankFilter = ref<RankFilter>(null)
 const requestFetch = useRequestFetch()
 const { data, refresh, pending } = await useAsyncData<AdminResponse>(
   () => `admin-questions-${page.value}-${rankFilter.value}`,
-  () => requestFetch('/api/admin/questions', {
+  () => requestFetch<AdminResponse>('/api/admin/questions', {
     query: { page: page.value, ...(rankFilter.value ? { rank: rankFilter.value } : {}) },
   }),
   { watch: [page, rankFilter] },

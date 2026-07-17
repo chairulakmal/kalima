@@ -56,7 +56,7 @@ const id = route.params.id as string
 const requestFetch = useRequestFetch()
 const { data, error } = await useAsyncData<DetailResponse>(
   `admin-question-${id}`,
-  () => requestFetch(`/api/admin/questions/${id}`),
+  () => requestFetch<DetailResponse>(`/api/admin/questions/${id}`),
 )
 
 // ── Review form ────────────────────────────────────────────────────────────────
