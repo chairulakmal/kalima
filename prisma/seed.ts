@@ -1,6 +1,6 @@
 /**
  * Prisma seed script.
- * Upserts the 60 pre-generated seed questions into ExamQuestion with model='seed'.
+ * Upserts the 496 pre-generated seed questions into ExamQuestion with model='seed'.
  * Run via: npx prisma db seed  (or: npm run db:seed)
  */
 

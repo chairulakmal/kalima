@@ -10,7 +10,7 @@ datasource db {
 model Session {
   id          String            @id @default(cuid())
   level       String
-  type        String            @default("synonym") // 'synonym' | 'reading' | 'orthography'
+  type        String            @default("synonym") // 'reading' | 'orthography' | 'contextual' | 'synonym' | 'usage' | 'vocab' | 'review'
   questions   SessionQuestion[]
   analysis    String?
   startedAt   DateTime          @default(now())
@@ -21,8 +21,8 @@ model Session {
 model ExamQuestion {
   id             String               @id @default(cuid())
   wordId         String
-  type           String               // 'synonym' | 'reading' | 'orthography'
-  correctAnswer  String               // synonym: a Japanese synonym; reading: the kana reading; orthography: the kanji form
+  type           String               // 'reading' | 'orthography' | 'contextual' | 'synonym' | 'usage'
+  correctAnswer  String               // reading: the kana reading; orthography: the kanji form; contextual: the word as it appears in the sentence; synonym/usage: AI-generated + validated
   correctReading String?
   distractors    Json
   explanation    String
@@ -57,7 +57,7 @@ model SessionQuestion {
   sessionId       String
   session         Session  @relation(fields: [sessionId], references: [id], onDelete: Cascade)
   wordId          String
-  type            String   @default("synonym") // 'reading' | 'orthography' | 'contextual' | 'synonym'
+  type            String   @default("synonym") // 'reading' | 'orthography' | 'contextual' | 'synonym' | 'usage'
   correctChoiceId String
   userChoiceId    String?
   correct         Boolean?

@@ -69,7 +69,7 @@ const typeAccuracy = computed((): TypeEntry[] | null => {
 
 const { data, error } = await useAsyncData<ResultsResponse>(
   `results-${sessionId}`,
-  () => $fetch(`/api/session/results?sessionId=${sessionId}`),
+  () => $fetch<ResultsResponse>('/api/session/results', { query: { sessionId } }),
 )
 
 onMounted(async () => {

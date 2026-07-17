@@ -1,10 +1,6 @@
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineNuxtConfig({
-  future: {
-    compatibilityVersion: 4,
-  },
-
   compatibilityDate: '2026-06-06',
 
   devtools: { enabled: process.env.NODE_ENV !== 'production' },
@@ -17,7 +13,7 @@ export default defineNuxtConfig({
         {
           name: 'description',
           content:
-            '500 AI-generated JLPT N3 questions across five vocabulary types — kanji reading, writing, context, synonym, and usage. Per-question explanations and Claude-powered session analysis.',
+            '496 AI-generated JLPT N3 questions across five vocabulary types — kanji reading, writing, context, synonym, and usage. Per-question explanations and Claude-powered session analysis.',
         },
         { name: 'theme-color', content: '#f4a22d', media: '(prefers-color-scheme: light)' },
         { name: 'theme-color', content: '#1e3a5f', media: '(prefers-color-scheme: dark)' },
@@ -28,14 +24,14 @@ export default defineNuxtConfig({
         {
           property: 'og:description',
           content:
-            '500 AI-generated JLPT N3 questions with per-question explanations and Claude-powered analysis.',
+            '496 AI-generated JLPT N3 questions with per-question explanations and Claude-powered analysis.',
         },
         { name: 'twitter:card',        content: 'summary' },
         { name: 'twitter:title',       content: 'Kalima — JLPT N3 Vocabulary Practice' },
         {
           name: 'twitter:description',
           content:
-            '500 AI-generated JLPT N3 questions with per-question explanations and Claude-powered analysis.',
+            '496 AI-generated JLPT N3 questions with per-question explanations and Claude-powered analysis.',
         },
       ],
       link: [
