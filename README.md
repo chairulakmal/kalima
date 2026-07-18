@@ -73,7 +73,7 @@ The results page renders a pentagon (or triangle/quadrilateral for fewer types) 
 | AI (question generation) | `claude-sonnet-4-6` — offline only, via `scripts/generate-seed.ts` |
 | AI (session analysis) | `claude-sonnet-4-6` — server-side, rate-limited |
 | ORM | Prisma |
-| Database | PostgreSQL |
+| Database | PostgreSQL 18 |
 | Deployment | Railway (Nuxt Node server + PostgreSQL service) |
 
 ---
@@ -133,7 +133,7 @@ scripts/
 
 ## Local development
 
-**Prerequisites:** Node.js 20+, Docker
+**Prerequisites:** Node `^22.13.0 || ^24.11.0 || >=26.0.0` (the intersection of Nuxt 4's and ESLint 10's requirements; note 25.x is excluded, and dev and Railway both run 24), Docker
 
 ```bash
 cp .env.example .env          # fill in DATABASE_URL, ANTHROPIC_API_KEY, ADMIN_PASSWORD
@@ -141,7 +141,16 @@ docker compose up -d          # start Postgres on :5432
 npm install
 npx prisma db push
 npm run db:seed               # load the 496 pre-generated questions
-npm run dev                   # http://localhost:3000
+npm run dev                   # runs `docker compose up -d` too → http://localhost:3000
+```
+
+### Checks
+
+There is no test suite and no CI. The only automated checks are run by hand:
+
+```bash
+npm run typecheck             # vue-tsc
+npm run lint                  # eslint . (add :fix to autofix)
 ```
 
 ### Environment variables
@@ -162,17 +171,12 @@ npm run build
 npm start         # runs prisma db push, seeds questions, then starts the Node server
 ```
 
-`railway.json` sets the builder to **Railpack**, pins one replica in `asia-southeast1`, and
-restarts on failure (max 10 retries).
+`railway.json` sets the builder to **Railpack** (not Nixpacks), pins one replica in `asia-southeast1`, and restarts on failure (max 10 retries). Set `RAILPACK_NODE_VERSION=24` on the service: Nuxt 4 needs Node `^22.12 || ^24.11 || >=26`.
+
+There is no `prisma/migrations` directory, so `prisma migrate deploy` does not apply to this project. `npm start` pushes the schema (`prisma db push --accept-data-loss`) and re-seeds on every boot; schema changes ship via `db push`.
 
 ---
 
 ## Roadmap
 
-| Version | Focus |
-|---|---|
-| **Demo** (now) | 5 vocab types · 35 q mixed session (8-6-11-5-5) · 30-min timer · wrong-answer review queue · per-type SVG radar chart · directional quiz transitions · Sonnet analysis · HMAC-protected admin |
-| **V1** | Reading section · AI passage generation (passages pre-generated; session UI in progress) |
-| **V2** | Grammar section |
-| **V3** | Listening section |
-| **V4** | Full exam mode — all sections, timed, single submission · N1–N5 unlock |
+Currently in **Demo** (the vocabulary section); the full roadmap through V4 (reading, grammar, listening, real exam mode) lives in [SPEC.md §13](SPEC.md#13-product-roadmap).
