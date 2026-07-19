@@ -38,6 +38,6 @@ One line each; the full rules and their reasoning live at the named section.
 - There is no test suite and no CI: run `npm run typecheck` and `npm run lint` by hand before considering a change done. *(README § Checks)*
 - Typed `$fetch`/`useRequestFetch` calls inside `useAsyncData` must pass an explicit response generic (e.g. `$fetch<ResultsResponse>(…)`); without it, Nuxt 4's route-map inference blows TypeScript's depth limit (TS2321), see nuxt#18570.
 - There is no `prisma/migrations` directory: `prisma migrate deploy` does not apply here; schema ships via `db push` on boot. *(README § Deployment)*
-- Builder is Railpack, not Nixpacks; Node engines are pinned (25.x excluded). *(README § Deployment, § Local development)*
+- Builder is Railpack, not Nixpacks; Node engines are pinned (25.x excluded). *(README § Deployment, § Running locally)*
 - Word JSON lives in `/words/` and is read via `fs` at runtime; it is not a static asset and does not belong in `app/assets/`. The `Word` shape is `SPEC.md` §4.1.
 - When adding a question type or touching generation prompts, read the relevant `questions/` doc first; its rules tables are designed to be pasted into prompts. *(questions/README.md)*
