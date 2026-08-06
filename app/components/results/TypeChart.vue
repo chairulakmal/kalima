@@ -1,13 +1,5 @@
 <script setup lang="ts">
-import type { QuestionType } from '~/types/index'
-
-export interface TypeEntry {
-  type: QuestionType
-  label: string
-  correct: number
-  total: number
-  pct: number   // 0–1; only entries that were actually tested are passed
-}
+import type { TypeEntry } from '~/types/index'
 
 const props = defineProps<{ entries: TypeEntry[] }>()
 
