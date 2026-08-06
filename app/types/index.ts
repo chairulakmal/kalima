@@ -91,6 +91,16 @@ export interface TestSession {
 
 // ── Results types ────────────────────────────────────────────────────────────
 
+// One radar vertex. Only types the session actually tested get an entry, so a
+// missing type is absent rather than plotted at zero.
+export interface TypeEntry {
+  type: QuestionType
+  label: string
+  correct: number
+  total: number
+  pct: number
+}
+
 export interface QuestionResult {
   questionId: string
   wordId: string
