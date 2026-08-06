@@ -13,6 +13,8 @@
     "start": "npx prisma db push --accept-data-loss && npx prisma db seed && node .output/server/index.mjs",
     "preview": "nuxt preview",
     "generate": "nuxt generate",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "postinstall": "nuxt prepare",
     "db:push": "prisma db push",
     "db:reset": "prisma db push --force-reset",
@@ -21,7 +23,8 @@
     "deploy": "railway up -d --service kalima",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "typecheck": "nuxi typecheck"
+    "typecheck": "nuxi typecheck",
+    "typecheck:test": "tsc --noEmit -p tsconfig.test.json"
   },
   "prisma": {
     "seed": "tsx prisma/seed.ts"
@@ -40,6 +43,7 @@
     "@nuxt/eslint": "^1.16.0",
     "eslint": "^10.5.0",
     "typescript": "^5.0.0",
+    "vitest": "^4.1.10",
     "vue-tsc": "^3.3.7"
   }
 }
