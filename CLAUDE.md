@@ -35,7 +35,8 @@ One line each; the full rules and their reasoning live at the named section.
 
 ## Trip-wires
 
-- There is no test suite and no CI: run `npm run typecheck` and `npm run lint` by hand before considering a change done. *(README § Checks)*
+- Test coverage is one tier deep: Vitest over server-side question assembly and the pure `app/utils/` helpers, nothing on components or routes. CI runs lint, both typechecks, tests and build. *(README § Checks)*
+- `test/` is invisible to `nuxi typecheck`, whose config only includes `test/nuxt/**`; `npm run typecheck:test` covers it via `tsconfig.test.json`, and both run in CI.
 - Typed `$fetch`/`useRequestFetch` calls inside `useAsyncData` must pass an explicit response generic (e.g. `$fetch<ResultsResponse>(…)`); without it, Nuxt 4's route-map inference blows TypeScript's depth limit (TS2321), see nuxt#18570.
 - There is no `prisma/migrations` directory: `prisma migrate deploy` does not apply here; schema ships via `db push` on boot. *(README § Deployment)*
 - Builder is Railpack, not Nixpacks; Node engines are pinned (25.x excluded). *(README § Deployment, § Running locally)*
