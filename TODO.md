@@ -1,6 +1,6 @@
 # TODO
 
-Kalima's work queue and its record of finished work. The headline: this repo is superseded, so no new feature work lands here and everything below is a porting reference rather than a plan. In order: the superseded status and the port order it implies, the test-coverage gaps worth closing before that port, known issues, the V1 to V4 roadmap kept for reference, and the log of what shipped.
+Kalima's work queue and its record of finished work. The headline: Kalima is being merged into [Bayana](https://bayana.chairulakmal.com), so no new feature work lands here and everything below is a porting reference rather than a plan. In order: the merge and the port order it implies, the test-coverage gaps worth closing first, known issues, the V1 to V4 roadmap kept for reference, and the log of what shipped.
 
 ## Contents
 
@@ -13,11 +13,11 @@ Kalima's work queue and its record of finished work. The headline: this repo is 
 
 ## Status: superseded (2026-07-25)
 
-Kalima's features migrate into Bayana, the successor JLPT app. This repo stays live and public, but new work no longer lands here. Everything under "Upcoming" is kept as a porting reference, not as a work queue.
+Kalima's features migrate into [Bayana](https://bayana.chairulakmal.com), the successor JLPT app. The port is still to come; until it lands this repo stays live and public, but new work does not come here. Everything under "Upcoming" is a porting reference, not a work queue.
 
-Two reasons. Kalima is the thinnest repo in the portfolio while holding a primary slot on the homepage, and its five N3 vocabulary question types are a subset of what Bayana's data model already holds: N5 to N1 as a first-class level, a grammar table, and FSRS scheduling that V1 to V4 would each have needed. Bayana also replaces Kalima as the reference consumer of the bayan/zaka dataset, for the same reason.
+Two reasons. Kalima is the thinnest repo in the portfolio while holding a primary slot on the homepage, and its five N3 vocabulary types are a subset of what Bayana's data model already holds: N5 to N1 as a first-class level, a grammar table, and the FSRS scheduling that V1 to V4 would each have needed. Bayana also takes over as the reference consumer of the bayan/zaka dataset.
 
-The Vitest suite and the CI workflow landed after that decision. They are maintenance rather than new features: their job is to pin the invariants that have to survive the port, so a regression here is caught before it is copied there.
+The Vitest suite and CI landed after that decision, as maintenance rather than features: they pin the invariants that have to survive the port, so a regression is caught here before it is copied there.
 
 Do not delete or unhost this repo. Nuxt PR #35697's provenance points at it, and both the homepage and the CV link it. Archive it with a pointer to Bayana once the port lands.
 
@@ -27,9 +27,9 @@ Do not delete or unhost this repo. Nuxt PR #35697's provenance points at it, and
 - [ ] Port the answer-secrecy design: `toClientQuestion` stripping, opaque choice IDs, answers resolved only by the results endpoint after submit.
 - [ ] Port `consumeBudget()` (atomic upsert) and the per-IP throttle. Bayana has only an in-memory limiter today.
 - [ ] Port the wrong-answer review queue, rehomed from localStorage onto Bayana's per-user rows.
-- [ ] Port the timed 35-question vocab session and `TypeChart.vue` (the radar is polar math plus SVG, so it survives the move to React nearly intact).
+- [ ] Port the timed 35-question vocab session and `TypeChart.vue`. Bayana's successor app is greenfield Nuxt, so the radar moves as a Vue SFC rather than being rewritten; the same now goes for every component in this list. Per-module verdicts: [SPEC §14.2](SPEC.md#142-verdict-per-module).
 - [ ] Carry `prisma/seed-data/passages-n3.json` across. V1's passages are already generated and audited, and they are the most expensive artifact in this repo.
-- [ ] Remap `wordId` from this repo's cuids to Bayana's `Word.id` through the shared Anki guid. `words/*.json` here is already an export of Bayana's corpus, so the guid joins cleanly.
+- [ ] Remap `wordId` from this repo's cuids to Bayana's `Word.id`. `words/*.json` here is already an export of Bayana's corpus, so the join is reproducible from a clone, but not through the Anki guid: Bayana is dropping `guid` as identity because bayan-produced words cannot carry one. Its decided key is expression plus reading, which is ambiguous for 67 words in this corpus and affects 18 of the 496 questions. The measurements and the two ways out: [SPEC §14.4](SPEC.md#144-the-wordid-crosswalk).
 - [ ] Fold `/admin`'s S-F rank review into Bayana's `UserProfile.role = ADMIN` rather than porting the `ADMIN_PASSWORD` HMAC path.
 
 ## Test coverage: gaps and plan

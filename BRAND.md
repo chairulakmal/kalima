@@ -1,17 +1,10 @@
 # Kalima — Brand & Design Guide
 
-**كلمة · JLPT mock exam practice, N5 to N1.**
+**كلمة · JLPT mock exam practice.** The app ships **N3 only**; the design system covers N5 to N1 so the other levels need no redesign (level chip ramp, §9; the N1 accent, §3).
 
-This is the single source of truth for Kalima's UI: colors, typography, spacing, components,
-and design tokens. Keep it current whenever a visual decision changes. **Where this file and
-the built CSS disagree, fix the CSS to match this file.**
+The single source of truth for Kalima's UI: colors, typography, spacing, components, tokens. Keep it current when a visual decision changes. **Where this file and the built CSS disagree, fix the CSS.**
 
-> **How to use this doc (for an AI coding agent).** Rules are written as imperatives —
-> "always", "never", "use", "cap". Token names (`--navy`, `--text-lg`, `--space-4`) are
-> exact and copy-pasteable; use them verbatim, never hard-code a raw hex or pixel value that
-> a token already covers. When a section gives a table, treat the left column as the only
-> allowed set — do not invent new variants. Start from §0, then build against §8 (checklist)
-> and §11 (tokens).
+> **For an AI coding agent.** Rules are imperatives. Token names (`--navy`, `--text-lg`, `--space-4`) are exact: use them verbatim, never a raw hex or pixel value a token already covers. Where a section gives a table, the left column is the only allowed set. Start at §0, then build against §8 (checklist) and §11 (tokens).
 
 ---
 
@@ -19,16 +12,8 @@ the built CSS disagree, fix the CSS to match this file.**
 
 These are non-negotiable. Everything else in this doc elaborates on them.
 
-1. **Mobile-first, Android-tall canvas.** The **primary device is a Nothing Phone 3a**
-   (6.77″ AMOLED, ~412 × 915 CSS px, 120 Hz) — design and test here *first*. **6.1″
-   (402 × 874 CSS px) is the support floor**: nothing may break or clip down to it, but the
-   target canvas is the taller, slightly wider Android viewport. Larger phones, tablets, and
-   desktop are additive: **cap content width at `--maxw-read`, center, never stretch.**
-   Because the screen is AMOLED, the dark theme (§7) genuinely saves power and glare — treat
-   it as the default for long evening sessions, not an afterthought.
-2. **Built for long sittings (30+ min).** Prioritise low glare and low eye fatigue over
-   visual punch: soft off-white surfaces, generous line-height, calm motion. **Ship a dark
-   theme (§7) — it is a comfort feature, not a nicety.**
+1. **Mobile-first, Android-tall canvas.** Design and test on the **Nothing Phone 3a** first (6.77″ AMOLED, ~412 × 915 CSS px, 120 Hz). **6.1″ (402 × 874) is the support floor**: nothing may break or clip there, but it is not the target. Tablets and desktop are additive: **cap at `--maxw-read`, center, never stretch.** The screen is AMOLED, so the dark theme (§7) genuinely saves power and glare. Treat it as the default.
+2. **Built for long sittings (30+ min).** Low glare and low eye fatigue beat visual punch: soft off-white surfaces, generous line-height, calm motion.
 3. **Touch targets ≥ 48 × 48 px** (we exceed the 44 px floor for accuracy when tired), with
    **≥ 12 px (`--space-3`) between adjacent answer options** to prevent mis-taps.
 4. **Type scale and spacing scale are tokenised (§4, §11).** Use the tokens. Body text never
@@ -41,9 +26,7 @@ These are non-negotiable. Everything else in this doc elaborates on them.
 
 ## 1. Personality & voice
 
-Kalima is a **calm, confident study companion** — the senior who aced the JLPT and is now
-coaching you through it. Serious about preparation, relaxed about mistakes. We never
-catastrophize a wrong answer; we explain it and move on.
+Kalima is a **calm, confident study companion**: the senior who aced the JLPT and is now coaching you through it. Serious about preparation, relaxed about mistakes. Never catastrophize a wrong answer; explain it and move on.
 
 | Trait | What it means in the UI |
 |-------|--------------------------|
@@ -61,16 +44,11 @@ acknowledge a wrong answer without drama ("惜しい · Almost — here's the re
 
 ## 2. Mascot — Bun (ブン)
 
-A small hardcover book, named after 文 (bun — writing, literature, character). Bun is the
-study partner: opens wide for a new lesson, props itself upright for a timed exam, slumps
-a little when the session ends.
+A small hardcover book named after 文 (bun: writing, literature, character). Bun opens wide for a new lesson, props itself upright for a timed exam, and slumps a little when the session ends.
 
-Built from simple geometry: **navy hard covers** with a **gold spine and corner guards**,
-**cream pages** (slightly fanned), a **gold ribbon bookmark** as the tail, and two round
-eyes set into the front cover.
+Simple geometry: **navy hard covers**, **gold spine and corner guards**, **cream pages** slightly fanned, a **gold ribbon bookmark** as the tail, two round eyes on the front cover.
 
-**Expressions** — a fixed cast. Reuse these; do not invent new poses. Each is the same
-silhouette with only the **eyes and page state** changing.
+**Expressions are a fixed cast.** Reuse these, do not invent poses. Same silhouette every time; only the **eyes and page state** change.
 
 | Mood | When to show it |
 |------|-----------------|
@@ -88,15 +66,9 @@ movement in the periphery is fatiguing over a long session. Bun reacts once, the
 
 ## 3. Color
 
-A composed, academic palette. **Navy anchors** every screen with authority; **gold marks
-achievement**; cool sky tints keep surfaces light and readable. The functional traffic-light
-set (green / amber / red) handles answer feedback cleanly without clashing with the brand.
+A composed, academic palette. **Navy anchors** every screen, **gold marks achievement**, cool sky tints keep surfaces readable. The traffic-light set (green, amber, red) handles answer feedback without clashing with the brand.
 
-> **Long-session note.** App surfaces are intentionally **off-white, never pure `#ffffff`
-> full-bleed**, and the page background is a soft blue-grey (`--paper`). Large pure-white
-> fields raise glare and eye fatigue across a 30-minute sitting; the slight tint reads as
-> "paper", not "screen". Card surfaces may be white, but they sit *on* `--paper` and stay
-> bounded — never edge-to-edge.
+> **Long-session note.** Never pure `#ffffff` full-bleed. The page background is a soft blue-grey (`--paper`), because large white fields raise glare across a 30-minute sitting and the slight tint reads as paper, not screen. Cards may be white, but they sit *on* `--paper` and stay bounded.
 
 ### Hero palette
 | Token | Hex | Name | Role |
@@ -124,9 +96,7 @@ set (green / amber / red) handles answer feedback cleanly without clashing with 
 | `--line` | `#d9e4f0` | Borders / dividers |
 
 ### N1 "endgame" accent
-`--imperial` `#2d1b69` (deep indigo — reserved for the N1 level chip, echoing the rarity
-and prestige of the highest JLPT tier) + `--gold` `#f4a22d`. The pairing reads as distinct
-from the cerulean ramp, signalling that N1 is a different category of challenge.
+`--imperial` `#2d1b69`, deep indigo, reserved for the N1 level chip, paired with `--gold` `#f4a22d`. It reads as distinct from the cerulean ramp, signalling that N1 is a different category of challenge.
 
 ### Functional (system states only — never decoration)
 | State | Token (light) | Token (dark) | JP |

@@ -2,30 +2,19 @@
 
 | Field        | Value                                      |
 |--------------|--------------------------------------------|
-| **Status**   | Draft                                      |
+| **Status**   | Superseded (2026-07-25); see [TODO.md](TODO.md#status-superseded-2026-07-25) |
 | **Author**   | chairulakmal                                      |
 | **Created**  | 2026-06-06                                 |
-| **Updated**  | 2026-06-07                                 |
+| **Updated**  | 2026-08-06                                 |
 | **Reviewers**| —                                          |
 
 ---
 
 ## Abstract
 
-Kalima is a full-stack JLPT mock exam application built on Nuxt 4. The long-term goal
-is a complete exam experience covering all four JLPT sections — vocabulary, reading,
-grammar, and listening — with AI-generated questions in authentic exam format, timed
-sections, and a combined submission that mirrors the real exam.
+Kalima is a full-stack JLPT mock exam app on Nuxt 4. The current build is a **recruiter-ready demo** covering all five N3 vocabulary question types: 漢字読み (reading), 表記 (orthography), 文脈規定 (contextual), 言い換え類義 (synonym), 用法 (usage). Questions are pre-generated offline and committed as seed data. Users practise each type individually (10 questions) or sit the full section in exam order under a 30-minute timer (35 questions, 8-6-11-5-5). Answer validation is strictly server-side, and a Sonnet-powered performance analysis is generated on demand after each session. The homepage is intentionally public and unauthenticated, so a recruiter can try it immediately.
 
-The current build is a **recruiter-ready demo** covering all five N3 vocabulary question
-types: 漢字読み (reading), 表記 (orthography), 文脈規定 (contextual), 言い換え類義 (synonym), and 用法 (usage).
-Questions are pre-generated offline and committed as seed data. Users can practice each
-type individually (10 questions) or take the full vocabulary section in exam order under
-a 30-minute countdown timer (35 questions, 8-6-11-5-5 distribution). Answer validation is
-strictly server-side. After session completion, a Sonnet-powered performance analysis is
-generated on demand. The demo homepage is intentionally public and unauthenticated —
-designed to be tried immediately by tech recruiters. All V1+ features will be deployed
-behind authentication.
+**Kalima is being merged into [Bayana](https://bayana.chairulakmal.com)**, the successor JLPT app. Decided 2026-07-25; the port is still to come, and until then this deployment stays live and public. Sections 1 to 13 describe what is built and running. **§14 (Port Surface) is written for the agent doing that port**: what moves, what gets re-decided, what stays here, the exact shape of every artifact, and the crosswalk that maps this repo's word IDs onto Bayana's. §15 (Product Roadmap) is kept as a porting reference, not a plan. Reasoning and port order: [TODO.md](TODO.md#status-superseded-2026-07-25).
 
 ---
 
@@ -42,19 +31,33 @@ behind authentication.
    - 5.2 [POST /api/session/submit](#52-post-apisessionsubmit)
    - 5.3 [GET /api/session/results](#53-get-apisessionresults)
    - 5.4 [POST /api/session/analysis](#54-post-apisessionanalysis)
-   - 5.5 [GET /api/admin/questions](#55-get-apiadminquestions)
-   - 5.6 [GET /api/admin/questions/:id](#56-get-apiadminquestionsid)
+   - 5.5 [POST /api/admin/auth](#55-post-apiadminauth)
+   - 5.6 [POST /api/admin/logout](#56-post-apiadminlogout)
+   - 5.7 [GET /api/admin/me](#57-get-apiadminme)
+   - 5.8 [GET /api/admin/questions](#58-get-apiadminquestions)
+   - 5.9 [GET /api/admin/questions/:id](#59-get-apiadminquestionsid)
+   - 5.10 [POST /api/admin/questions/:id/review](#510-post-apiadminquestionsidreview)
+   - 5.11 [DELETE /api/admin/questions/:id](#511-delete-apiadminquestionsid)
+   - 5.12 [POST /api/admin/questions/bulk-delete](#512-post-apiadminquestionsbulk-delete)
 6. [AI Integration](#6-ai-integration)
-   - 6.1 [Distractor Generation](#61-seed-question-generation-offline-committed)
+   - 6.1 [Seed Question Generation](#61-seed-question-generation-offline-committed)
    - 6.2 [Session Analysis](#62-session-analysis)
 7. [Client Cache](#7-client-cache)
 8. [Rate Limiting](#8-rate-limiting)
 9. [Question Assembly](#9-question-assembly)
 10. [Security Model](#10-security-model)
-11. [Alternatives Considered](#11-alternatives-considered)
-12. [Open Questions](#12-open-questions)
-13. [Product Roadmap](#13-product-roadmap)
-14. [Revision History](#14-revision-history)
+11. [Testing and CI](#11-testing-and-ci)
+12. [Alternatives Considered](#12-alternatives-considered)
+13. [Open Questions](#13-open-questions)
+14. [Port Surface](#14-port-surface)
+    - 14.1 [What the target is](#141-what-the-target-is)
+    - 14.2 [Verdict per module](#142-verdict-per-module)
+    - 14.3 [Artifacts and their exact shapes](#143-artifacts-and-their-exact-shapes)
+    - 14.4 [The wordId crosswalk](#144-the-wordid-crosswalk)
+    - 14.5 [Invariants that must survive, and what pins each](#145-invariants-that-must-survive-and-what-pins-each)
+    - 14.6 [Do not port](#146-do-not-port)
+15. [Product Roadmap](#15-product-roadmap)
+16. [Revision History](#16-revision-history)
 
 ---
 
@@ -92,8 +95,9 @@ calls. These constraints inform several design decisions documented below.
 - **Authentication on the demo homepage.** The `/` quiz is intentionally public. V1+ features will be gated.
 - **N1, N2, N4, N5 level support.** Word lists for all levels exist at `/words/`; only N3 is active. Enabling additional levels requires no schema changes.
 - User accounts or cross-session progress tracking.
-- Per-user or per-IP rate limiting.
 - Real-time collaboration or multiplayer modes.
+
+Per-IP rate limiting was a non-goal in the original draft and shipped anyway: the 2026-06-07 hardening review added throttles to `analysis`, `prepare`, and admin login beneath the shared daily budget (§8, `SECURITY.md`).
 
 ---
 
@@ -155,11 +159,16 @@ Server
 ├─ POST /api/session/analysis
 │   Compute stats. Call claude-sonnet-4-6. Persist + return analysis paragraph.
 │
-├─ GET /api/admin/questions
-│   Return paginated ExamQuestion rows (25/page) with rank filter.
-│
-└─ GET /api/admin/questions/:id
-    Return full detail for one row, including word lookup + reviews.
+└─ /api/admin/*        All guarded by server/middleware/admin-auth.ts (HMAC cookie,
+    │                  constant-time compare, fail-closed). auth guards itself.
+    ├─ POST   /auth                      Password → admin_session cookie. 5 tries / 15 min per IP.
+    ├─ POST   /logout                    Clear the cookie.
+    ├─ GET    /me                        Session probe for the client route guard.
+    ├─ GET    /questions                 Paginated ExamQuestion rows (25/page), rank filter.
+    ├─ GET    /questions/:id             Full detail for one row: word lookup + reviews.
+    ├─ POST   /questions/:id/review      Upsert this admin's S–F rank; returns effective rank.
+    ├─ DELETE /questions/:id             Delete one row. Blocked for S/A/B and unranked.
+    └─ POST   /questions/bulk-delete     Delete every row whose effective rank equals {rank}.
 
 Persistence
 ├─ PostgreSQL (Railway)   Session · SessionQuestion · ExamQuestion · ExamQuestionReview · RateLimit
@@ -233,8 +242,8 @@ export interface Question {
   id: string
   type: QuestionType
   wordId: string
-  prompt: string             // varies by type (see §9)
-  context?: string           // reserved; unused in current types
+  prompt: string             // the underlined token, or the whole sentence for contextual (see §9)
+  context?: string           // the sentence `prompt` sits in; set for reading, orthography, synonym
   correctAnswer: string      // server-side only; never sent to client
   choices: Choice[]          // shuffled server-side
   explanation: string        // server-side only; withheld until session ends
@@ -269,12 +278,23 @@ export interface TestSession {
 
 // ── Results types ────────────────────────────────────────────────────────────
 
+// One radar vertex. Only types the session actually tested get an entry, so a
+// missing type is absent rather than plotted at zero.
+export interface TypeEntry {
+  type: QuestionType
+  label: string
+  correct: number
+  total: number
+  pct: number
+}
+
 export interface QuestionResult {
   questionId: string
   wordId: string
   type: QuestionType         // per-question type; required for mixed vocab sessions
   prompt: string
   reading: string
+  meaning?: string
   correctAnswer: string
   correctAnswerReading?: string
   userChoiceId: string | null
@@ -411,7 +431,7 @@ Prepares a session. Called once from `loading.vue`.
 { level: Level; type: 'review'; reviewItems: { wordId: string; type: string }[] }
 ```
 
-**Response — 200 OK**
+**Response (200 OK)**
 ```typescript
 {
   sessionId: string
@@ -476,7 +496,7 @@ Submits all answers at once at the end of a quiz session. Called once from `quiz
 }
 ```
 
-**Response — 200 OK**
+**Response (200 OK)**
 ```typescript
 { ok: true }
 ```
@@ -507,7 +527,7 @@ Returns full results including explanations. Called once from `results.vue`.
 |-------------|--------|----------|
 | `sessionId` | string | Yes      |
 
-**Response — 200 OK**
+**Response (200 OK)**
 ```typescript
 {
   sessionId: string
@@ -562,7 +582,7 @@ Generates an AI performance analysis using `claude-sonnet-4-6`. Called once from
 { sessionId: string }
 ```
 
-**Response — 200 OK**
+**Response (200 OK)**
 ```typescript
 {
   analysis: string | null  // null when daily limit is reached; UI silently omits the panel
@@ -594,37 +614,92 @@ silently omits the panel.
 
 ---
 
-### 5.5 GET /api/admin/questions
+### Admin endpoints (§5.5 to §5.12)
 
-Returns a paginated list of `ExamQuestion` rows for audit. Requires a valid `admin_session` cookie (see §10).
+`server/middleware/admin-auth.ts` guards every `/api/admin/*` route, requiring an `admin_session` cookie equal to `adminSessionToken()` (constant-time compare). `POST /api/admin/auth` is the one exception; it guards itself. The guard is **fail-closed**: with `ADMIN_PASSWORD` unset, `adminSessionToken()` returns null and every route, login included, denies access. All eight share one error row:
+
+| Status | `message`      | Condition                                            |
+|--------|----------------|------------------------------------------------------|
+| 401    | `Unauthorized` | Cookie absent, mismatched, or `ADMIN_PASSWORD` unset |
+
+Auth mechanics: `SECURITY.md`. Rank semantics (`server/utils/rank.ts`): majority vote across a question's reviews, ties breaking toward the worst rank, no reviews meaning `null` (unranked). `S`, `A`, `B`, and `null` are **protected** from deletion.
+
+---
+
+### 5.5 POST /api/admin/auth
+
+Exchanges the admin password for a session cookie. Called from `admin/login.vue`. Not covered by the middleware guard; it throttles itself.
+
+**Request body**
+```typescript
+{ password: string }
+```
+
+**Response (200 OK)**
+```typescript
+{ ok: true }
+```
+
+On success, sets `admin_session` to an HMAC-derived token (never the password) with `httpOnly`, `sameSite: 'strict'`, `secure` in production, `path: '/'`, `maxAge` 7 days.
+
+| Status | `message`                              | Condition                                                    |
+|--------|----------------------------------------|--------------------------------------------------------------|
+| 401    | `Invalid password`                     | Wrong password, non-string body, or `ADMIN_PASSWORD` unset    |
+| 429    | `Too many attempts. Try again later.`  | per-IP throttle (5 per 15 min)                                |
+
+Note the 429 message differs from the session endpoints' `Too many requests. Try again later.`
+
+---
+
+### 5.6 POST /api/admin/logout
+
+Clears the `admin_session` cookie. Returns `{ ok: true }` unconditionally.
+
+---
+
+### 5.7 GET /api/admin/me
+
+Session probe for `app/middleware/admin.global.ts`, which uses it to decide whether to redirect to the login page. Returns `{ ok: true }` when the guard passes; the guard's 401 is the negative answer. No user identity: there is one shared credential.
+
+---
+
+### 5.8 GET /api/admin/questions
+
+Returns a paginated list of `ExamQuestion` rows for audit.
 
 **Query parameters**
 
-| Parameter | Type   | Default | Description                        |
-|-----------|--------|---------|------------------------------------|
-| `page`    | number | 1       | 1-indexed page number              |
-| `rank`    | string | —       | Filter by effective rank (S–F)     |
+| Parameter | Type   | Default | Description                                            |
+|-----------|--------|---------|--------------------------------------------------------|
+| `page`    | number | 1       | 1-indexed; values below 1 are clamped to 1              |
+| `rank`    | string | none    | Filter by effective rank (`S`–`F`, or `unranked`)       |
 
-Page size is fixed at 25 rows.
+Page size is fixed at 25. All rows are fetched and ranked in memory before filtering and slicing, which is fine at 496 rows and noted as such in the handler.
 
-**Response — 200 OK**
+**Response (200 OK)**
 ```typescript
 {
-  questions: { id, wordId, type, model, explanation, version, createdAt, effectiveRank }[]
-  total: number
+  questions: {
+    id, wordId, type, model, explanation, version, createdAt,
+    reviewCount: number,
+    effectiveRank: Rank | null,
+    deletable: boolean,
+  }[]
+  total: number         // count after rank filtering
   page: number
   pageSize: number      // always 25
-  totalPages: number
+  totalPages: number    // at least 1
+  rankFilter: string | null
 }
 ```
 
 ---
 
-### 5.6 GET /api/admin/questions/:id
+### 5.9 GET /api/admin/questions/:id
 
 Returns full detail for a single `ExamQuestion`, including word lookup and reviews.
 
-**Response — 200 OK**
+**Response (200 OK)**
 ```typescript
 {
   id: string
@@ -653,6 +728,77 @@ Returns full detail for a single `ExamQuestion`, including word lookup and revie
 
 ---
 
+### 5.10 POST /api/admin/questions/:id/review
+
+Records this admin's S to F rank and returns the recomputed effective rank. Upserts on `(examQuestionId, reviewerEmail)` with `reviewerEmail` hardcoded to `'admin'`, so each question resolves to a single review today; the majority vote in `rank.ts` waits for more reviewer identities.
+
+**Request body**
+```typescript
+{ rank: 'S' | 'A' | 'B' | 'C' | 'D' | 'F'; note?: string }
+```
+
+An empty or whitespace-only `note` is stored as `null`.
+
+**Response (200 OK)**
+```typescript
+{
+  reviews: ExamQuestionReview[]   // all reviews for this question, newest updatedAt first
+  effectiveRank: Rank             // never null here: the upsert guarantees one review
+  deletable: boolean              // false for S, A, B
+}
+```
+
+| Status | `message`                          | Condition                        |
+|--------|------------------------------------|----------------------------------|
+| 400    | `id required`                      | `id` route param absent          |
+| 400    | `rank must be one of S, A, B, C, D, F` | `rank` not in `RANKS`        |
+| 404    | `Not found`                        | `id` does not exist in DB        |
+
+---
+
+### 5.11 DELETE /api/admin/questions/:id
+
+Deletes one `ExamQuestion`, subject to rank protection. Cascades to its `ExamQuestionReview` rows.
+
+**Response (200 OK)**
+```typescript
+{ ok: true }
+```
+
+| Status | `message`                                                              | Condition                       |
+|--------|------------------------------------------------------------------------|---------------------------------|
+| 400    | `id required`                                                          | `id` route param absent         |
+| 403    | `Cannot delete an unranked question. Rate it C, D, or F first.`        | effective rank is `null`        |
+| 403    | `Cannot delete a question ranked <rank>. Change rank to C, D, or F first.` | effective rank is S, A, or B |
+| 404    | `Not found`                                                            | `id` does not exist in DB       |
+
+The protection is the point: a cleanup pass can only remove content someone explicitly rated as poor.
+
+---
+
+### 5.12 POST /api/admin/questions/bulk-delete
+
+Deletes every question whose **effective** rank equals the requested one, so it deletes by majority-vote outcome rather than by any individual review.
+
+**Request body**
+```typescript
+{ rank: 'C' | 'D' | 'F' }
+```
+
+**Response (200 OK)**
+```typescript
+{ deleted: number }   // 0 when no question resolves to that rank
+```
+
+| Status | `message`                                | Condition                                        |
+|--------|------------------------------------------|--------------------------------------------------|
+| 400    | `Invalid rank`                           | `rank` absent or not in `RANKS`                  |
+| 403    | `Rank <rank> is protected …`             | `rank` is S, A, or B (see `bulk-delete.post.ts`) |
+
+There is no bulk path for unranked questions: `unranked` is not a member of `RANKS`, so it fails the 400 check before protection is considered.
+
+---
+
 ## 6. AI Integration
 
 **Question generation** (offline only, `scripts/generate-seed.ts`) uses `claude-sonnet-4-6`.
@@ -664,11 +810,13 @@ Returns full detail for a single `ExamQuestion`, including word lookup and revie
 
 ### 6.1 Seed Question Generation (offline, committed)
 
-Questions are **not** generated on demand during a session. `scripts/generate-seed.ts`
-is run offline to produce `prisma/seed-data/questions.json`. `prisma/seed.ts` upserts
-these rows into `ExamQuestion` with `model='seed'` on each deploy.
+Questions are **not** generated on demand during a session. `scripts/generate-seed.ts` is run offline to produce `prisma/seed-data/questions-n3.json`. `prisma/seed.ts` upserts these rows into `ExamQuestion` with `model='seed'` on each deploy; the `model` value is set by the seed script, not carried in the JSON.
 
-**Pool size:** 100 questions per type. Current state: 496 seeded across all five types — reading 100, orthography 96, contextual 100, synonym 100, usage 100. Seed file: `prisma/seed-data/questions-n3.json`; `prisma/seed.ts` reads all `questions-n*.json` files to support future JLPT levels.
+> **The generator is not in this repo.** `scripts/` and `questions/` are gitignored, so `generate-seed.ts` and the prompt-rule docs it reads exist only on the maintainer's machine. Its committed output is what ships, and everything below is a record of how that output was produced, not a path a reader can rerun from a clone.
+
+**Pool:** 496 rows across five types (reading 100, orthography 96, contextual 100, synonym 100, usage 100), in `prisma/seed-data/questions-n3.json`. `prisma/seed.ts` reads every `questions-n*.json` file, so future levels need no code change.
+
+**Committed but never loaded:** `prisma/seed-data/passages-n3.json`, 45 audited N3 reading passages (short×20, medium×10, long×5, info×10) generated ahead of the reading section. `seed.ts` matches only `questions-n*.json`, so nothing reads it today. It is the most expensive artifact here and first in the port list ([TODO.md](TODO.md#port-order)).
 
 **Generation dispatch by type**
 
@@ -798,50 +946,43 @@ it only ever receives a `ClientQuestion`.
 
 **`server/utils/assembleQuestion.ts`**
 
-The core function builds the prompt and choices for a given word and question type.
+`promptAndContext(word, type)` decides what appears on screen: `prompt` is the underlined token and `context` is the sentence it sits in. `QuizCard` underlines `prompt` inside `context` by prefix match. Two types return no `context`, for different reasons: `contextual`'s prompt *is* the whole sentence, and `usage`'s choices are themselves full sentences, so a sentence around the word would compete with them.
+
+| Type | `prompt` | `context` |
+|------|----------|-----------|
+| `reading` (問題1) | `word.expression` | the example sentence, unmodified |
+| `orthography` (問題2) | `word.reading` | the sentence with the kanji hidden (four cases below) |
+| `contextual` (問題3) | the sentence with the target replaced by `（　　）` | none |
+| `synonym` (問題4) | `word.expression` | the example sentence, unmodified |
+| `usage` (問題5) | `word.expression` | none |
+
+**Orthography is the involved one.** 問題2 shows the word in kana and asks for the kanji, so the sentence must not contain the answer. Four cases, in order:
+
+1. The kanji expression appears literally in the sentence: replace every occurrence with `word.reading`.
+2. The word already appears in kana: use the sentence as-is.
+3. The word appears **conjugated**, so neither form matches literally. Strip okurigana from `word.expression` to get the kanji root, find that root in the sentence, and replace it with the reading minus the same okurigana, leaving the surrounding conjugation kana intact. `QuizCard`'s prefix matching then underlines the stem, which is how the real paper prints it. Skipped if the substitution changes nothing.
+4. No usable sentence, or none of the above matched: show the word alone with no context.
+
+**Contextual** replaces whichever of `word.expression` / `word.reading` actually occurs in the sentence, falling back to `（　　）` plus the English meaning when the example sentence is missing or contains neither form.
+
+At runtime every correct answer comes from `ExamQuestion.correctAnswer`; what differs is how it got there at seed time. `reading`, `orthography`, and `contextual` copy ground truth from the word data and were never AI-generated. `synonym` and `usage` are AI-generated, which is why the §6.1 validators work hardest on those two.
+
+**Client-safe projection** (defined in `assembleQuestion.ts`, called by `prepare.post.ts` before the response is sent)
 
 ```typescript
-// Prompt construction by type
-function promptAndContext(word: Word, type: QuestionType) {
-  const sentence = word.exampleSentence?.japanese
-  if (type === 'reading') {
-    return { prompt: word.expression }
-  }
-  if (type === 'orthography') {
-    return { prompt: word.reading }
-  }
-  if (type === 'contextual') {
-    if (sentence) {
-      const target = sentence.includes(word.expression) ? word.expression
-        : sentence.includes(word.reading)    ? word.reading
-        : null
-      if (target) return { prompt: sentence.replace(target, '（　　）') }
-    }
-    return { prompt: `（　　）— ${word.meaning}` }  // fallback
-  }
-  // synonym
-  return { prompt: word.expression }
-}
-```
-
-For `reading` and `orthography`, the correct answer is ground truth from the word data
-and is never AI-generated. For `synonym`, the correct answer is AI-generated and stored
-in `ExamQuestion.correctAnswer`. For `contextual`, the correct answer is `word.expression`
-(or `word.reading` if the expression doesn't appear in the example sentence).
-
-**Client-safe projection** (applied in `prepare.post.ts` before the response is sent)
-
-```typescript
-function toClientQuestion(q: Question): ClientQuestion {
+export function toClientQuestion(q: Question): ClientQuestion {
   return {
     id: q.id,
     type: q.type,
     wordId: q.wordId,
     prompt: q.prompt,
-    choices: q.choices.map(({ id, text }) => ({ id, text })),
+    ...(q.context !== undefined && { context: q.context }),
+    choices: q.choices.map((c: Choice) => ({ id: c.id, text: c.text })),
   }
 }
 ```
+
+`context` is spread conditionally so a question without one omits the key rather than sending `undefined`. Everything not listed is dropped: `isCorrect`, `correctAnswer`, and `explanation` have no path to the client during a quiz.
 
 **Note on `whyWrong`:** `assembleQuestion` discards `whyWrong` from distractors during
 question assembly. At results time, `GET /api/session/results` batch-fetches
@@ -864,9 +1005,28 @@ question assembly. At results time, `GET /api/session/results` batch-fetches
 
 ---
 
-## 11. Alternatives Considered
+## 11. Testing and CI
 
-### 11.1 Client-side question assembly
+Coverage is deliberately **one tier deep**: Vitest over server-side assembly and the pure `app/utils/` helpers, nothing on components or routes. It pins the invariants that are expensive to get wrong (answer secrecy, per-type prompt shape, accuracy arithmetic) without paying for a component-rendering harness on a demo that is no longer taking features.
+
+| File | What it pins |
+|------|--------------|
+| `test/server/answer-leakage.test.ts` | The client projection carries nothing identifying the correct choice. Asserts on the **serialised** response body, so a leak cannot hide behind a non-enumerable property or a nested object. |
+| `test/server/assemble-question.test.ts` | Each question type builds the stem its 問題 format requires, including three of the four orthography cases in §9. |
+| `test/app/type-accuracy.test.ts` | Per-type accuracy arithmetic, including the untested-type exclusion that keeps an absent type off the radar rather than plotting it at zero. |
+| `test/fixtures.ts` | Shared `Word` and `ExamQuestion` fixtures. |
+
+Known gaps, and why each one matters, are tracked in [TODO.md](TODO.md#test-coverage-gaps-and-plan). The load-bearing one: `toClientQuestion` is tested directly, but `prepare.post.ts` projects at three separate call sites, so a fourth response path that forgot the projection would ship answers to the client with the suite still green.
+
+**Two TypeScript projects, both required.** Nuxt's generated tsconfigs include only `test/nuxt/**`, so `nuxi typecheck` cannot see `test/server/` or `test/app/`; `tsconfig.test.json` covers them via `npm run typecheck:test`. Run one without the other and half the repo goes unchecked.
+
+**CI** ([`.github/workflows/ci.yml`](.github/workflows/ci.yml)) runs on every push to `main` and every PR: `prisma generate` first (the client is not committed and both the typecheck and the build need its types), then lint, both typechecks, tests, build. The build only needs `DATABASE_URL` to exist; nothing queries the database at build time.
+
+---
+
+## 12. Alternatives Considered
+
+### 12.1 Client-side question assembly
 
 **Considered:** Assemble questions in the browser after receiving the word list and distractors.
 
@@ -876,7 +1036,7 @@ projection eliminate this attack surface entirely.
 
 ---
 
-### 11.2 Per-word AI calls instead of a single batch call
+### 12.2 Per-word AI calls instead of a single batch call
 
 **Considered:** Issue one Anthropic API call per missing word during session preparation.
 
@@ -885,7 +1045,7 @@ increasing latency and cost. A single batched prompt achieves the same result in
 
 ---
 
-### 11.3 Regenerate distractors every session
+### 12.3 Regenerate distractors every session
 
 **Considered:** Generate fresh distractors for every word on every session.
 
@@ -894,7 +1054,7 @@ proportionally with usage. Pre-seeded rows are consistent across sessions for th
 
 ---
 
-### 11.4 In-memory rate limit counter
+### 12.4 In-memory rate limit counter
 
 **Considered:** Store the daily request count in a module-level variable.
 
@@ -904,7 +1064,7 @@ durable across process restarts.
 
 ---
 
-### 11.5 Pinia as the sole session cache
+### 12.5 Pinia as the sole session cache
 
 **Considered:** Skip localStorage and rely exclusively on Pinia store.
 
@@ -914,7 +1074,7 @@ makes refreshes transparent to the user at no additional cost.
 
 ---
 
-### 11.6 Storing contextual prompt in ExamQuestion
+### 12.6 Storing contextual prompt in ExamQuestion
 
 **Considered:** Pre-compute and store the sentence-with-blank as a `context` field on `ExamQuestion`.
 
@@ -924,7 +1084,7 @@ schema change to `ExamQuestion` and keeps the prompt consistent if the word data
 
 ---
 
-## 12. Open Questions
+## 13. Open Questions
 
 | # | Question | Owner | Status |
 |---|----------|-------|--------|
@@ -935,7 +1095,100 @@ schema change to `ExamQuestion` and keeps the prompt consistent if the word data
 
 ---
 
-## 13. Product Roadmap
+## 14. Port Surface
+
+Written for the agent porting Kalima into Bayana. Everything above this section describes what is built here; this section says what happens to it. Read §14.1 and §14.2 first, then §14.4 before writing any data code: the word crosswalk has a documented ambiguity that will silently mis-join 18 rows if it is missed.
+
+### 14.1 What the target is
+
+Bayana is a greenfield **Nuxt 4** app (decided 2026-07-26; before that the target was Next.js, and any doc that still says React is stale). That makes this a Nuxt-to-Nuxt port: server utilities, Nitro routes, Pinia stores and Vue SFCs **move** rather than get rewritten. Framework glue is the exception, not the rule.
+
+Three constraints from the far side shape everything below, all recorded in Bayana's own `TODO.md`:
+
+1. **Two gates come first.** bayan has to reach production (its `dataset/export.json` is still `{"count": 0}`), then Bayana's own Next-to-Nuxt migration has to land. The Kalima absorption is frozen behind both. Nothing here is urgent; it is meant to be correct when it is picked up.
+2. **Bayana inherits neither this schema nor this database.** Its data model is being redesigned against three sources at once, and its production database is reset at cutover. So `prisma/schema.prisma` here is a reference, not a migration source, and **the only things that physically travel are the committed artifacts in §14.3 and the logic in §14.2.**
+3. **The counterpart checklist lives in Bayana's `TODO.md`**, under "Kalima absorption" and "Consumer work, folded in from what was a separate gate". That file owns the target-side design; this section owns the source-side facts. Where they disagree about a fact measured here, this section is right.
+
+### 14.2 Verdict per module
+
+**Move** means copy the file and retarget its imports. **Re-decide** means the behaviour is wanted but the mechanism is not. **Leave** means it dies with this repo.
+
+| Here | Verdict | Note |
+|------|---------|------|
+| `server/utils/assembleQuestion.ts` | **Move** | The load-bearing file. Imports only `./shuffle` and types, so it is portable as-is. Carries the four orthography cases (§9) and `toClientQuestion`. |
+| `server/utils/shuffle.ts` | **Move** | Zero imports. |
+| `app/utils/typeAccuracy.ts`, `app/utils/questionTypes.ts` | **Move** | Type-only imports. |
+| `app/components/results/TypeChart.vue` | **Move** | Polar math plus hand-rolled SVG, one type-only import. Vue to Vue, so it survives the move intact; the "tested types only" rule in §14.5 is the part not to lose. |
+| `server/api/session/{prepare,submit,results}.*` | **Move, retarget** | Nitro to Nitro. The Prisma calls change shape with Bayana's model; the flow (§5.1 to §5.3) does not. |
+| `server/utils/rateLimit.ts` (`consumeBudget`) | **Move, retarget** | The atomic upsert is the durable half Bayana lacks: its `src/lib/rate-limit.ts` is in-memory and cannot bound spend across restarts or replicas. Port this before any Bayana route spends money. Its unused `canGenerate()` does not travel. |
+| `server/api/session/analysis.post.ts` | **Move, retarget** | Cache-on-`Session.analysis` first, then `consumeBudget()`, then the call. Keep that order: it is what makes a revisit free. |
+| `server/utils/throttle.ts` | **Re-decide** | Correct only because one replica handles all traffic (§8, ARCHITECTURE). Per-IP throttling is still wanted; in-process fixed windows are not. |
+| `server/utils/wordIndex.ts` | **Re-decide** | Reads `words/*.json` off disk because this app has no word table. Bayana has `Word` rows, so this becomes a query. |
+| `app/stores/reviewQueue.ts`, `app/composables/useReviewQueue.ts` | **Re-decide** | The queue behaviour ports; localStorage does not. Bayana rehomes it onto per-user rows, and its TODO asks whether it should feed `ReviewState` rather than sit beside it. |
+| `server/utils/rank.ts`, `server/utils/adminAuth.ts`, `server/middleware/admin-auth.ts`, `app/middleware/admin.global.ts`, `app/pages/admin/*` | **Leave** | S-F majority-vote review folds into Bayana's admin page under `UserProfile.role = ADMIN`. The `ADMIN_PASSWORD` HMAC path is explicitly not ported (§14.6). |
+| `prisma/schema.prisma` | **Leave** | Reference only, per §14.1 constraint 2. |
+| `prisma/seed-data/*.json`, `words/*.json` | **Data, see §14.3** | These are the artifacts. Everything else is reproducible from source. |
+| `test/` | **Move first** | Four files, and they are the acceptance checklist for the port (§14.5), not an afterthought. |
+
+### 14.3 Artifacts and their exact shapes
+
+Counts measured against the tree on 2026-08-06, not estimated. All three files are committed, so nothing in the running database is needed to reproduce them.
+
+**`prisma/seed-data/questions-n3.json`**, 496 rows. Record keys: `wordId`, `type`, `correctAnswer`, `correctReading`, `distractors`, `explanation`.
+
+- By type: `reading` 100, `orthography` 96, `contextual` 100, `synonym` 100, `usage` 100.
+- Exactly 3 distractors per row (1488 total), each `{ text, whyWrong }`, and **`whyWrong` is populated on all 1488**. It is the results-page payload, so do not drop it in transit.
+- `correctReading` is present on 396 rows, absent on all 100 `usage` rows (whose answer is a whole sentence).
+- `model` is **not** in the JSON: `prisma/seed.ts` sets `model='seed'` at insert, and `prepare.post.ts` filters on it. Any importer has to supply the equivalent discriminator, which on Bayana's side is the `source` field its question store keeps for exactly this.
+
+**`prisma/seed-data/passages-n3.json`**, 45 passages and 90 questions, committed but never loaded here (`seed.ts` matches only `questions-n*.json`). Passage keys: `id`, `level`, `subtype`, `text`, `questions`. Question keys: `id`, `stem`, `correctAnswer`, `distractors`, `explanation`, same 3-distractor `{ text, whyWrong }` shape.
+
+- By subtype: `short` 20, `medium` 10, `long` 5, `info` 10.
+- This is paid, audited AI output with no generator in the repo. It is the most expensive artifact here and the one with the least in-app justification for existing, which is precisely why it is easy to lose.
+
+**`words/*.json`**, 8,101 words across five files, read via `fs` at request time. Keys: `id` (this repo's cuid), `guid`, `expression`, `reading`, `meaning`, `level`, `tags`, `exampleSentence { japanese, reading, english }`.
+
+- By level: N1 2,699 · N2 1,905 · N3 2,111 · N4 668 · N5 718.
+- **Every one of the 8,101 carries its `exampleSentence`.** This file set is an export of Bayana's own `Word` plus `ExampleSentence` corpus, so it is also a committed, version-controlled backup of those paid sentences, losing only `ExampleSentence.model` and `.source` provenance. Bayana's TODO treats a local `pg_dump` as their only copy; it is not.
+
+### 14.4 The wordId crosswalk
+
+`ExamQuestion.wordId` is a cuid minted in this repo. Bayana's `Word.id` is a different cuid. `words/*.json` is the join table between them, and it is committed, so the crosswalk is fully reproducible from a clone.
+
+Measured facts, all of which the join has to respect:
+
+- **All 496 question `wordId`s resolve** in `words/*.json`. There are no orphans to handle.
+- The 496 questions cover **447 distinct words, all N3**.
+- `id` and `guid` are both unique across all 8,101 rows.
+- **`expression` + `reading` is not unique: 8,034 distinct keys, 67 collisions.** Every collision is the same word listed at two levels (下る, 不通, 中身, 乾かす, 争う and 62 more, each appearing as both N2 and N3).
+- **18 of the 496 questions map to a word involved in one of those collisions**, across 16 words (活躍, 殴る, 容器, 鐘, 生年月日, 地味, 温まる, 飾り, 宣伝, 応援, 重体, 冷やす, 揃える, 湿度, 診る and one more).
+
+The trap: Bayana has decided its vocabulary crosswalk is **expression plus reading**, because bayan-produced words deliberately carry no Anki identifier and `Word.guid` therefore stops being identity. Against this corpus that key is ambiguous for 67 words. Two ways out, and the choice belongs to Bayana's model redesign rather than to this file: either the join carries `level` as a tiebreaker (all Kalima questions are N3, so N3 wins every collision here), or Bayana's `Word` table collapses each colliding pair into one row and records which level it claims. Joining on `guid` works today but is a dead end, since it cannot survive the arrival of the first bayan-sourced word.
+
+### 14.5 Invariants that must survive, and what pins each
+
+Answer secrecy is the property the mock exam is built around; Bayana's own list says to port it first, not last. Each row below is a behaviour to re-establish on the far side, with the mechanism that implements it here and the test that would catch its loss.
+
+| Invariant | Mechanism here | Pinned by |
+|-----------|----------------|-----------|
+| No answer material reaches the client during a quiz | `toClientQuestion` projection, opaque per-session choice UUIDs, `correctChoiceId` held in `SessionQuestion` | `test/server/answer-leakage.test.ts`, asserting on the **serialised** body |
+| Grading is server-side and idempotent | `submit.post.ts` compares IDs, skips rows whose `userChoiceId` is set | not covered; see [TODO.md](TODO.md#test-coverage-gaps-and-plan) |
+| Each 問題 format gets the stem it requires | `promptAndContext` (§9), including the four orthography cases | `test/server/assemble-question.test.ts` (three of four cases) |
+| An untested type is absent from the radar, never plotted at zero | only tested types are passed to `TypeChart.vue` | `test/app/type-accuracy.test.ts` |
+| Spend is bounded by something durable | atomic `consumeBudget()` upsert, per-IP throttle underneath | not covered; both branches are named in TODO.md |
+
+Two gaps worth closing **here** before the port rather than rediscovering there: `prepare.post.ts` projects at three separate call sites and only the projection function itself is tested, so a fourth response path that forgot it would ship answers with the suite green; and neither `consumeBudget()` branch in `analysis.post.ts` has a test, which is the whole cost guarantee.
+
+### 14.6 Do not port
+
+- **The admin auth path.** One shared `ADMIN_PASSWORD`, an HMAC session cookie, an in-process login throttle. Right for a single-maintainer demo, wrong for an app with real accounts. Bayana gates on `UserProfile.role = ADMIN`.
+- **The `db push` pipeline.** `prisma db push --accept-data-loss` plus re-seed on every boot (ARCHITECTURE, README). It is correct here only because every table is reproducible or disposable.
+- **The single-replica assumption.** Both the in-memory throttle and the at-boot seed depend on it.
+- **The known issues in [TODO.md](TODO.md#known-issues).** The display-only timer, the `{ analysis: string }` type that can be null, the pre-hydration quota flash, the possible double-advance on Enter. Since the port is Nuxt to Nuxt, a fix made here travels; anything left unfixed travels too, so decide each one deliberately rather than copying it forward by default.
+
+---
+
+## 15. Product Roadmap
 
 All versions target **N3** only. N1–N5 are unlocked with V4, once N3 is stable.
 
@@ -989,7 +1242,7 @@ Each of V1–V3 is available as a **standalone practice mode**; V4 combines all 
 
 ---
 
-## 14. Revision History
+## 16. Revision History
 
 | Date       | Author | Summary                                                                           |
 |------------|--------|-----------------------------------------------------------------------------------|
@@ -1009,3 +1262,8 @@ Each of V1–V3 is available as a **standalone practice mode**; V4 combines all 
 | 2026-06-07 | chairulakmal  | Security hardening (see `SECURITY.md`). Claude API: per-IP throttle on `analysis` (10/hr) + `prepare` (30/10 min); atomic daily budget via `consumeBudget()` (closes TOCTOU race); graceful degrade on Anthropic errors. Admin: `admin_session` cookie now holds an opaque HMAC token instead of the password; constant-time secret comparison (`safeEqual`); brute-force throttle on login (5/15 min). New utils `server/utils/adminAuth.ts`, `server/utils/throttle.ts`. |
 | 2026-06-08 | chairulakmal  | Fix Pinia SSR crash (Pinia 2.3.1 + Vue 3.4+ null-prototype `dep` objects in setup stores): convert `session.ts` to options store. Fix Nitro routing conflict (`questions.get.ts` + `questions/` directory): moved to `questions/index.get.ts`. Fix admin page empty-on-refresh: switch from `await useAsyncData` to `useLazyAsyncData` in `ssr: false` pages. Docs updated to reflect Demo state (5 vocab types, admin auth shipped, roadmap renumbered V1–V4). |
 | 2026-06-18 | chairulakmal  | Add directional quiz card transitions (`quiz-forward` / `quiz-backward` Vue Transition, scoped keyframes, `prefers-reduced-motion` via global CSS). Add wrong-answer review queue (`useReviewQueueStore`, `useReviewQueue`, `ReviewItem`; Pinia options store with self-managed localStorage). Add review session mode (`SessionMode = 'review'`; `reviewItems` payload; server whitelist validation + dedup). Add per-type accuracy SVG radar chart (`TypeChart.vue`; N-vertex polygon; tested-only entries). Fix `prepare.post.ts`: consistent `continue`-on-missing-word in all assembly loops; `reviewItems[].type` whitelist guard. Docs updated to reflect all Demo additions. |
+| 2026-07-19 | chairulakmal  | README rewritten; `ARCHITECTURE.md` added as the decisions-with-file-paths brief; `CLAUDE.md` demoted to an index of invariants and pointers. |
+| 2026-07-25 | chairulakmal  | Kalima superseded by Bayana: no new feature work lands here. Deployment stays live and public; the roadmap is retained as a porting reference. See `TODO.md`. |
+| 2026-08-06 | chairulakmal  | Quiz and results pages split into components, composables and pure helpers. Vitest suite over server-side assembly and `app/utils/`; `tsconfig.test.json` alongside `nuxi typecheck`; GitHub Actions CI running lint, both typechecks, tests and build. |
+| 2026-08-06 | chairulakmal  | Doc audit against the code. Superseded status recorded in the header and abstract. Removed the stale "per-IP rate limiting" non-goal, which §5 and §8 already contradicted. Rewrote §9 to match `assembleQuestion.ts` (prompt/context split, four orthography cases, `usage` branch). Added `TypeEntry` and `QuestionResult.meaning` to §4.1 and corrected the `context` annotation. Documented the six previously undocumented admin endpoints (§5.5 to §5.12). Added §11 Testing and CI; renumbered former §11 to §14 as §12 to §15. Corrected the seed filename in §6.1, noted that `scripts/` and `questions/` are gitignored, and recorded `passages-n3.json` as committed but unloaded. |
+| 2026-08-06 | chairulakmal  | Added §14 Port Surface, written for the agent doing the Bayana port: per-module move / re-decide / leave verdicts, the measured shape of all three committed artifacts, the wordId crosswalk and its 67-collision ambiguity, the invariant-to-test map, and an explicit do-not-port list. Renumbered Product Roadmap to §15 and Revision History to §16. `ARCHITECTURE.md` gained a "Ports as" line per decision. |
