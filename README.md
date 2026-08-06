@@ -1,5 +1,7 @@
 # Kalima
 
+[![CI](https://github.com/chairulakmal/kalima/actions/workflows/ci.yml/badge.svg)](https://github.com/chairulakmal/kalima/actions/workflows/ci.yml)
+
 A full-stack JLPT mock exam app built with Nuxt 4, TypeScript, Prisma, and PostgreSQL: practice the five N3 vocabulary question types from a 496-question pre-generated pool, sit the full 35-question section under a 30-minute timer, or drill a persistent wrong-answer queue, then get a Claude-written performance analysis, all without an account. The engineering point it is built around: correct answers structurally never reach the client during a quiz, because questions are assembled and graded server-side and the browser only ever sees shuffled choices with opaque IDs. Below: the live demo, what it covers, the highlights, the stack, running locally, and deployment on Railway; [ARCHITECTURE.md](ARCHITECTURE.md) walks the design decisions.
 
 **Live demo:** [kalima.chairulakmal.com](https://kalima.chairulakmal.com). The homepage and quiz are intentionally public, no sign-up required.
@@ -64,12 +66,16 @@ npm run dev
 
 ### Checks
 
-There is no test suite and no CI. The only automated checks are run by hand:
+[CI](.github/workflows/ci.yml) runs all of these on every push to `main` and every pull request, plus `npm run build`. The same commands run locally:
 
 ```bash
-npm run typecheck             # vue-tsc
 npm run lint                  # eslint . (npm run lint:fix to autofix)
+npm run typecheck             # vue-tsc, via nuxi
+npm run typecheck:test        # tsc over test/, which Nuxt's tsconfig does not cover
+npm test                      # vitest run (npm run test:watch to iterate)
 ```
+
+The unit tests cover server-side question assembly (that the client projection of a question carries nothing identifying the correct choice, and that each JLPT question type builds the stem its format requires) and the pure helpers in `app/utils/`.
 
 ### Environment variables
 
