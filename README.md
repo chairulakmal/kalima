@@ -46,14 +46,15 @@ Wrong answers land in a review queue: the home screen shows a gold review card w
 
 ## Running locally
 
-Prerequisites: Docker, Node `^22.13.0 || ^24.11.0 || >=26.0.0` (the intersection of Nuxt 4's and ESLint 10's requirements; 25.x is excluded, and dev and Railway both run 24).
+Prerequisites: a PostgreSQL 18 server (Docker is the easiest way to get one), Node `^22.13.0 || ^24.11.0 || >=26.0.0` (the intersection of Nuxt 4's and ESLint 10's requirements; 25.x is excluded, and dev and Railway both run 24).
 
 ```bash
 # 1. Env vars (fill in DATABASE_URL, ANTHROPIC_API_KEY, ADMIN_PASSWORD)
 cp .env.example .env
 
-# 2. PostgreSQL 18 on :5432 (the only container)
-docker compose up -d
+# 2. PostgreSQL 18 on :5432. Any instance works; this is a throwaway one.
+docker run -d --name kalima-db -p 5432:5432 \
+  -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=kalima postgres:18
 
 # 3. Dependencies and schema
 npm install
@@ -62,7 +63,7 @@ npx prisma db push
 # 4. Load the 496 pre-generated questions
 npm run db:seed
 
-# 5. Dev server on :3000 (re-runs `docker compose up -d` for you)
+# 5. Dev server on :3000 (start the database first; this does not)
 npm run dev
 ```
 

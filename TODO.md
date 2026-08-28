@@ -117,7 +117,7 @@ Small, known, and not yet fixed. None of them affect scoring or answer secrecy.
 
 - [x] Nuxt 4 project scaffolded
 - [x] Prisma schema created
-- [x] Docker dev environment (Postgres via `docker-compose.yml`)
+- [x] Docker dev environment (Postgres 18)
 - [x] `app/types/index.ts` defined
 
 ### Demo / MVP: server
